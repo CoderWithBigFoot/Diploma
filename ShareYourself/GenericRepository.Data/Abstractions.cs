@@ -20,7 +20,7 @@ namespace GenericRepository.Data
         void Remove(TEntity entity);
     }
 
-    public interface IUnitOfWork 
+    public interface IUnitOfWork : IDisposable
     {
         void Commit();
     }

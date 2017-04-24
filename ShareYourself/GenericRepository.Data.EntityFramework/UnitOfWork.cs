@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace GenericRepository.Data.EntityFramework
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         protected DbContext _context;
         private bool _disposed;

@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,10 +46,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\UserProfileDto.cs" />
+    <Compile Include="Infrastructure\MapperProfiles\UserProfileMapperProfile.cs" />
+    <Compile Include="IUserProfileService.cs" />
+    <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\UserProfileService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dto\" />
+    <Folder Include="Infrastructure\NinjectModules\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GenericRepository.Data.EntityFramework\GenericRepository.Data.EntityFramework.csproj">
+      <Project>{0948ed17-7658-4bad-b7f9-3485376beb7e}</Project>
+      <Name>GenericRepository.Data.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GenericRepository.Data\GenericRepository.Data.csproj">
+      <Project>{56d9bb47-b1f1-4c02-8379-2130a771ea7f}</Project>
+      <Name>GenericRepository.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYourself.Data\ShareYourself.Data.csproj">
+      <Project>{ed8ff5cc-e1be-422c-8eff-88c1c37ae690}</Project>
+      <Name>ShareYourself.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
