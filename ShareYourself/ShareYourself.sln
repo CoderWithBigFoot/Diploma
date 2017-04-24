@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareYourself.Data.Database
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareYourself.Business", "ShareYourself.Business\ShareYourself.Business.csproj", "{CA3EB687-36F8-46D8-A141-9B928C03DFDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareYourself.WebUI", "ShareYourself.WebUI\ShareYourself.WebUI.csproj", "{3A94508C-6FC2-4BF1-B9CD-F05691B35A12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CA3EB687-36F8-46D8-A141-9B928C03DFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA3EB687-36F8-46D8-A141-9B928C03DFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA3EB687-36F8-46D8-A141-9B928C03DFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A94508C-6FC2-4BF1-B9CD-F05691B35A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A94508C-6FC2-4BF1-B9CD-F05691B35A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A94508C-6FC2-4BF1-B9CD-F05691B35A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A94508C-6FC2-4BF1-B9CD-F05691B35A12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
