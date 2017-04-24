@@ -1,6 +1,4 @@
 ﻿using ShareYourself.Data;
-using GenericRepository.Data.EntityFramework;
-using ShareYourself.Data.Entities;
 namespace ShareYourself.Business.Services
 {
     public class BaseService
