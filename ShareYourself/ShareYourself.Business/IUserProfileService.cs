@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GenericRepository.Data;
-using ShareYourself.Data.Entities;
+﻿using ShareYourself.Business.Dto;
 
 namespace ShareYourself.Business
 {
-    public interface IUserProfileService<TSource> : IService<TSource, UserProfile>
+    public interface IUserProfileService
     {
+        void Create(UserProfileDto dto);
     }
 }

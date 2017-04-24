@@ -199,6 +199,12 @@
     </Compile>
     <Compile Include="Identity\Contexts\ApplicationDbContext.cs" />
     <Compile Include="Identity\Models\ApplicationUser.cs" />
+    <Compile Include="Infrastructure\MapperProfiles\UserProfileDtosViewModelProfile.cs" />
+    <Compile Include="Migrations\201704241903369_InitIdentity.cs" />
+    <Compile Include="Migrations\201704241903369_InitIdentity.Designer.cs">
+      <DependentUpon>201704241903369_InitIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -263,6 +269,11 @@
       <Project>{ca3eb687-36f8-46d8-a141-9b928c03dfdc}</Project>
       <Name>ShareYourself.Business</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704241903369_InitIdentity.resx">
+      <DependentUpon>201704241903369_InitIdentity.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

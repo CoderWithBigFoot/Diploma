@@ -5,7 +5,7 @@ using AutoMapper;
 
 namespace ShareYourself.Business.Services
 {
-    public class UserProfileService : BaseService, IUserProfileService<UserProfileDto>
+    public class UserProfileService : BaseService, IUserProfileService
     {
         public UserProfileService(IShareYourselfUow uow) : base(uow) { }
 

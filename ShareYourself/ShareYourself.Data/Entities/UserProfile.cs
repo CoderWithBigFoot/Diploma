@@ -11,6 +11,6 @@
         public string Surname { set; get; }
         public string Email { set; get; }
         public Gender? Gender { set; get; }
-        DateTime? BirthDate { set; get; }
+        public DateTime? BirthDate { set; get; }
     }
 }

@@ -15,7 +15,8 @@ namespace ShareYourself.Data.Database.Migrations
                         Name = c.String(),
                         Surname = c.String(),
                         Email = c.String(),
-                        Gender = c.Int(nullable: false),
+                        Gender = c.Int(),
+                        BirthDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id);
             

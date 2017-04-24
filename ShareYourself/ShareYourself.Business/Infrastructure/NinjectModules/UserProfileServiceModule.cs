@@ -1,5 +1,4 @@
 ﻿using Ninject.Modules;
-using ShareYourself.Business.Dto;
 using ShareYourself.Business.Services;
 
 namespace ShareYourself.Business.Infrastructure.NinjectModules
@@ -15,7 +14,7 @@ namespace ShareYourself.Business.Infrastructure.NinjectModules
 
         public override void Load()
         {
-            Bind<IUserProfileService<UserProfileDto>>().To<UserProfileService>().WithConstructorArgument("connectionString", connectionString);
+            Bind<IUserProfileService>().To<UserProfileService>().WithConstructorArgument("connectionString", connectionString);
         }
     }
 }

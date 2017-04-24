@@ -5,12 +5,17 @@ using ShareYourself.WebUI.Models;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using ShareYourself.WebUI.Identity.Models;
+using ShareYourself.Business;
+using AutoMapper;
+using ShareYourself.Business.Dto;
+using System;
 
 namespace ShareYourself.WebUI.Controllers
 {
     [AllowAnonymous]
     public class AccountController : Controller
     {
+        private IUserProfileService _userProfileService;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -36,6 +41,11 @@ namespace ShareYourself.WebUI.Controllers
             {
                 return HttpContext.GetOwinContext().Authentication;
             }
+        }
+
+        public AccountController(IUserProfileService service)
+        {
+            _userProfileService = service;
         }
 
         [HttpGet]
@@ -86,6 +96,16 @@ namespace ShareYourself.WebUI.Controllers
 
                 if (result.Succeeded)
                 {
+                    try
+                    {
+                        var userDto = Mapper.Map<UserProfileDto>(model);
+                        _userProfileService.Create(userDto);
+                    }
+                    catch(Exception)
+                    {
+                        ModelState.AddModelError("", "Sorry, service cannot create a new profile");
+                        return View(model);
+                    }
                     await SignInManager.SignInAsync(user, false, false);
                     return RedirectToRoute(new { }); // here is registration redirection
                 }
