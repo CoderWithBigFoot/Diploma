@@ -9,7 +9,7 @@ namespace GenericRepository.Data.EntityFramework
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private DbContext _context;
+        protected DbContext _context;
         private bool _disposed;
 
         public UnitOfWork(DbContext context)
@@ -22,7 +22,7 @@ namespace GenericRepository.Data.EntityFramework
             _context.SaveChanges();
         }
 
-        protected void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposing && !_disposed)
             {
