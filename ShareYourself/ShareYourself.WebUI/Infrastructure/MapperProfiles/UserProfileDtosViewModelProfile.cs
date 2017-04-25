@@ -8,8 +8,8 @@ namespace ShareYourself.WebUI.Infrastructure.MapperProfiles
     {
         public UserProfileDtosViewModelProfile()
         {
-            CreateMap<UserProfileDto, RegisterViewModel>();
-            CreateMap<RegisterViewModel, UserProfileDto>();
+            CreateMap<UserProfileRegistrationDto, RegisterViewModel>();
+            CreateMap<RegisterViewModel, UserProfileRegistrationDto>();
         }
     }
 }

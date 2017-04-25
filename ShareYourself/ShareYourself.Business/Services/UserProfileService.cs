@@ -8,8 +8,8 @@ namespace ShareYourself.Business.Services
     {
         public UserProfileService(IShareYourselfUow uow) : base(uow) { }
 
-        public virtual void Create<TDto>(TDto dto) 
-            where TDto : class
+        public virtual void Create<TDto>(TDto dto)
+            where TDto: class
         {
             var userProfile = Mapper.Map<UserProfile>(dto);
             _uow.UserProfileRepository.Add(userProfile);

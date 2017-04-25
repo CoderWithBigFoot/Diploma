@@ -6,7 +6,7 @@ namespace GenericRepository.Data.EntityFramework
     public class UnitOfWork : IUnitOfWork
     {
         protected DbContext _context;
-        private bool _disposed;
+        private bool _disposed = false;
 
         public UnitOfWork(DbContext context)
         {
@@ -23,6 +23,7 @@ namespace GenericRepository.Data.EntityFramework
             if (disposing && !_disposed)
             {
                 _context.Dispose();
+                _disposed = true;
             }
         }
 

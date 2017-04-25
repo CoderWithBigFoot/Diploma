@@ -1,67 +1,67 @@
 ﻿@using ShareYourself.WebUI.Models;
 @model RegisterViewModel
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "Sign up";
+    // Should add a immideatly validation 
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Register</title>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/RegisterLogin")
-</head>
-<body>
-    
-    <div class="container">
+    @section Styles{
+        @Styles.Render("~/Content/RegisterLogin");
+        }
+    @section Body{
+    <div class="container container-margin">
         <div class="row">
             <div class="col-sm-offset-4 col-sm-4 register-container">
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
+                    @Html.AntiForgeryToken();
                     <div class="form-group">
                         <div class="col-sm-offset-1 col-sm-10">
-                            <h2>Registration</h2>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10">
-                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Name" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10">
-                            @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", @placeholder = "Surname" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10">
-                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
+                            <h2>Sign up</h2>
                             <br>
                             <hr>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10">
-                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @placeholder = "Password" })
+                        @Html.ValidationSummary(true);
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(x => x.Name)
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10">
-                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @placeholder = "Confirm password" })
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", @placeholder = "Surname" })
+                                @Html.ValidationMessageFor(x => x.Surname)
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-1 col-sm-10">
-                             <button type="submit" class="btn btn-success" style="width:100%;">Register</button>
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
+                                @Html.ValidationMessageFor(x => x.Email)
+                                <br>
+                                <hr>
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Password" })
+                                @Html.ValidationMessageFor(x => x.Password)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm password" })
+                                @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <button type="submit" class="btn btn-default base-custom-button" style="width:100%;">Sign up</button>
+                            </div>
+                        </div>
+                        }
                     </div>
-                }
-            </div>
         </div>
     </div>
-</body>
-</html>
+   }

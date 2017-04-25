@@ -1,8 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
+﻿
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -17,10 +13,45 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 300px;
+.top-nav{
+    background-color:midnightblue;
+    height:40px;
+    width: 100%;
+    color: Highlight;
+    position: fixed;
 }
 
+span.header-share{
+    font-family: 'Segoe UI';
+    color: lightgray;
+}
+span.header-yourself {
+    font-family: 'Segoe UI';
+    color: lightblue;
+}
 
+h2 {
+    text-align: center;
+    margin: auto;
+}
+
+a{
+    text-decoration:none;
+    text-align: center;
+    margin:auto;
+    color: white;
+    margin-top:45%;
+}
+
+a:hover{
+    text-decoration:none;
+    color: blue;
+}
+
+.field-validation-error {
+    color: red;
+    font-family: 'Segoe UI';
+}
+.input-validation-error {
+    border-color: red;
+}

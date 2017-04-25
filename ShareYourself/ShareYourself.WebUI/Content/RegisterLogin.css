@@ -1,19 +1,19 @@
 ﻿body {
 }
 
-.register-container{
+.register-container {
     background-color: whitesmoke;
     border: 2px solid;
-    border-color: lightblue;
-    border-radius:2px;
+    border-color: midnightblue;
+    border-radius: 2px;
 }
 
-hr{
-    margin:auto;
-    border-color: lightgreen;
-    background-color:lightgreen;
-    border-radius:2px;
-    height:4px;
+hr {
+    margin: auto;
+    border-color: midnightblue;
+    background-color: midnightblue;
+    border-radius: 2px;
+    height: 3px;
 }
 
 h2 {
@@ -26,4 +26,13 @@ h2 {
     margin-top:50px;
     margin-left:30%;
     margin-right:30%;
+}
+
+.container-margin{
+    margin-top:50px;
+}
+
+.base-custom-button:hover {
+    background-color: midnightblue;
+    color: white;
 }

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dto\UserProfileDto.cs" />
+    <Compile Include="Dto\UserProfileRegistrationDto.cs" />
     <Compile Include="Infrastructure\MapperProfiles\UserProfileMapperProfile.cs" />
     <Compile Include="Infrastructure\NinjectModules\UnitOfWorkModule.cs" />
     <Compile Include="Infrastructure\NinjectModules\UserProfileServiceModule.cs" />

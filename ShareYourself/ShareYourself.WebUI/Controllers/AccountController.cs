@@ -9,6 +9,7 @@ using ShareYourself.Business;
 using AutoMapper;
 using ShareYourself.Business.Dto;
 using System;
+using System.Text;
 
 namespace ShareYourself.WebUI.Controllers
 {
@@ -67,7 +68,7 @@ namespace ShareYourself.WebUI.Controllers
 
             switch (result)
             {
-                case SignInStatus.Success: return RedirectToRoute(new { }); // here is login page
+                case SignInStatus.Success: return RedirectToRoute(new { controller = "Home", action = "Index" }); // here is login page
                 case SignInStatus.Failure:
                 default: ModelState.AddModelError("", "Invalid login or password");
                     return View(model);
@@ -98,16 +99,19 @@ namespace ShareYourself.WebUI.Controllers
                 {
                     try
                     {
-                        var userDto = Mapper.Map<UserProfileDto>(model);
+                        var userDto = Mapper.Map<UserProfileRegistrationDto>(model);
+                        userDto.Name = userDto.Name.Substring(0, 1).ToUpper() + userDto.Name.Substring(1).ToLower();
+                        userDto.Surname = userDto.Surname.Substring(0, 1).ToUpper() + userDto.Surname.Substring(1).ToLower();
                         _userProfileService.Create(userDto);
                     }
-                    catch(Exception)
+                    catch(Exception ex)
                     {
-                        ModelState.AddModelError("", "Sorry, service cannot create a new profile");
+                        ModelState.AddModelError("", $"Sorry, service cannot create a new profile {ex.Message}");
+                        await UserManager.DeleteAsync(user);
                         return View(model);
                     }
                     await SignInManager.SignInAsync(user, false, false);
-                    return RedirectToRoute(new { }); // here is registration redirection
+                    return RedirectToRoute(new { controller = "Home", action = "Index"}); // here is registration redirection
                 }
 
                 foreach (var error in result.Errors)

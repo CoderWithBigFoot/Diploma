@@ -13,7 +13,7 @@ namespace ShareYourself.Data.Database.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704250834170_Init"; }
+            get { return "201704251243085_Init"; }
         }
         
         string IMigrationMetadata.Source

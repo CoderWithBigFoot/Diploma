@@ -10,6 +10,9 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
         {
             CreateMap<UserProfile, UserProfileDto>();
             CreateMap<UserProfileDto, UserProfile>();
+
+            CreateMap<UserProfile, UserProfileRegistrationDto>();
+            CreateMap<UserProfileRegistrationDto, UserProfile>();
         }
     }
 }
