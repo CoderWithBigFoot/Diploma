@@ -1,9 +1,6 @@
-﻿using ShareYourself.Business.Dto;
-
-namespace ShareYourself.Business
+﻿namespace ShareYourself.Business
 {
-    public interface IUserProfileService
+    public interface IUserProfileService : IBaseOperationsService
     {
-        void Create(UserProfileDto dto);
     }
 }

@@ -1,5 +1,4 @@
-﻿using ShareYourself.Business.Dto;
-using ShareYourself.Data;
+﻿using ShareYourself.Data;
 using ShareYourself.Data.Entities;
 using AutoMapper;
 
@@ -9,10 +8,11 @@ namespace ShareYourself.Business.Services
     {
         public UserProfileService(IShareYourselfUow uow) : base(uow) { }
 
-        public void Create(UserProfileDto userDto)
+        public virtual void Create<TDto>(TDto dto) 
+            where TDto : class
         {
-            var result = Mapper.Map<UserProfile>(userDto);
-            _uow.UserProfileRepository.Add(result);
+            var userProfile = Mapper.Map<UserProfile>(dto);
+            _uow.UserProfileRepository.Add(userProfile);
             _uow.Commit();
         }
     }

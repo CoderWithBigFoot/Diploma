@@ -13,7 +13,7 @@ namespace GenericRepository.Data.EntityFramework
 
         public Repository(DbContext context)
         {
-            _context = context;
+            _context = context ?? throw new Exception("DbContext is null");
             _set = _context.Set<TEntity>();
         }
 

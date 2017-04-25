@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
 
 namespace GenericRepository.Data.EntityFramework
@@ -14,7 +10,7 @@ namespace GenericRepository.Data.EntityFramework
 
         public UnitOfWork(DbContext context)
         {
-            _context = context;
+            _context = context ?? throw new Exception("DbContext is null");
         }
 
         public void Commit()

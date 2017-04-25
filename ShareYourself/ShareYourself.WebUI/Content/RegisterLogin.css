@@ -1,0 +1,29 @@
+﻿body {
+}
+
+.register-container{
+    background-color: whitesmoke;
+    border: 2px solid;
+    border-color: lightblue;
+    border-radius:2px;
+}
+
+hr{
+    margin:auto;
+    border-color: lightgreen;
+    background-color:lightgreen;
+    border-radius:2px;
+    height:4px;
+}
+
+h2 {
+    text-align:center;
+    margin:auto;
+    font-family: 'Segoe UI';
+}
+
+.custom-container{
+    margin-top:50px;
+    margin-left:30%;
+    margin-right:30%;
+}

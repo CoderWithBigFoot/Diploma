@@ -12,5 +12,7 @@
         public string Email { set; get; }
         public Gender? Gender { set; get; }
         public DateTime? BirthDate { set; get; }
+
+        public string AddedName { set; get; }
     }
 }

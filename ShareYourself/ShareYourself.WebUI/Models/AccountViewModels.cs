@@ -6,6 +6,7 @@ namespace ShareYourself.WebUI.Models
     {
         [Required]
         [MinLength(2), MaxLength(100)]
+        [DataType(DataType.Text)]
         public string Name { set; get; }
 
         [Required]

@@ -33,7 +33,8 @@ namespace ShareYourself.WebUI.App_Start
         {
             var ninjectModules = new NinjectModule[]
             {
-                new UserProfileServiceModule("ShareYourself")
+                new UserProfileServiceModule("ShareYourself"),
+                new UnitOfWorkModule("ShareYourself")
             };
 
             var kernel = new StandardKernel(ninjectModules);

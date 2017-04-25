@@ -1,4 +1,5 @@
 ﻿using ShareYourself.Data;
+
 namespace ShareYourself.Business.Services
 {
     public class BaseService
