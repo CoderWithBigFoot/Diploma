@@ -29,8 +29,3 @@ h2 {
 .container-margin{
     margin-top:50px;
 }
-
-.base-custom-button:hover {
-    background-color: midnightblue;
-    color: white;
-}

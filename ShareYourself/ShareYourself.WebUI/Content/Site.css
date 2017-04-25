@@ -1,4 +1,6 @@
-﻿
+﻿body {
+    margin-top: 0px;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -13,12 +15,17 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-.top-nav{
-    background-color:midnightblue;
-    height:40px;
+.top-nav {
+    background-color: midnightblue;
+    height: 40px;
     width: 100%;
     color: Highlight;
     position: fixed;
+}
+
+#top-nav-right-panel{
+    margin-top: 45%;
+    padding-top: 45%;
 }
 
 span.header-share{
@@ -64,4 +71,27 @@ a:hover{
 
 .validation-summary-errors ul{
     list-style-type: none;
+}
+
+.base-custom-button:hover {
+    background-color: midnightblue;
+    color: white;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    text-decoration:none;
+    text-align: center;
+    margin:auto;
+    color: white;
+    margin-top:45%;
+    font-family: 'Segoe UI';
+}
+
+.link-button:hover {
+        text-decoration: none;
+        color: blue;
 }
