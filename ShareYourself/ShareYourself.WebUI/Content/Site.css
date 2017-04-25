@@ -41,6 +41,7 @@ a{
     margin:auto;
     color: white;
     margin-top:45%;
+    font-family: 'Segoe UI';
 }
 
 a:hover{
@@ -54,4 +55,13 @@ a:hover{
 }
 .input-validation-error {
     border-color: red;
+}
+
+.validation-summary-errors {
+    color: red;
+    font-family: 'Segoe UI';
+}
+
+.validation-summary-errors ul{
+    list-style-type: none;
 }

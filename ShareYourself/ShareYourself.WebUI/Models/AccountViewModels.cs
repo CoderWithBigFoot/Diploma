@@ -5,16 +5,16 @@ namespace ShareYourself.WebUI.Models
     public class RegisterViewModel
     {
         [Required]
-        [MinLength(2), MaxLength(100)]
+        [MinLength(2, ErrorMessage = "Length must be greater than 2"), MaxLength(100, ErrorMessage = "Length must be less than 100")]
         [DataType(DataType.Text)]
         public string Name { set; get; }
 
         [Required]
-        [MinLength(2),MaxLength(100)]
+        [MinLength(2,ErrorMessage = "Length must be greater than 2"),MaxLength(100, ErrorMessage = "Length must be less than 100")]
         public string Surname { set; get; }
 
         [Required]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Incorrect format")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -33,8 +33,8 @@ namespace ShareYourself.WebUI.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Login field is required")]
+        [EmailAddress(ErrorMessage = "Incorrect login")]
         public string Email { set; get; }
 
         [Required]
