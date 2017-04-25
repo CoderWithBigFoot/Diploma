@@ -87,11 +87,14 @@ a:hover{
     text-align: center;
     margin:auto;
     color: white;
-    margin-top:45%;
+    margin-top:50%;
+    padding-top:3.5%;
     font-family: 'Segoe UI';
+    font-weight: 500;
 }
 
 .link-button:hover {
         text-decoration: none;
         color: blue;
+        background-color:none;
 }
