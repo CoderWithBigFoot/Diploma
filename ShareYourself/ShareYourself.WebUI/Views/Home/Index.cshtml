@@ -1,9 +1,44 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 @section Body{
-<h3>Index</h3>
-    }
+    <style>
+        .red-div{
+            height: 500px;
+            width: 500px;
+            background-color: red;
+        }
+        </style>
+
+    
+}
+
+
+@{
+    /*<div class="top-nav">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-2">
+                <h4><span class="header-share">Share</span><span class="header-yourself">Yourself</span></h4>
+            </div>
+            <div class="col-sm-offset-7 col-sm-2">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken();
+                        <button type="submit" class="btn link-button" style="margin:auto;"><span class="glyphicon glyphicon-log-out"></span> Sign out</button>
+                    }
+                }
+                else
+                {
+                    <h5>
+                        <a href="@Url.Action("Login","Account")"><span class="glyphicon glyphicon-log-in"></span> Sign in</a><span> / </span>
+                        <a href="@Url.Action("Register","Account")">Sign up</a>
+                    </h5>
+                }
+            </div>
+        </div>
+    </div>*/
+}

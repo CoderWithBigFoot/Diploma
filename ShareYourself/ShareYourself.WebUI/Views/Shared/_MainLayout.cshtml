@@ -12,28 +12,46 @@
 </head>
 <body>
     <div class="top-nav">
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-2">
+        <div class="row" style="height: 100%;">
+            <div class="col-sm-offset-2 col-sm-2" style="height: 100%;">
                 <h4><span class="header-share">Share</span><span class="header-yourself">Yourself</span></h4>
             </div>
-            <div class="col-sm-offset-7 col-sm-2">               
+            <div class="col-sm-offset-5 col-sm-2" style="height: 100%;">
                 @if (Request.IsAuthenticated)
                 {
                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken();
-                        <button type="submit" class="btn link-button" style="margin:auto;"><span class="glyphicon glyphicon-log-out"></span> Sign out</button>
+                        <button type="submit" class="btn link-button" style="margin: auto;"><span class="glyphicon glyphicon-log-out"></span> Sign out</button>
                     }
                 }
                 else
                 {
-                    <h5><a href="@Url.Action("Login","Account")"><span class="glyphicon glyphicon-log-in"></span> Sign in</a><span> / </span>
-                    <a href="@Url.Action("Register","Account")">Sign up</a></h5>
-                }            
+                    <h5>
+                        <a href="@Url.Action("Login","Account")"><span class="glyphicon glyphicon-log-in"></span> Sign in</a><span> / </span>
+                        <a href="@Url.Action("Register","Account")">Sign up</a>
+                    </h5>
+                }
             </div>
         </div>
     </div>
     <br>
+    @if (Request.IsAuthenticated)
+    {
+        @Styles.Render("~/Content/BodyContent")
+        <div class="container-wrapper">         
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-7">
+                    <div class="main-content-container" style="height: 500px;"></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="main-content-container" style="height: 100px; width:92%;"></div>
+                </div>
+            </div>
+        </div>
+  
+    }
+    <br><br>
     @RenderSection("Header", false)
     @RenderSection("Styles", false)
     @RenderSection("Scripts", false)

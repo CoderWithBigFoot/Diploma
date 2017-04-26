@@ -1,0 +1,26 @@
+﻿.main-content-container { /* for menu and for content at the center of the page*/
+    background-color: whitesmoke;
+    border: 2px solid;
+    border-color: midnightblue;
+    border-radius: 2px;
+}
+
+.container-wrapper{
+    width: 80%;
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+}
+
+.margine-main-content-container{
+    margin-left: 16%;
+    width: 50%;
+}
+
+.margine-menu-content-container {
+    margin-left: 10%;
+    width: 20%;
+}
+
+

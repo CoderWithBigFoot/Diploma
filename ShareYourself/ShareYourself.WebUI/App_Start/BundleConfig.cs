@@ -26,6 +26,9 @@ namespace ShareYourself.WebUI
             bundles.Add(new StyleBundle("~/Content/RegisterLogin").Include(
                     "~/Content/RegisterLogin.css"
                 ));
+            bundles.Add(new StyleBundle("~/Content/BodyContent").Include(
+                    "~/Content/BodyContent.css"
+                ));
         }
     }
 }
