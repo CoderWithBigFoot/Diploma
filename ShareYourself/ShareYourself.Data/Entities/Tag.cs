@@ -7,6 +7,6 @@ namespace ShareYourself.Data.Entities
     {
         public string Name { set; get; }
 
-        public virtual ICollection<UserPost> Posts { set; get; } = new List<UserPost>();
+        public virtual ICollection<UserPost> Posts { set; get; } = new List<UserPost>();//
     }
 }
