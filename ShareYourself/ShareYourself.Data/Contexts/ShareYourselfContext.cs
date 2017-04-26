@@ -9,7 +9,7 @@ namespace ShareYourself.Data.Contexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserProfile>()
+            modelBuilder.Entity<UserProfile>()  
                 .HasKey(x => x.Id);
 
             modelBuilder.Entity<UserProfile>()
@@ -21,6 +21,8 @@ namespace ShareYourself.Data.Contexts
                     x.MapRightKey("Subscribing_To");
                     x.ToTable("FollowersSubscribers");
                 });
+
+
 
             modelBuilder.Entity<UserPost>()
                 .HasKey(x => x.Id);
@@ -34,18 +36,18 @@ namespace ShareYourself.Data.Contexts
                 .WithMany(x => x.Posts)
                 .Map(x =>
                 {
-                    x.MapLeftKey("Tag");
-                    x.MapRightKey("Post");
+                    x.MapLeftKey("Post");
+                    x.MapRightKey("Tag");
                     x.ToTable("TagsPosts");
                 });
 
-            modelBuilder.Entity<UserPost>()
+           /* modelBuilder.Entity<UserPost>()
                 .HasMany(x => x.Likes)
                 .WithMany(x => x.Likes)
                 .Map(x => 
                 {
-                    x.MapLeftKey("LikedUserProfile");
-                    x.MapRightKey("LikedUserPost");
+                    x.MapLeftKey("LikedUserPost");
+                    x.MapRightKey("LikedUserProfile"); 
                     x.ToTable("Likes");
                 });
 
@@ -54,15 +56,19 @@ namespace ShareYourself.Data.Contexts
                 .WithMany(x => x.Reposts)
                 .Map(x => 
                 {
-                    x.MapLeftKey("Reposter");
-                    x.MapRightKey("RepostedUserPost");
+                    x.MapLeftKey("RepostedUserPost");
+                    x.MapRightKey("Reposter");
                     x.ToTable("Reposts");
-                });
+                });              */
+
+
 
             modelBuilder.Entity<Tag>()
                 .HasKey(x => x.Id);
 
-
+            modelBuilder.Entity<Tag>()
+                .Property(x => x.Name)
+                .IsRequired();
         }
 
     }

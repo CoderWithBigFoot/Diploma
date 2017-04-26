@@ -51,6 +51,14 @@
     <Compile Include="Migrations\201704251243085_Init.Designer.cs">
       <DependentUpon>201704251243085_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704261858477_FolSub_Tags_UserPosts_TagsPosts_AreCreated.cs" />
+    <Compile Include="Migrations\201704261858477_FolSub_Tags_UserPosts_TagsPosts_AreCreated.Designer.cs">
+      <DependentUpon>201704261858477_FolSub_Tags_UserPosts_TagsPosts_AreCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704261904492_TagNameNonNullable.cs" />
+    <Compile Include="Migrations\201704261904492_TagNameNonNullable.Designer.cs">
+      <DependentUpon>201704261904492_TagNameNonNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShareYourselfContextManager.cs" />
@@ -70,6 +78,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704251243085_Init.resx">
       <DependentUpon>201704251243085_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704261858477_FolSub_Tags_UserPosts_TagsPosts_AreCreated.resx">
+      <DependentUpon>201704261858477_FolSub_Tags_UserPosts_TagsPosts_AreCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704261904492_TagNameNonNullable.resx">
+      <DependentUpon>201704261904492_TagNameNonNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
