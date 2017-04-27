@@ -23,7 +23,7 @@ namespace ShareYourself.Data.Contexts
                 });
 
 
-
+ 
             modelBuilder.Entity<UserPost>()
                 .HasKey(x => x.Id);
 
@@ -41,7 +41,7 @@ namespace ShareYourself.Data.Contexts
                     x.ToTable("TagsPosts");
                 });
 
-           /* modelBuilder.Entity<UserPost>()
+            modelBuilder.Entity<UserPost>()
                 .HasMany(x => x.Likes)
                 .WithMany(x => x.Likes)
                 .Map(x => 
@@ -59,7 +59,7 @@ namespace ShareYourself.Data.Contexts
                     x.MapLeftKey("RepostedUserPost");
                     x.MapRightKey("Reposter");
                     x.ToTable("Reposts");
-                });              */
+                });              
 
 
 
