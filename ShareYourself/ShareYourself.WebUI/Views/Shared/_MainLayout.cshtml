@@ -18,7 +18,7 @@
                     <h4><span class="header-share">Share</span><span class="header-yourself">Yourself</span></h4>
                 </div>
             </div>
-            <div class="col-sm-offset-6 col-sm-2" style="height: 100%;">
+            <div class="col-sm-offset-6 col-sm-2">
                 @if (Request.IsAuthenticated)
                 {
                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
@@ -44,7 +44,7 @@
         <div class="container-wrapper">         
             <div class="row">
                 <div class="col-sm-offset-2 col-sm-6">
-                    <div class="main-content-container" style="height: 1500px;">
+                    <div> <!--div class main-content-container style="height: 1500px;-->
                         @RenderSection("Header", false)
                         @RenderSection("Styles", false)
                         @RenderSection("Scripts", false)

@@ -21,7 +21,7 @@ namespace ShareYourself.Data.Contexts
                     x.MapRightKey("Subscribing_To");
                     x.ToTable("FollowersSubscribers");
                 });
-
+                
 
  
             modelBuilder.Entity<UserPost>()
@@ -69,6 +69,15 @@ namespace ShareYourself.Data.Contexts
             modelBuilder.Entity<Tag>()
                 .Property(x => x.Name)
                 .IsRequired();
+
+
+
+            modelBuilder.Entity<UserImage>()
+                .HasKey(x => x.Id);
+
+            modelBuilder.Entity<UserImage>()
+                .HasRequired(x => x.Creator)
+                .WithOptional(x => x.Avatar);
         }
 
     }

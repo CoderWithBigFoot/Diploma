@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Contexts\ShareYourselfContext.cs" />
     <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Entities\UserImage.cs" />
     <Compile Include="Entities\UserPost.cs" />
     <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="IShareYourselfUow.cs" />

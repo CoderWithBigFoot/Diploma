@@ -6,13 +6,16 @@ using System.Web.Mvc;
 
 namespace ShareYourself.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class UserProfileController : Controller
     {
+        [HttpGet]
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Home()
         {
             return View();
         }
+
+        
 
     }
 }
