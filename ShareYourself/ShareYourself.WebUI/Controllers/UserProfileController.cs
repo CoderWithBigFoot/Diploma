@@ -25,11 +25,9 @@ namespace ShareYourself.WebUI.Controllers
                 Name = "Zheka",
                 Surname = "Korsakas",
                 Status = "Some status is here",
-                IsMale = true,
-                BirthDate = DateTime.Now
+                IsMale = true
             };
-            //DateTimeFormatInfo info = new DateTimeFormatInfo();
-
+            DateTimeFormatInfo info = new DateTimeFormatInfo();
             //ViewBag.CurrentMonth = info.GetMonthName(DateTime.Now.Month);
             return View("EditUserProfile", editUserProfileModel);
         }
@@ -47,6 +45,12 @@ namespace ShareYourself.WebUI.Controllers
             }
             ViewBag.ResultMessage = "Model is incorrect";
             return View();
+        }
+
+        [HttpGet]
+        public string GetDate()
+        {
+            return DateTime.Now.ToString();
         }
     }
 }

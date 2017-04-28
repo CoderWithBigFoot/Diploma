@@ -16,8 +16,5 @@ namespace ShareYourself.WebUI.Models
 
         [Display(Name = "Gender")]
         public bool? IsMale { set; get; }
-
-        [Display(Name = "Birthday")]
-        public DateTime? BirthDate { set; get; }
     }
 }

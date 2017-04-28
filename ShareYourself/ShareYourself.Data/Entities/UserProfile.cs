@@ -10,7 +10,6 @@ namespace ShareYourself.Data.Entities
         public string Surname { set; get; }
         public string Email { set; get; }
         public bool? IsMale { set; get; }
-        public DateTime? BirthDate { set; get; }
         public string Status { set; get; }
         //public DateTime RegistrationDate { set; get; }
 

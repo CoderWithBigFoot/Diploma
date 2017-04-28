@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+@section Scripts{
+    <script>
+        function someFunction() {
+            $("#id").da
+        }
+    </script>
+    }
+
 @section Body{
     
     <div class="main-content-container">
@@ -27,25 +35,26 @@
                         @Html.TextAreaFor(x => x.Status, new { @class = "form-control", @value = Model.Status, @rows = 3, @style = "resize: none;" })
                         @Html.ValidationMessageFor(x => x.Status)
 
-                        <span class="userprofile-info-key">@Html.DisplayNameFor(x => x.IsMale) </span><br>
-                        @Html.ValidationMessageFor(x => x.IsMale)                        
+                        <span class="userprofile-info-key">@Html.DisplayNameFor(x => x.IsMale) </span><br>                       
                             @if (Model.IsMale != null)
                             {
                                 if ((bool)Model.IsMale)
                                 {
                                     <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailTrue" value=true checked><span class="userprofile-info-value"> Male</span><br>
-                                    <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailFalse" value=false><span class="userprofile-info-value"> Female</span>
+                                    <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailFalse" value=false><span class="userprofile-info-value"> Female</span><br>
                                 }
                                 else
                                 {
                                     <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailTrue" value=true><span class="userprofile-info-value"> Male</span><br>
-                                    <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailFalse" value=false checked><span class="userprofile-info-value"> Female</span>
+                                    <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailFalse" value=false checked><span class="userprofile-info-value"> Female</span><br>
                                 }
+                                @Html.ValidationMessageFor(x => x.IsMale)
                             }
                     </div>
                  </div>
                     <hr>
-                    <button type="submit" class="btn btn-default base-button-hover base-button">Edit</button>
+                    <button type="submit" class="btn btn-default base-button-hover base-button">Save</button>
+                    <button type="reset" class="btn btn-default base-button-hover base-button">Reset</button>
                     }
             </div>
         </div>   
