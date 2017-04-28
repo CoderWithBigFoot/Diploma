@@ -14,6 +14,7 @@ namespace ShareYourself.Data.Entities
         public string Email { set; get; }
         public Gender? Gender { set; get; }
         public DateTime? BirthDate { set; get; }
+        //public DateTime RegistrationDate { set; get; }
 
         public virtual UserImage Avatar { set; get; }
 

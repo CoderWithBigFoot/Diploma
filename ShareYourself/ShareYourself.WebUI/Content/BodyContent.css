@@ -52,6 +52,13 @@
     font-size: medium;
 }
 
+textarea{
+    resize: none;
+}
+
+.main-content-nested-container hr{
+    margin-bottom: 2%;
+}
 
 
 
