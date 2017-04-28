@@ -29,6 +29,22 @@
     font-size: medium;
 }
 
+.upload-avatar-button:hover{
+    color: white;
+    background-color: midnightblue;
+}
+
+.base-button {
+    font-family: 'Segoe UI';
+    font-size: medium;
+}
+
+.base-button-hover:hover {
+    color: white;
+    background-color: midnightblue;
+}
+
+
 .userprofile-info{
     margin-top: 5px;
     padding: 0px;
@@ -58,6 +74,22 @@ textarea{
 
 .main-content-nested-container hr{
     margin-bottom: 2%;
+}
+
+input[type="radio"]:checked + span {
+    border-color: midnightblue;
+    color: midnightblue;
+    font-size: large;
+}
+
+input[type="text"]:focus{
+    border-color: midnightblue;
+    box-shadow: none;
+}
+
+textarea:focus {
+    border-color: midnightblue;
+    box-shadow: none;
 }
 
 

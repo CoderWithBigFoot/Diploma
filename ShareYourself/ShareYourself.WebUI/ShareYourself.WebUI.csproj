@@ -206,7 +206,7 @@
     </Compile>
     <Compile Include="Identity\Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\EditUserProfileViewModel.cs" />
+    <Compile Include="Models\UserProfileEditingViewModel.cs" />
     <Compile Include="Models\UserProfileHomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

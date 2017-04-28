@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShareYourself.WebUI.Models
 {
-    public class EditUserProfileViewModel
+    public class UserProfileEditingViewModel
     {
         [MinLength(2, ErrorMessage = "Length must be greater than 2"), MaxLength(100, ErrorMessage = "Length must be less than 100")]
         public string Name { set; get; }
@@ -14,7 +14,10 @@ namespace ShareYourself.WebUI.Models
         [MaxLength(144, ErrorMessage = "Length must be less than 144")]
         public string Status { set; get; }
 
-        public string Gender { set; get; }
-        public DateTime? BirthDay { set; get; }
+        [Display(Name = "Gender")]
+        public bool? IsMale { set; get; }
+
+        [Display(Name = "Birthday")]
+        public DateTime? BirthDate { set; get; }
     }
 }
