@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Linq;
+using System.Linq.Expressions;
+using System.Collections.Generic;
 
 namespace GenericRepository.Data
 {
@@ -11,9 +12,9 @@ namespace GenericRepository.Data
     public interface IRepository<TEntity>
         where TEntity: IEntity
     {
-        IQueryable<TEntity> Get();
-        IQueryable<TEntity> Get(Func<TEntity, bool> predicate);
-        IQueryable<TModel> Get<TModel>(Func<TEntity, bool> predicate);
+        IEnumerable<TEntity> Get();
+        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> expression);
+        IEnumerable<TModel> Get<TModel>(Expression<Func<TEntity, bool>> predicate) where TModel : class;
 
         void Add(TEntity entity);
         void Update(TEntity entity);

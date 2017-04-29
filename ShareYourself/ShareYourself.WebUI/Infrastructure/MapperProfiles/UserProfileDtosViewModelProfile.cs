@@ -13,6 +13,9 @@ namespace ShareYourself.WebUI.Infrastructure.MapperProfiles
 
             CreateMap<UserProfileEditingDto, UserProfileEditingViewModel>();
             CreateMap<UserProfileEditingViewModel, UserProfileEditingDto>();
+
+            CreateMap<UserProfileDto, UserProfileHomeViewModel>();
+            CreateMap<UserProfileHomeViewModel, UserProfileDto>();
         }
     }
 }

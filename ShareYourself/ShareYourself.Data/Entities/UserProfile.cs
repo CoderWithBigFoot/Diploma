@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using GenericRepository.Data.EntityFramework;
 
 namespace ShareYourself.Data.Entities
 {
     public class UserProfile : Entity
     {
+        public string Email { set; get; }
         public string Name { set; get; }
         public string Surname { set; get; }
-        public string Email { set; get; }
         public bool? IsMale { set; get; }
         public string Status { set; get; }
         //public DateTime RegistrationDate { set; get; }

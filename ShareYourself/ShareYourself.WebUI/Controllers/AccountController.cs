@@ -1,15 +1,14 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
-using ShareYourself.WebUI.Models;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
+using AutoMapper;
+using ShareYourself.WebUI.Models;
 using ShareYourself.WebUI.Identity.Models;
 using ShareYourself.Business;
-using AutoMapper;
 using ShareYourself.Business.Dto;
-using System;
-using System.Text;
 
 namespace ShareYourself.WebUI.Controllers
 {

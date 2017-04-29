@@ -14,6 +14,12 @@ namespace ShareYourself.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "UserProfileRoute",
+                url: "profile/{action}/{id}",
+                defaults: new { controller = "UserProfile", id = UrlParameter.Optional}
+            );
+        
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "UserProfile", action = "Home", id = UrlParameter.Optional }

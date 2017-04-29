@@ -1,6 +1,7 @@
 ﻿namespace ShareYourself.Business
 {
-    public interface IUserProfileService : IBaseOperationsService
+    public interface IUserProfileService : IBaseOperations
     {
+        TDto Get<TDto>(string email) where TDto : class;
     }
 }

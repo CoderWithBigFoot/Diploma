@@ -16,12 +16,28 @@
 
             <div class="col-md-offset-1 col-md-7">
                 <div class="userprofile-info">
-                    <h3>Zheka Korsakas</h3>
-                    <span class="userprofile-info-value"> Some status is here</span>
+                    <div id="userProfileId" hidden>@Model.Id</div>
+                    <h3>@Model.Name @Model.Surname</h3>
+                    <span class="userprofile-info-value">@Model.Status</span>
                     <hr>
-                    <span class="userprofile-info-key">E-mail: </span><span class="userprofile-info-value"> korsakaspr@gmail.com</span><br>
-                    <span class="userprofile-info-key">Gender: </span><span class="userprofile-info-value"> Male</span><br>
-                    <span class="userprofile-info-key">Birthday: </span><span class="userprofile-info-value"> 18 april 2017</span><br>
+                    <span class="userprofile-info-key">E-mail: </span><span class="userprofile-info-value"> @Model.Email</span><br>
+                    <span class="userprofile-info-key">Gender: </span>
+                        @{ 
+                            string genderResult = "Not selected";
+
+                            if(Model.IsMale != null)
+                            {
+                                if ((bool)Model.IsMale)
+                                {
+                                    genderResult = "Male";
+                                }
+                                else
+                                {
+                                    genderResult = "Female";
+                                }
+                            }
+                        }
+                    <span class="userprofile-info-value">@genderResult</span><br>
                     <span class="userprofile-info-key">How long registered: </span><span class="userprofile-info-value"> 18 april 2017</span><br>
                     <!---->
                 </div>

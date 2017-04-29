@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Data.Entity;
+using System.Collections.Generic;
 using AutoMapper.QueryableExtensions;
 
 namespace GenericRepository.Data.EntityFramework
@@ -17,19 +19,20 @@ namespace GenericRepository.Data.EntityFramework
             _set = _context.Set<TEntity>();
         }
 
-        public IQueryable<TEntity> Get()
+        public IEnumerable<TEntity> Get()
         {
             return _set;
         }
 
-        public IQueryable<TEntity> Get(Func<TEntity, bool> predicate)
+        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> expression)
         {
-            return _set.Where(x => predicate(x));
+            return _set.Where(expression.Compile());
         }
 
-        public IQueryable<TModel> Get<TModel>(Func<TEntity, bool> predicate)
+        public IEnumerable<TModel> Get<TModel>(Expression<Func<TEntity, bool>> expression)
+            where TModel : class
         {
-            return _set.Where(x => predicate(x)).ProjectTo<TModel>();
+            return _set.Where(expression.Compile()).AsQueryable().ProjectTo<TModel>();
         }
 
         public void Add(TEntity entity)
