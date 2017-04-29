@@ -34,35 +34,26 @@ namespace ShareYourself.WebUI.Controllers
             return View("Home", mappedUserProfile);
         }
 
-
         [HttpGet]
         public ActionResult EditUserProfile()
         {
-            var editUserProfileModel = new UserProfileEditingViewModel
+            string email = HttpContext.User.Identity.Name;
+            var editingUserProfileModel = _userProfileService.Get<UserProfileEditingDto>(email);
+            var mappedEditingUserProfileModel = Mapper.Map<UserProfileEditingViewModel>(editingUserProfileModel);
+
+            if(mappedEditingUserProfileModel == null)
             {
-                Name = "Zheka",
-                Surname = "Korsakas",
-                Status = "Some status is here",
-                IsMale = true
-            };
-            DateTimeFormatInfo info = new DateTimeFormatInfo();
-            //ViewBag.CurrentMonth = info.GetMonthName(DateTime.Now.Month);
-            return View("EditUserProfile", editUserProfileModel);
+                ViewBag.ErrorMessage = "Such profile not found";
+                return Redirect(_errorView);
+            }
+
+            return View("EditUserProfile", mappedEditingUserProfileModel);
         }
 
         [HttpPost]
-        public ActionResult EditUserProfile(UserProfileEditingViewModel model)
+        public ActionResult EditUserProfile([Bind(Exclude = "Id")] UserProfileEditingViewModel model)
         {
-            if(model.IsMale != null)
-            {
-                if(model.IsMale == true)
-                {
-                    ViewBag.ResultMessage = "Success";
-                    return View();
-                }
-            }
-            ViewBag.ResultMessage = "Model is incorrect";
-            return View();
+            
         }
 
 

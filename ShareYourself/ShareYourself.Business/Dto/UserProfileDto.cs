@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShareYourself.Business.Dto
+﻿namespace ShareYourself.Business.Dto
 {
     public class UserProfileDto
     {

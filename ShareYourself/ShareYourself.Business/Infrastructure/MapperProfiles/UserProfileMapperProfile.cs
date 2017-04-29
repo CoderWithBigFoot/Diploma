@@ -13,6 +13,9 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
 
             CreateMap<UserProfile, UserProfileRegistrationDto>();
             CreateMap<UserProfileRegistrationDto, UserProfile>();
+
+            CreateMap<UserProfile, UserProfileEditingDto>();
+            CreateMap<UserProfileEditingDto, UserProfile>();
         }
     }
 }
