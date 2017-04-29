@@ -14,6 +14,7 @@
                     <hr> 
                     @using (Html.BeginForm("EditUserProfile", "UserProfile", FormMethod.Post))
                     {
+                        @Html.AntiForgeryToken();
                  <div class="row">
                     <div class="col-md-offset-2 col-md-8">
                         @Html.HiddenFor(x=>x.Id, new { @id = $"profileId{Model.Id}"})
@@ -29,7 +30,7 @@
 
                         <span class="userprofile-info-key">@Html.DisplayNameFor(x => x.IsMale) </span><br>                       
                             @if (Model.IsMale != null)
-                            {
+                            { // Somewhere in this form ViewBag.ResultMessage should be added
                                 if ((bool)Model.IsMale)
                                 {
                                     <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailTrue" value=true checked><span class="userprofile-info-value"> Male</span><br>
@@ -41,6 +42,11 @@
                                     <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailFalse" value=false checked><span class="userprofile-info-value"> Female</span><br>
                                 }
                                 @Html.ValidationMessageFor(x => x.IsMale)
+                            }
+                            else
+                            {
+                                <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailTrue" value=true><span class="userprofile-info-value"> Male</span><br>
+                                <input type="radio" name="@Html.NameFor(x => x.IsMale)" id="isMailFalse" value=false><span class="userprofile-info-value"> Female</span><br>
                             }
                     </div>
                  </div>

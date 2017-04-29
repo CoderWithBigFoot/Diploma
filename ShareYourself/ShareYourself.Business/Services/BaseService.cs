@@ -4,11 +4,11 @@ namespace ShareYourself.Business.Services
 {
     public class BaseService
     {
-        protected IShareYourselfUow _uow;
+        protected IShareYourselfUow uow;
 
         public BaseService(IShareYourselfUow uow)
         {
-            _uow = uow;
+            this.uow = uow;
         }
     }
 }

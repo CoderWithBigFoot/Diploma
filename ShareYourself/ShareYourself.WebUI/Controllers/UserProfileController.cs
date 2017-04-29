@@ -1,6 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using ShareYourself.WebUI.Models;
-using System.Globalization;
 using ShareYourself.Business;
 using ShareYourself.Business.Dto;
 using AutoMapper;
@@ -51,9 +51,24 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditUserProfile([Bind(Exclude = "Id")] UserProfileEditingViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult EditUserProfile(UserProfileEditingViewModel model)
         {
-            
+            if (ModelState.IsValid) // In the view need to check the validation fields (larger size is now)
+            {
+                try
+                {
+                    var userProfileEditingDto = Mapper.Map<UserProfileEditingDto>(model);
+                    _userProfileService.Update(userProfileEditingDto);
+
+                    ViewBag.ResultMessage = "Your profile successfully updated";
+                }
+                catch(Exception)
+                {
+                    ViewBag.ResultMessage = "Unknown server error. ";
+                }
+            }
+            return View("EditUserProfile", model);
         }
 
 

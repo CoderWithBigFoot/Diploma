@@ -15,7 +15,8 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
             CreateMap<UserProfileRegistrationDto, UserProfile>();
 
             CreateMap<UserProfile, UserProfileEditingDto>();
-            CreateMap<UserProfileEditingDto, UserProfile>();
+            CreateMap<UserProfileEditingDto, UserProfile>()
+                .ForMember(m => m.Id, opt => opt.Ignore());
         }
     }
 }
