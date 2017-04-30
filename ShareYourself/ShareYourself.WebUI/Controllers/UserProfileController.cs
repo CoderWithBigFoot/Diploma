@@ -21,8 +21,7 @@ namespace ShareYourself.WebUI.Controllers
         [HttpGet]
         public ActionResult Home()
         {
-            string email = HttpContext.User.Identity.Name;
-            var userProfileInfo = _userProfileService.Get<UserProfileDto>(email);
+            var userProfileInfo = _userProfileService.Get<UserProfileDto>(User.Identity.Name);
             var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
 
             if(mappedUserProfile == null)
@@ -37,8 +36,7 @@ namespace ShareYourself.WebUI.Controllers
         [HttpGet]
         public ActionResult EditUserProfile()
         {
-            string email = HttpContext.User.Identity.Name;
-            var editingUserProfileModel = _userProfileService.Get<UserProfileEditingDto>(email);
+            var editingUserProfileModel = _userProfileService.Get<UserProfileEditingDto>(User.Identity.Name);
             var mappedEditingUserProfileModel = Mapper.Map<UserProfileEditingViewModel>(editingUserProfileModel);
 
             if(mappedEditingUserProfileModel == null)
@@ -52,25 +50,24 @@ namespace ShareYourself.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUserProfile(UserProfileEditingViewModel model)
+        public ActionResult EditUserProfile([Bind(Exclude = "Id")]UserProfileEditingViewModel model)
         {
             if (ModelState.IsValid) // In the view need to check the validation fields (larger size is now)
             {
                 try
                 {
+                    model.Id = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id;
                     var userProfileEditingDto = Mapper.Map<UserProfileEditingDto>(model);
                     _userProfileService.Update(userProfileEditingDto);
 
-                    ViewBag.ResultMessage = "Your profile successfully updated";
+                    ViewBag.ResultMessage = "Your profile successfully updated.";
                 }
                 catch(Exception)
                 {
-                    ViewBag.ResultMessage = "Unknown server error. ";
+                    ViewBag.ResultMessage = "Unknown server error.";
                 }
             }
             return View("EditUserProfile", model);
         }
-
-
     }
 }
