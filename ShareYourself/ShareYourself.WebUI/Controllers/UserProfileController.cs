@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using ShareYourself.WebUI.Models;
 using ShareYourself.Business;
@@ -50,7 +51,7 @@ namespace ShareYourself.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUserProfile([Bind(Exclude = "Id")]UserProfileEditingViewModel model)
+        public ActionResult EditUserProfile([Bind(Exclude = "Id")] UserProfileEditingViewModel model)
         {
             if (ModelState.IsValid) // In the view need to check the validation fields (larger size is now)
             {
@@ -68,6 +69,34 @@ namespace ShareYourself.WebUI.Controllers
                 }
             }
             return View("EditUserProfile", model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(HttpPostedFileBase image)
+        {
+            if (image == null)
+            {
+                ModelState.AddModelError("", "Incorrect image");
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    UserProfileAvatarDto item = new UserProfileAvatarDto();
+                    item.MimeType = image.ContentType;
+                    item.Content = new byte[image.ContentLength];
+                    image.InputStream.Read(item.Content, 0, image.ContentLength);
+
+                    _userProfileService.Update(item);
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ResulMessage = ex.Message;
+                }
+            }
+
+            return View("Index");
         }
     }
 }

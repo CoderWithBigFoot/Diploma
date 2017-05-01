@@ -11,6 +11,14 @@ namespace ShareYourself.Business.Services
     {
         public UserProfileService(IShareYourselfUow uow) : base(uow) { }
 
+        private void CheckNull(object obj)
+        {
+            if(obj == null)
+            {
+                throw new ArgumentNullException();
+            }
+        }
+
         public virtual void Create<TDto>(TDto dto)
             where TDto: class
         {
@@ -25,6 +33,7 @@ namespace ShareYourself.Business.Services
             var userProfile = uow.UserProfileRepository
                 .Get<TDto>(x => x.Id == id)
                 .FirstOrDefault();
+
             return userProfile;
         }
 
@@ -40,22 +49,34 @@ namespace ShareYourself.Business.Services
 
         public virtual void Update(UserProfileEditingDto userProfileDto)
         {
-            if (userProfileDto == null)
-            {
-                throw new ArgumentNullException();
-            }
+            CheckNull(userProfileDto);
 
             var updatingUserProfile = uow
                 .UserProfileRepository
                 .Get(x => x.Id == userProfileDto.Id)
                 .FirstOrDefault();
 
-            if(updatingUserProfile == null)
-            {
-                throw new ArgumentNullException();
-            }
+            CheckNull(updatingUserProfile);
 
             updatingUserProfile = Mapper.Map(userProfileDto, updatingUserProfile);
+            uow.Commit();
+        }
+
+        public virtual void Update(UserProfileAvatarDto dto)
+        {
+            CheckNull(dto);
+
+            var updatingUserProfile = uow
+                .UserProfileRepository
+                .Get(x => x.Id == dto.UserProfileId)
+                .FirstOrDefault();
+
+            CheckNull(updatingUserProfile);
+
+            UserImage avatar = updatingUserProfile.Avatar;
+            avatar.MimeType = dto.MimeType;
+            avatar.Content = dto.Content;
+
             uow.Commit();
         }
     }

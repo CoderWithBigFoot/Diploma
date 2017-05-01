@@ -6,5 +6,6 @@ namespace ShareYourself.Business
     {
         TDto Get<TDto>(string email) where TDto : class;
         void Update(UserProfileEditingDto dto);
+        void Update(UserProfileAvatarDto dto);
     }
 }
