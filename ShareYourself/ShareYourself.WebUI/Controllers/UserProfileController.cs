@@ -84,7 +84,6 @@ namespace ShareYourself.WebUI.Controllers
 
                 _userProfileService.Update(item);
             }
-
                 try
                 {
                     item.MimeType = image.ContentType;
@@ -95,16 +94,27 @@ namespace ShareYourself.WebUI.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.ResultMessage = ex.Message;
+                    ModelState.AddModelError("", ex.Message);
                 }
             return RedirectToAction("Home");
         }
 
-       /* [HttpGet]
-        [ChildActionOnly]
-        public FileResult GetAvatar(int id)
+        [HttpGet]
+        public ActionResult GetAvatar(int id)
         {
-            
-        }*/
+            // Here is trouble with mapper. 
+
+            var avatar = _userProfileService.Get<UserProfileAvatarDto>(id);
+            int a = 1;
+            if(avatar.Content == null || avatar.MimeType == null)
+            {
+                var path = "~/Content/default-user.jpg";
+                return File(path, "image/jpeg");
+            }
+            else
+            {
+                return File(avatar.Content, avatar.MimeType);
+            }
+        }
     }
 }

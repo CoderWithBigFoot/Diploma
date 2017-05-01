@@ -4,25 +4,14 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-@section Scripts{
-    <script>
-        $(function () {
 
-            var input = $('#Avatar');
-            input.attr('title', " ");
-
-
-        });
-    </script>
-
-}
 @section Body{    
     <div class="main-content-container">
       <div class="main-content-nested-container">
         <div class="row">
 
             <div class="col-md-4">
-                <img src="~/Content/default-user.jpg" class="userprofile-avatar">
+                <img src="@Url.Action("GetAvatar", "UserProfile", new { id = Model.Id })" class="userprofile-avatar">
                 <button class="btn btn-default upload-avatar-button" data-toggle="modal" data-target="#uploadAvatarModal">Upload avatar</button>
             </div>
 

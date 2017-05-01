@@ -48,7 +48,6 @@ namespace ShareYourself.Business.Services
             return userProfile;
         }
 
-
         public virtual void Update(UserProfileEditingDto userProfileDto)
         {
             CheckNull(userProfileDto);

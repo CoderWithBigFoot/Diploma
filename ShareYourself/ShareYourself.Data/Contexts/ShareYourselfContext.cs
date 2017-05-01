@@ -25,7 +25,7 @@ namespace ShareYourself.Data.Contexts
             modelBuilder.Entity<UserProfile>()
                 .HasOptional(x => x.Avatar)
                 .WithOptionalDependent(x => x.Creator);
-                
+                // try to change on the With OptionalPrincipal
 
  
             modelBuilder.Entity<UserPost>()
