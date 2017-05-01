@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using GenericRepository.Data.EntityFramework;
 
 namespace ShareYourself.Data.Entities
@@ -15,11 +14,11 @@ namespace ShareYourself.Data.Entities
 
         public virtual UserImage Avatar { set; get; }
 
-        public virtual ICollection<UserProfile> Subscriptions { set; get; } = new List<UserProfile>(); // me on who
-        public virtual ICollection<UserProfile> Followers { set; get; } = new List<UserProfile>(); // on me
+        /*public virtual ICollection<UserProfile> Subscriptions { set; get; } = new List<UserProfile>(); // me on who
+        public virtual ICollection<UserProfile> Followers { set; get; } = new List<UserProfile>(); // on me*/
 
         public virtual ICollection<UserPost> Publications { set; get; } = new List<UserPost>();//
-        public virtual ICollection<UserPost> Likes { set; get; } = new List<UserPost>();//
-        public virtual ICollection<UserPost> Reposts { set; get; } = new List<UserPost>();//
+        /*public virtual ICollection<UserPost> Likes { set; get; } = new List<UserPost>();//
+        public virtual ICollection<UserPost> Reposts { set; get; } = new List<UserPost>();//*/
     }
 }

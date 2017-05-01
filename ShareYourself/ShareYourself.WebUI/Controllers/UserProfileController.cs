@@ -72,31 +72,39 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(HttpPostedFileBase image)
+        public ActionResult EditUserAvatar(HttpPostedFileBase image)
         {
+            UserProfileAvatarDto item = new UserProfileAvatarDto();
+            item.UserProfileId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id;
+
             if (image == null)
             {
-                ModelState.AddModelError("", "Incorrect image");
+                item.MimeType = null;
+                item.Content = null;
+
+                _userProfileService.Update(item);
             }
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
-                    UserProfileAvatarDto item = new UserProfileAvatarDto();
                     item.MimeType = image.ContentType;
                     item.Content = new byte[image.ContentLength];
-                    image.InputStream.Read(item.Content, 0, image.ContentLength);
+                    //image.InputStream.Read(item.Content, 0, image.ContentLength);
 
                     _userProfileService.Update(item);
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.ResulMessage = ex.Message;
+                    ViewBag.ResultMessage = ex.Message;
                 }
-            }
-
-            return View("Index");
+            return RedirectToAction("Home");
         }
+
+       /* [HttpGet]
+        [ChildActionOnly]
+        public FileResult GetAvatar(int id)
+        {
+            
+        }*/
     }
 }

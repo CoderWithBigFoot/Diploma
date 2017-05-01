@@ -4,14 +4,26 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+@section Scripts{
+    <script>
+        $(function () {
+
+            var input = $('#Avatar');
+            input.attr('title', " ");
+
+
+        });
+    </script>
+
+}
 @section Body{    
     <div class="main-content-container">
       <div class="main-content-nested-container">
         <div class="row">
 
             <div class="col-md-4">
-                <img src="~/Content/20170330_185559.jpg" class="userprofile-avatar">
-                <button class="btn btn-default upload-avatar-button">Upload avatar</button>
+                <img src="~/Content/default-user.jpg" class="userprofile-avatar">
+                <button class="btn btn-default upload-avatar-button" data-toggle="modal" data-target="#uploadAvatarModal">Upload avatar</button>
             </div>
 
             <div class="col-md-offset-1 col-md-7">
@@ -48,6 +60,30 @@
     </div>
 
     <br>
+
+<!-- Modal {enctype = "multipart\form-data"} -->
+<div id="uploadAvatarModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span class="userprofile-info-key">Upload a new avatar</span></h4>
+            </div>
+                @using (Html.BeginForm("EditUserAvatar", "UserProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                <div class="modal-body modal-body-content">              
+                 <input type="file" id="Avatar" name="image" accept="image/jpeg, image/png" />              
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default base-button base-button-hover">Update</button>
+                <button type="button" class="btn btn-default base-button base-button-hover" data-dismiss="modal">Close</button>
+            </div>
+                }
+        </div>
+
+    </div>
+</div>
 
     <div class="main-content-container">
         <div class="main-content-nested-container">

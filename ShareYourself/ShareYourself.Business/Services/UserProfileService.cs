@@ -4,6 +4,7 @@ using ShareYourself.Data;
 using ShareYourself.Data.Entities;
 using AutoMapper;
 using ShareYourself.Business.Dto;
+using System.IO;
 
 namespace ShareYourself.Business.Services
 {
@@ -47,6 +48,7 @@ namespace ShareYourself.Business.Services
             return userProfile;
         }
 
+
         public virtual void Update(UserProfileEditingDto userProfileDto)
         {
             CheckNull(userProfileDto);
@@ -73,7 +75,27 @@ namespace ShareYourself.Business.Services
 
             CheckNull(updatingUserProfile);
 
-            UserImage avatar = updatingUserProfile.Avatar;
+            if(dto.Content == null)
+            {
+                uow.UserImagesRepository.Remove(updatingUserProfile.Avatar);
+                updatingUserProfile.Avatar = null;
+                uow.Commit();
+                return;
+            }
+
+            UserImage avatar;
+
+            if(updatingUserProfile.Avatar == null)
+            {
+                avatar = new UserImage();
+                avatar.MimeType = dto.MimeType;
+                avatar.Content = dto.Content;
+                // avatar.Creator = updatingUserProfile;
+                updatingUserProfile.Avatar = avatar;
+                uow.Commit();
+                return;
+            }
+            avatar = updatingUserProfile.Avatar;
             avatar.MimeType = dto.MimeType;
             avatar.Content = dto.Content;
 

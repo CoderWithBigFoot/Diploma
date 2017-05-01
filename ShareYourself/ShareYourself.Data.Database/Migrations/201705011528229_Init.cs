@@ -3,10 +3,36 @@ namespace ShareYourself.Data.Database.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FolSub_Tags_UserPosts_TagsPosts_AreCreated : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.UserProfiles",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Email = c.String(),
+                        Name = c.String(),
+                        Surname = c.String(),
+                        IsMale = c.Boolean(),
+                        Status = c.String(),
+                        Avatar_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.UserImages", t => t.Avatar_Id)
+                .Index(t => t.Avatar_Id);
+            
+            CreateTable(
+                "dbo.UserImages",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        MimeType = c.String(),
+                        Content = c.Binary(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.UserPosts",
                 c => new
@@ -25,7 +51,7 @@ namespace ShareYourself.Data.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -42,36 +68,23 @@ namespace ShareYourself.Data.Database.Migrations
                 .Index(t => t.Post)
                 .Index(t => t.Tag);
             
-            CreateTable(
-                "dbo.FollowersSubscribers",
-                c => new
-                    {
-                        Subscribing_From = c.Int(nullable: false),
-                        Subscribing_To = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Subscribing_From, t.Subscribing_To })
-                .ForeignKey("dbo.UserProfiles", t => t.Subscribing_From)
-                .ForeignKey("dbo.UserProfiles", t => t.Subscribing_To)
-                .Index(t => t.Subscribing_From)
-                .Index(t => t.Subscribing_To);           
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.FollowersSubscribers", "Subscribing_To", "dbo.UserProfiles");
-            DropForeignKey("dbo.FollowersSubscribers", "Subscribing_From", "dbo.UserProfiles");
             DropForeignKey("dbo.TagsPosts", "Tag", "dbo.Tags");
             DropForeignKey("dbo.TagsPosts", "Post", "dbo.UserPosts");
             DropForeignKey("dbo.UserPosts", "CreatorId", "dbo.UserProfiles");
-            DropIndex("dbo.FollowersSubscribers", new[] { "Subscribing_To" });
-            DropIndex("dbo.FollowersSubscribers", new[] { "Subscribing_From" });
+            DropForeignKey("dbo.UserProfiles", "Avatar_Id", "dbo.UserImages");
             DropIndex("dbo.TagsPosts", new[] { "Tag" });
             DropIndex("dbo.TagsPosts", new[] { "Post" });
             DropIndex("dbo.UserPosts", new[] { "CreatorId" });
-            DropTable("dbo.FollowersSubscribers");
+            DropIndex("dbo.UserProfiles", new[] { "Avatar_Id" });
             DropTable("dbo.TagsPosts");
             DropTable("dbo.Tags");
             DropTable("dbo.UserPosts");
+            DropTable("dbo.UserImages");
+            DropTable("dbo.UserProfiles");
         }
     }
 }

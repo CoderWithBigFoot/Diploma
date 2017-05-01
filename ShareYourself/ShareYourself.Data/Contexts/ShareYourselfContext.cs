@@ -12,15 +12,19 @@ namespace ShareYourself.Data.Contexts
             modelBuilder.Entity<UserProfile>()  
                 .HasKey(x => x.Id);
 
+            /* modelBuilder.Entity<UserProfile>()
+                 .HasMany(x => x.Followers)
+                 .WithMany(x => x.Subscriptions)
+                 .Map(x =>
+                 {
+                     x.MapLeftKey("Subscribing_To");
+                     x.MapRightKey("Subscribing_From");
+                     x.ToTable("FollowersSubscribers");
+                 });*/
+
             modelBuilder.Entity<UserProfile>()
-                .HasMany(x => x.Subscriptions)
-                .WithMany(x => x.Followers)
-                .Map(x =>
-                {
-                    x.MapLeftKey("Subscribing_From");
-                    x.MapRightKey("Subscribing_To");
-                    x.ToTable("FollowersSubscribers");
-                });
+                .HasOptional(x => x.Avatar)
+                .WithOptionalDependent(x => x.Creator);
                 
 
  
@@ -41,7 +45,7 @@ namespace ShareYourself.Data.Contexts
                     x.ToTable("TagsPosts");
                 });
 
-            modelBuilder.Entity<UserPost>()
+           /* modelBuilder.Entity<UserPost>()
                 .HasMany(x => x.Likes)
                 .WithMany(x => x.Likes)
                 .Map(x => 
@@ -60,7 +64,7 @@ namespace ShareYourself.Data.Contexts
                     x.MapRightKey("Reposter");
                     x.ToTable("Reposts");
                 });              
-
+                */
 
 
             modelBuilder.Entity<Tag>()
@@ -74,10 +78,6 @@ namespace ShareYourself.Data.Contexts
 
             modelBuilder.Entity<UserImage>()
                 .HasKey(x => x.Id);
-
-            modelBuilder.Entity<UserImage>()
-                .HasRequired(x => x.Creator)
-                .WithOptional(x => x.Avatar);
         }
 
     }

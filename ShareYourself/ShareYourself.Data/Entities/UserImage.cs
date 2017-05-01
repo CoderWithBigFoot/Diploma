@@ -1,8 +1,9 @@
-﻿namespace ShareYourself.Data.Entities
+﻿using GenericRepository.Data.EntityFramework;
+
+namespace ShareYourself.Data.Entities
 {
-    public class UserImage
+    public class UserImage : Entity
     {
-        public int Id { set; get; }
         public string MimeType { set; get; }
         public byte[] Content { set; get; }
 
