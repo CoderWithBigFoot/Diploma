@@ -74,7 +74,7 @@ namespace ShareYourself.WebUI.Controllers
         [HttpPost]
         public ActionResult EditUserAvatar(HttpPostedFileBase image)
         {
-            UserProfileAvatarDto item = new UserProfileAvatarDto();
+            UserProfileAvatarEditingDto item = new UserProfileAvatarEditingDto();
             item.UserProfileId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id;
 
             if (image == null)
@@ -88,7 +88,6 @@ namespace ShareYourself.WebUI.Controllers
                 {
                     item.MimeType = image.ContentType;
                     item.Content = new byte[image.ContentLength];
-                    //image.InputStream.Read(item.Content, 0, image.ContentLength);
 
                     _userProfileService.Update(item);
                 }
@@ -102,18 +101,18 @@ namespace ShareYourself.WebUI.Controllers
         [HttpGet]
         public ActionResult GetAvatar(int id)
         {
-            // Here is trouble with mapper. 
 
-            var avatar = _userProfileService.Get<UserProfileAvatarDto>(id);
+            var avatarId = _userProfileService.Get<UserProfileAvatarIdDto>(id);
+            
             int a = 1;
-            if(avatar.Content == null || avatar.MimeType == null)
+            if (userImageDto.Avatar == null)
             {
                 var path = "~/Content/default-user.jpg";
                 return File(path, "image/jpeg");
             }
             else
             {
-                return File(avatar.Content, avatar.MimeType);
+                return File(userImageDto.Avatar.Content, userImageDto.Avatar.MimeType);
             }
         }
     }

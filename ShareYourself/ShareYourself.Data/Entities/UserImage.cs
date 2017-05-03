@@ -1,4 +1,5 @@
-﻿using GenericRepository.Data.EntityFramework;
+﻿using System.Collections.Generic;
+using GenericRepository.Data.EntityFramework;
 
 namespace ShareYourself.Data.Entities
 {
@@ -7,6 +8,6 @@ namespace ShareYourself.Data.Entities
         public string MimeType { set; get; }
         public byte[] Content { set; get; }
 
-        public virtual UserProfile Creator { set; get; }
+        public virtual ICollection<UserProfile> Owners { set; get; } = new List<UserProfile>();
     }
 }

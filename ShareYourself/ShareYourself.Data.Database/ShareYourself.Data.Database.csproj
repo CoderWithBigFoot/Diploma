@@ -47,9 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201705011528229_Init.cs" />
-    <Compile Include="Migrations\201705011528229_Init.Designer.cs">
-      <DependentUpon>201705011528229_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201705031010541_UserProfiles_UserImages_Added.cs" />
+    <Compile Include="Migrations\201705031010541_UserProfiles_UserImages_Added.Designer.cs">
+      <DependentUpon>201705031010541_UserProfiles_UserImages_Added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,8 +68,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705011528229_Init.resx">
-      <DependentUpon>201705011528229_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705031010541_UserProfiles_UserImages_Added.resx">
+      <DependentUpon>201705031010541_UserProfiles_UserImages_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,13 +7,13 @@ namespace ShareYourself.Data.Database.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Init : IMigrationMetadata
+    public sealed partial class UserProfiles_UserImages_Added : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UserProfiles_UserImages_Added));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705011528229_Init"; }
+            get { return "201705031010541_UserProfiles_UserImages_Added"; }
         }
         
         string IMigrationMetadata.Source

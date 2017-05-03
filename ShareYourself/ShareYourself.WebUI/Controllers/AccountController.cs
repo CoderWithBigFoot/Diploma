@@ -101,6 +101,7 @@ namespace ShareYourself.WebUI.Controllers
                         var userDto = Mapper.Map<UserProfileRegistrationDto>(model);
                         userDto.Name = userDto.Name.Substring(0, 1).ToUpper() + userDto.Name.Substring(1).ToLower();
                         userDto.Surname = userDto.Surname.Substring(0, 1).ToUpper() + userDto.Surname.Substring(1).ToLower();
+                        userDto.RegistrationDate = DateTime.Now;
                         _userProfileService.Create(userDto);
                     }
                     catch(Exception ex)

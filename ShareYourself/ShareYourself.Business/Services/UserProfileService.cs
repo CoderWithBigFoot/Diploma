@@ -4,7 +4,6 @@ using ShareYourself.Data;
 using ShareYourself.Data.Entities;
 using AutoMapper;
 using ShareYourself.Business.Dto;
-using System.IO;
 
 namespace ShareYourself.Business.Services
 {
@@ -30,22 +29,23 @@ namespace ShareYourself.Business.Services
 
         public virtual TDto Get<TDto>(int id)
             where TDto : class
-        {
-            var userProfile = uow.UserProfileRepository
-                .Get<TDto>(x => x.Id == id)
-                .FirstOrDefault();
+        {           
+                var resultDto = uow.UserProfileRepository
+                    .Get<TDto>(x => x.Id == id)
+                    .FirstOrDefault();
 
-            return userProfile;
+                int a = 1;
+                return resultDto;            
         }
 
         public virtual TDto Get<TDto>(string email)
             where TDto : class
         {
-            var userProfile = uow.UserProfileRepository
+            var resultDto = uow.UserProfileRepository
                 .Get<TDto>(x => x.Email == email)
                 .FirstOrDefault();
 
-            return userProfile;
+            return resultDto;
         }
 
         public virtual void Update(UserProfileEditingDto userProfileDto)
@@ -63,7 +63,7 @@ namespace ShareYourself.Business.Services
             uow.Commit();
         }
 
-        public virtual void Update(UserProfileAvatarDto dto)
+        public virtual void Update(UserProfileAvatarEditingDto dto)
         {
             CheckNull(dto);
 
@@ -76,8 +76,11 @@ namespace ShareYourself.Business.Services
 
             if(dto.Content == null)
             {
-                uow.UserImagesRepository.Remove(updatingUserProfile.Avatar);
                 updatingUserProfile.Avatar = null;
+                if(updatingUserProfile.Avatar.Owners.Count == 0)
+                {
+                    uow.UserImagesRepository.Remove(updatingUserProfile.Avatar);
+                }
                 uow.Commit();
                 return;
             }
