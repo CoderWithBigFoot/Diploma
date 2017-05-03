@@ -19,6 +19,7 @@
     margin: 5px;
     width: 200px;
     height: 250px;
+    image-orientation: from-image;
 }
 
 .upload-avatar-button {
@@ -94,9 +95,6 @@ textarea:focus {
     border-color: midnightblue;
     box-shadow: none;
 }
-
-
-
 
 
 

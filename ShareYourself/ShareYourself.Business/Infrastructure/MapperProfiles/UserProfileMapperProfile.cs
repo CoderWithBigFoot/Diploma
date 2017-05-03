@@ -1,6 +1,10 @@
-﻿using ShareYourself.Business.Dto;
+﻿using System;
+using System.IO;
+using System.Collections;
+using ShareYourself.Business.Dto;
 using ShareYourself.Data.Entities;
 using AutoMapper;
+using AutoMapper.XpressionMapper;
 
 namespace ShareYourself.Business.Infrastructure.MapperProfiles
 {
@@ -8,7 +12,6 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
     {
         public UserProfileMapperProfile()
         {
-            // Try to get an AvatarId from UserProfile and after that, if not null, create the request to the UserImages table to extract the needed avatar
             CreateMap<UserProfile, UserProfileDto>();
             CreateMap<UserProfileDto, UserProfile>();
 
@@ -23,8 +26,6 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
             CreateMap<UserProfile, UserProfileAvatarIdDto>();
 
             CreateMap<UserImage, UserImageDto>();
-
-
         }
     }
 }

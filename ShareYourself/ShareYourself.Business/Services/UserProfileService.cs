@@ -34,8 +34,7 @@ namespace ShareYourself.Business.Services
                     .Get<TDto>(x => x.Id == id)
                     .FirstOrDefault();
 
-                int a = 1;
-                return resultDto;            
+            return resultDto;            
         }
 
         public virtual TDto Get<TDto>(string email)

@@ -3,11 +3,11 @@ using ShareYourself.Business.Services;
 
 namespace ShareYourself.Business.Infrastructure.NinjectModules
 {
-    public class UserProfileServiceModule : NinjectModule
+    public class ServicesModule : NinjectModule
     {
         protected string connectionString;
 
-        public UserProfileServiceModule(string connectionString)
+        public ServicesModule(string connectionString)
         {
             this.connectionString = connectionString;
         }
@@ -15,6 +15,7 @@ namespace ShareYourself.Business.Infrastructure.NinjectModules
         public override void Load()
         {
             Bind<IUserProfileService>().To<UserProfileService>().WithConstructorArgument("connectionString", connectionString);
+            Bind<IUserImageService>().To<UserImageService>().WithConstructorArgument("connectionString", connectionString);
         }
     }
 }

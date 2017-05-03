@@ -29,5 +29,6 @@ namespace ShareYourself.Business.Services
 
             return userImageDto;
         }
+
     }
 }

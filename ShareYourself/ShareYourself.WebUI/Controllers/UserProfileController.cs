@@ -12,11 +12,13 @@ namespace ShareYourself.WebUI.Controllers
     public class UserProfileController : Controller
     {
         private IUserProfileService _userProfileService;
+        private IUserImageService _userImageService;
         private string _errorView = "~/Views/Shared/Error.cshtml";
 
-        public UserProfileController(IUserProfileService userProfileService)
+        public UserProfileController(IUserProfileService userProfileService, IUserImageService userImageService)
         {
             _userProfileService = userProfileService;
+            _userImageService = userImageService;
         }
 
         [HttpGet]
@@ -81,14 +83,15 @@ namespace ShareYourself.WebUI.Controllers
             {
                 item.MimeType = null;
                 item.Content = null;
-
                 _userProfileService.Update(item);
             }
                 try
                 {
                     item.MimeType = image.ContentType;
-                    item.Content = new byte[image.ContentLength];
+                    item.Content = new byte[image.ContentLength]; // Here is ebany error suka
+                    image.InputStream.Read(item.Content, 0, image.ContentLength);
 
+                     int a = 1;
                     _userProfileService.Update(item);
                 }
                 catch (Exception ex)
@@ -99,21 +102,23 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAvatar(int id)
+        public FileResult GetAvatar(int id)
         {
-
             var avatarId = _userProfileService.Get<UserProfileAvatarIdDto>(id);
             
-            int a = 1;
-            if (userImageDto.Avatar == null)
+            if(avatarId.AvatarId == null)
             {
                 var path = "~/Content/default-user.jpg";
                 return File(path, "image/jpeg");
             }
             else
             {
-                return File(userImageDto.Avatar.Content, userImageDto.Avatar.MimeType);
+                var userImageDto = _userImageService.Get<UserImageDto>((int)avatarId.AvatarId);
+                int a = 1;
+                return File(userImageDto.Content, userImageDto.MimeType);
             }
+        
+           // return File(userImageDto.Content, userImageDto.MimeType);// (userImageDto.Content, userImageDto.MimeType);
         }
     }
 }
