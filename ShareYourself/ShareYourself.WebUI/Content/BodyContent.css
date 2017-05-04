@@ -19,7 +19,7 @@
     margin: 5px;
     width: 200px;
     height: 250px;
-    image-orientation: from-image;
+    image-orientation: from-image; /*Need to change the picture display*/
 }
 
 .upload-avatar-button {

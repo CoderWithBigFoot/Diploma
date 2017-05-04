@@ -39,8 +39,20 @@
                             }
                         }
                     <span class="userprofile-info-value">@genderResult</span><br>
-                    <span class="userprofile-info-key">How long registered: </span><span class="userprofile-info-value"> 18 april 2017</span><br>
-                    <!---->
+                    @{ 
+                        var result = "";
+                        var interval = DateTime.Now - Model.RegistrationDate;
+
+                        if((int)interval.TotalDays != 0)
+                        {
+                            result += $"{(int)interval.TotalDays} days and {(int)interval.TotalHours} hours";
+                        }
+                        else
+                        {
+                            result += $"{(int)interval.TotalHours} hours";
+                        }
+                    }
+                    <span class="userprofile-info-key">How long registered: </span><span class="userprofile-info-value"> @result</span><br>
                 </div>
             </div>
 
@@ -74,10 +86,5 @@
     </div>
 </div>
 
-    <div class="main-content-container">
-        <div class="main-content-nested-container">
-    Some content
-        </div>
-    </div>    
     }
 

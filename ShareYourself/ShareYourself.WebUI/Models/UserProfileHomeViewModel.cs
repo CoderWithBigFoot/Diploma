@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ShareYourself.WebUI.Models
 {
@@ -13,6 +10,6 @@ namespace ShareYourself.WebUI.Models
         public string Email { set; get; }
         public string Status { set; get; }
         public bool? IsMale { set; get; }
-        // picture
+        public DateTime RegistrationDate { set; get; }
     }
 }

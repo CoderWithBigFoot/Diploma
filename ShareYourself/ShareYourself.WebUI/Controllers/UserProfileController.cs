@@ -102,7 +102,7 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        public FileResult GetAvatar(int id)
+        public FileResult GetAvatar(int id) // Need to fix the Avatar rotation 
         {
             var avatarId = _userProfileService.Get<UserProfileAvatarIdDto>(id);
             
@@ -114,7 +114,6 @@ namespace ShareYourself.WebUI.Controllers
             else
             {
                 var userImageDto = _userImageService.Get<UserImageDto>((int)avatarId.AvatarId);
-                int a = 1;
                 return File(userImageDto.Content, userImageDto.MimeType);
             }
         
