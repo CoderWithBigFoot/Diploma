@@ -23,14 +23,14 @@ namespace ShareYourself.Business.Services
             where TDto: class
         {
             var userProfile = Mapper.Map<UserProfile>(dto);
-            uow.UserProfileRepository.Add(userProfile);
+            uow.UserProfilesRepository.Add(userProfile);
             uow.Commit();
         }
 
         public virtual TDto Get<TDto>(int id)
             where TDto : class
         {           
-                var resultDto = uow.UserProfileRepository
+                var resultDto = uow.UserProfilesRepository
                     .Get<TDto>(x => x.Id == id)
                     .FirstOrDefault();
 
@@ -40,7 +40,7 @@ namespace ShareYourself.Business.Services
         public virtual TDto Get<TDto>(string email)
             where TDto : class
         {
-            var resultDto = uow.UserProfileRepository
+            var resultDto = uow.UserProfilesRepository
                 .Get<TDto>(x => x.Email == email)
                 .FirstOrDefault();
 
@@ -52,7 +52,7 @@ namespace ShareYourself.Business.Services
             CheckNull(userProfileDto);
 
             var updatingUserProfile = uow
-                .UserProfileRepository
+                .UserProfilesRepository
                 .Get(x => x.Id == userProfileDto.Id)
                 .FirstOrDefault();
 
@@ -67,7 +67,7 @@ namespace ShareYourself.Business.Services
             CheckNull(dto);
 
             var updatingUserProfile = uow
-                .UserProfileRepository
+                .UserProfilesRepository
                 .Get(x => x.Id == dto.UserProfileId)
                 .FirstOrDefault();
 

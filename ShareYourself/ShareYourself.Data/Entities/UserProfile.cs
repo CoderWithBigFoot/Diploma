@@ -22,7 +22,7 @@ namespace ShareYourself.Data.Entities
         /*public virtual ICollection<UserProfile> Subscriptions { set; get; } = new List<UserProfile>(); // me on who
         public virtual ICollection<UserProfile> Followers { set; get; } = new List<UserProfile>(); // on me*/
 
-        //public virtual ICollection<UserPost> Publications { set; get; } = new List<UserPost>();//
+        public virtual ICollection<UserPost> Publications { set; get; } = new List<UserPost>();//
         /*public virtual ICollection<UserPost> Likes { set; get; } = new List<UserPost>();//
         public virtual ICollection<UserPost> Reposts { set; get; } = new List<UserPost>();//*/
     }

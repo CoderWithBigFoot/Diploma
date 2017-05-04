@@ -31,7 +31,7 @@ namespace ShareYourself.Data.Contexts
             // try to change on the With OptionalPrincipal
 
 
-            /* modelBuilder.Entity<UserPost>()
+             modelBuilder.Entity<UserPost>()
                  .HasKey(x => x.Id);
 
              modelBuilder.Entity<UserPost>()
@@ -46,7 +46,7 @@ namespace ShareYourself.Data.Contexts
                      x.MapLeftKey("Post");
                      x.MapRightKey("Tag");
                      x.ToTable("TagsPosts");
-                 });*/
+                 });
 
             #region another tables
             /* modelBuilder.Entity<UserPost>()
@@ -71,12 +71,12 @@ namespace ShareYourself.Data.Contexts
                  */
             #endregion
 
-            /*modelBuilder.Entity<Tag>()
+            modelBuilder.Entity<Tag>()
                 .HasKey(x => x.Id);
 
             modelBuilder.Entity<Tag>()
                 .Property(x => x.Name)
-                .IsRequired();*/
+                .IsRequired();
         }
     }
 }
