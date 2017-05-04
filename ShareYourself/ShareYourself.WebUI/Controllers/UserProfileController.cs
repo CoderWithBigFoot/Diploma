@@ -22,7 +22,7 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Home()
+        public ActionResult ProfilePage()
         {
             var userProfileInfo = _userProfileService.Get<UserProfileDto>(User.Identity.Name);
             var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
@@ -33,7 +33,7 @@ namespace ShareYourself.WebUI.Controllers
                 return View(_errorView);                
             }
            
-            return View("Home", mappedUserProfile);
+            return View("ProfilePage", mappedUserProfile);
         }
 
         [HttpGet]
@@ -98,7 +98,7 @@ namespace ShareYourself.WebUI.Controllers
                 {
                     ModelState.AddModelError("", ex.Message);
                 }
-            return RedirectToAction("Home");
+            return RedirectToAction("ProfilePage");
         }
 
         [HttpGet]

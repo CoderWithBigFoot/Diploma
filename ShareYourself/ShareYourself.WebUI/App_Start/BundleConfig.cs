@@ -29,6 +29,10 @@ namespace ShareYourself.WebUI
             bundles.Add(new StyleBundle("~/Content/BodyContent").Include(
                     "~/Content/BodyContent.css"
                 ));
+
+            bundles.Add(new StyleBundle("~/Content/Posts").Include(
+                    "~/Content/Posts.css"
+                ));
         }
     }
 }

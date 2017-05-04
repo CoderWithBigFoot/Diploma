@@ -5,6 +5,33 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+@section Styles{
+    @Styles.Render("~/Content/Post.css")
+    }
+
+@section Scripts{
+    
+<script src="~/Scripts/jquery.autosize.min.js"></script>
+ 
+    <script>
+        $(function () {
+            $('textarea').autosize();
+        });
+
+        function openPostForm() {
+            alert("Opend");
+            $('#createNewPost').attr('display', 'none');
+            $('#postCreationContainer').attr('display', 'normal');
+        }
+
+        function closePostForm() {
+            $('#createNewPost').attr('display', 'normal');
+            $('#postCreationContainer').attr('display', 'none');
+        }
+    </script>
+     
+    }
+
 @section Body{    
     <div class="main-content-container">
       <div class="main-content-nested-container">
@@ -26,7 +53,7 @@
                         @{ 
                             string genderResult = "Not selected";
 
-                            if(Model.IsMale != null)
+                            if (Model.IsMale != null)
                             {
                                 if ((bool)Model.IsMale)
                                 {
@@ -43,9 +70,9 @@
                         var result = "";
                         var interval = DateTime.Now - Model.RegistrationDate;
 
-                        if((int)interval.TotalDays != 0)
+                        if ((int)interval.TotalDays != 0)
                         {
-                            result += $"{(int)interval.TotalDays} days and {(int)interval.TotalHours} hours";
+                            result += $"{(int)interval.TotalDays} days and {(int)interval.TotalHours - (int)interval.TotalDays * 24} hours";
                         }
                         else
                         {
@@ -62,7 +89,48 @@
 
     <br>
 
-<!-- Modal {enctype = "multipart\form-data"} -->
+    <div class="main-content-container">
+        <div class="main-content-nested-container" id="createNewPostContent" onclick="openPostForm()">
+                Create new post
+        </div>
+    </div>
+    
+    <br>
+                  <div class="main-content-container" id="postCreationContainer" onclick="closePostForm()">
+                    @using (Html.BeginForm())  // this form into the partial view
+                    {
+                        <div class="main-content-nested-container">
+                            <textarea id="tags-input" class="form-control animated" placeholder="Tags" rows="1"></textarea>
+                        </div>
+                        <hr class="non-margine"/>
+                        <div class="main-content-nested-container">
+                            <textarea id="post-textarea" class="form-control animated" rows="1" placeholder="Content"></textarea>
+                        </div>
+                        <hr class="non-margine"/>
+                        <div class="main-content-nested-container">
+                            <button type="submit" class="btn btn-default base-button base-button-hover">Create</button>
+                        </div>
+                    }
+                    </div>
+                
+    <br>
+
+    <a href="#">
+    <div class="tag">
+       some tag
+    </div>
+</a>
+
+
+
+
+
+
+
+
+
+
+
 <div id="uploadAvatarModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -85,6 +153,5 @@
 
     </div>
 </div>
-
     }
 

@@ -72,11 +72,16 @@
 
 }
 
-textarea{
+textarea {
     resize: none;
 }
 
-.main-content-nested-container hr{
+    textarea:focus {
+        border-color: midnightblue !important;
+        box-shadow: none !important;
+    }
+
+.main-content-nested-container hr {
     margin-bottom: 2%;
 }
 
@@ -140,5 +145,6 @@ hr.hr-menu-element {
     text-align: center;
     font-size: large;
 }
+
 
 

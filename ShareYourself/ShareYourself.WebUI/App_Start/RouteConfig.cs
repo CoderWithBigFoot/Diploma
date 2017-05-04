@@ -22,7 +22,7 @@ namespace ShareYourself.WebUI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "UserProfile", action = "Home", id = UrlParameter.Optional }
+                defaults: new { controller = "UserProfile", action = "ProfilePage", id = UrlParameter.Optional }
             );
 
            
