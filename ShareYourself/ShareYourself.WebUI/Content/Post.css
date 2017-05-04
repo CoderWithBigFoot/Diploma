@@ -38,6 +38,7 @@
 
 #createNewPostContent{
     text-align: center;
+    cursor: pointer;
 }
 
 #tags-input {

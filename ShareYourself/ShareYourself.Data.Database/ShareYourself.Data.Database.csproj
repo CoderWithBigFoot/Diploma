@@ -55,6 +55,10 @@
     <Compile Include="Migrations\201705040907482_PostsTags_Added.Designer.cs">
       <DependentUpon>201705040907482_PostsTags_Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705041607478_CreationDate_NonNullable.cs" />
+    <Compile Include="Migrations\201705041607478_CreationDate_NonNullable.Designer.cs">
+      <DependentUpon>201705041607478_CreationDate_NonNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShareYourselfContextManager.cs" />
@@ -77,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705040907482_PostsTags_Added.resx">
       <DependentUpon>201705040907482_PostsTags_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041607478_CreationDate_NonNullable.resx">
+      <DependentUpon>201705041607478_CreationDate_NonNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

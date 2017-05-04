@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dto\UserImageDto.cs" />
+    <Compile Include="Dto\UserPostCreationDto.cs" />
+    <Compile Include="Dto\UserPostDto.cs" />
     <Compile Include="Dto\UserProfileAvatarEditingDto.cs" />
     <Compile Include="Dto\UserProfileAvatarIdDto.cs" />
     <Compile Include="Dto\UserProfileDto.cs" />

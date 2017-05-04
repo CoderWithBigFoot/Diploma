@@ -206,10 +206,6 @@
       <DependentUpon>201704241903369_InitIdentity.cs</DependentUpon>
     </Compile>
     <Compile Include="Identity\Migrations\Configuration.cs" />
-    <Compile Include="Migrations\201705040907228_PostsTags_Added.cs" />
-    <Compile Include="Migrations\201705040907228_PostsTags_Added.Designer.cs">
-      <DependentUpon>201705040907228_PostsTags_Added.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\UserProfileEditingViewModel.cs" />
     <Compile Include="Models\UserProfileHomeViewModel.cs" />
@@ -290,9 +286,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Identity\Migrations\201704241903369_InitIdentity.resx">
       <DependentUpon>201704241903369_InitIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705040907228_PostsTags_Added.resx">
-      <DependentUpon>201705040907228_PostsTags_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

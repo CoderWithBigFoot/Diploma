@@ -8,7 +8,7 @@ namespace ShareYourself.Data.Entities
     public class UserPost : Entity
     {
         public string Content { set; get; }
-        public DateTime? CreationDate { set; get; }
+        public DateTime CreationDate { set; get; }
 
         public int CreatorId { set; get; }
 
