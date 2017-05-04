@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using ShareYourself.Data;
 using ShareYourself.Data.Entities;
 using AutoMapper;
-using ShareYourself.Business.Dto;
 
 namespace ShareYourself.Business.Services
 {

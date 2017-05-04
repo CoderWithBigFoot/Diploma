@@ -9,5 +9,6 @@ namespace ShareYourself.Data
         Repository<UserProfile> UserProfilesRepository { get; }
         Repository<UserImage> UserImagesRepository { get; }
         Repository<UserPost> UserPostsRepository { get; }
+        Repository<Tag> TagsRepository { get; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ShareYourself.Business.Dto
+﻿using System.Collections.Generic;
+
+namespace ShareYourself.Business.Dto
 {
     public class UserPostDto : UserPostCreationDto
     {

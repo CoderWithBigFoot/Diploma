@@ -8,6 +8,7 @@ using AutoMapper;
 
 namespace ShareYourself.WebUI.Controllers
 {
+    [Authorize]
     public class PostController : Controller
     {
         private IUserProfileService _userProfileService;
@@ -20,11 +21,25 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpPost]
-        public void CreatePost(string tags, string content) // It should returns the partial view with created post content 
+        public ActionResult CreatePost(string tags, string content) // It should returns the partial view with created post content 
         {
-            int a = 1;
-            int b = 2;
+            char[] separators = new char[]
+            {
+                ',', '.', '/', '*', '-', '+', '!', '@', '#', '№', '$', '%', '^', '&', '(', ')', ':', ';', ' '
+            };
+            
+            tags.Split(separators);
 
+            UserPostCreationDto dto = new UserPostCreationDto
+            {
+                Content = content,
+                CreationDate = DateTime.Now,
+                CreatorId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id
+            };
+
+            _userPostService.Create(dto);
+            
+            return RedirectToRoute(new { controller = "Profile", action = "ProfilePage"});
         }
     }
 }

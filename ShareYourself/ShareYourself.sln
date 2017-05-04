@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareYourself.WebUI", "Shar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareYourself.Data.Test", "ShareYourself.Data.Test\ShareYourself.Data.Test.csproj", "{A16518A9-DC3E-4473-8D50-40E5D2110DAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareYourself.Business.Tests", "ShareYourself.Business.Tests\ShareYourself.Business.Tests.csproj", "{4FD7871D-2FB2-42CC-B89D-136339FB2909}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A16518A9-DC3E-4473-8D50-40E5D2110DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A16518A9-DC3E-4473-8D50-40E5D2110DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A16518A9-DC3E-4473-8D50-40E5D2110DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD7871D-2FB2-42CC-B89D-136339FB2909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD7871D-2FB2-42CC-B89D-136339FB2909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD7871D-2FB2-42CC-B89D-136339FB2909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD7871D-2FB2-42CC-B89D-136339FB2909}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Collections;
-using ShareYourself.Business.Dto;
+﻿using ShareYourself.Business.Dto;
 using ShareYourself.Data.Entities;
 using AutoMapper;
-using AutoMapper.XpressionMapper;
 
 namespace ShareYourself.Business.Infrastructure.MapperProfiles
 {

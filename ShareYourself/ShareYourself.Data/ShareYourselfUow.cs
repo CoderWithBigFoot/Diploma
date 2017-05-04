@@ -9,6 +9,7 @@ namespace ShareYourself.Data
         protected Repository<UserProfile> userProfilesRepository;
         protected Repository<UserImage> userImagesRepository;
         protected Repository<UserPost> userPostsRepoitory;
+        protected Repository<Tag> tagsRepository;
 
         public ShareYourselfUow(DbContext context) : base(context) { }
 
@@ -17,5 +18,7 @@ namespace ShareYourself.Data
         public Repository<UserImage> UserImagesRepository => userImagesRepository ?? (userImagesRepository = new Repository<UserImage>(_context));
 
         public Repository<UserPost> UserPostsRepository => userPostsRepoitory ?? (userPostsRepoitory = new Repository<UserPost>(_context));
+
+        public Repository<Tag> TagsRepository => tagsRepository ?? (tagsRepository = new Repository<Tag>(_context));
     }
 }

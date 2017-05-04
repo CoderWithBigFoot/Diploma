@@ -16,6 +16,8 @@ namespace ShareYourself.Business.Infrastructure.NinjectModules
         {
             Bind<IUserProfileService>().To<UserProfileService>().WithConstructorArgument("connectionString", connectionString);
             Bind<IUserImageService>().To<UserImageService>().WithConstructorArgument("connectionString", connectionString);
+            Bind<IUserPostService>().To<UserPostService>().WithConstructorArgument("connectionString", connectionString);
+            Bind<ITagService>().To<TagService>().WithConstructorArgument("connectionString", connectionString);
         }
     }
 }
