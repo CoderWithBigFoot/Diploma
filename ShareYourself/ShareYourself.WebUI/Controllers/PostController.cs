@@ -62,7 +62,7 @@ namespace ShareYourself.WebUI.Controllers
 
                 _userPostService.Create(dto);
 
-                var createdPostDto = _userPostService.Take<UserPostDto>(userId, 0, 1);
+                var createdPostDto = _userPostService.Take(userId, 0, 1);
                 var createdPostViewModel = Mapper.Map<IEnumerable<UserPostViewModel>>(createdPostDto);
 
                 return PartialView("~/Views/Shared/PostPartial.cshtml", createdPostViewModel);

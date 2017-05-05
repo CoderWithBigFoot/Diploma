@@ -99,13 +99,5 @@
         countOfPostsOnThePage += (int?)ViewData["addedPostsCount"] ?? 0;
     }
     @{Html.RenderAction("GetPosts", "Post", new { userId = Model.Id, skip = countOfPostsOnThePage, count = countOfPostsToTake});}
-
-
-    <a href="#">
-    <div class="tag">
-       some tag
-    </div>
-</a>
-
 }
 

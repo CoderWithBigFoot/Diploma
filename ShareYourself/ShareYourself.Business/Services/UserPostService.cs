@@ -57,12 +57,12 @@ namespace ShareYourself.Business.Services
             return resultDto;
         }
 
-        public IEnumerable<TDto> Take<TDto>(int userId, int skip, int count)
-            where TDto : class
+        public IEnumerable<UserPostDto> Take(int userId, int skip, int count)
         {
             var result = uow
                 .UserPostsRepository
-                .Get<TDto>(x => x.CreatorId == userId)
+                .Get<UserPostDto>(x => x.CreatorId == userId)
+                .OrderByDescending(x=>x.Id)
                 .Skip(skip)
                 .Take(count);
 
