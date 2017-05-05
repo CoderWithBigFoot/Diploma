@@ -9,6 +9,6 @@ namespace ShareYourself.Business.Dto
         public DateTime CreationDate { set; get; }
         public int CreatorId { set; get; }
 
-        //public ICollection<TagDto> Tags { set; get; }
+        public ICollection<TagDto> Tags { set; get; }
     }
 }

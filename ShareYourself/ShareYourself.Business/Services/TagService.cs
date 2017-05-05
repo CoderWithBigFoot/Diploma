@@ -13,6 +13,10 @@ namespace ShareYourself.Business.Services
             where TDto : class
         {
             var tag = Mapper.Map<Tag>(dto);
+            if (Contains(tag.Name))
+            {
+                return;
+            }
             uow.TagsRepository.Add(tag);
             uow.Commit();
         }

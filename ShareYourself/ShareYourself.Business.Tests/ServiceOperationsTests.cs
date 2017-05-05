@@ -20,10 +20,11 @@ namespace ShareYourself.Business.Tests
            
             
 
-            Assert.AreEqual(result.Length, 4);
+            Assert.AreEqual(result.Length, 6);
             CollectionAssert.Contains(result, "Some_");
             CollectionAssert.Contains(result, "string");
             CollectionAssert.Contains(result, "");
+            CollectionAssert.Contains(result, "_");
         }
     }
 }

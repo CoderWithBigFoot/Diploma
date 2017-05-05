@@ -12,7 +12,8 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
             CreateMap<TagDto, Tag>();
 
             CreateMap<UserPost, UserPostCreationDto>();
-            CreateMap<UserPostCreationDto, UserPost>();
+            CreateMap<UserPostCreationDto, UserPost>()
+                .ForMember(x => x.Tags, opt => opt.Ignore());
 
             CreateMap<UserPost, UserPostDto>();
             CreateMap<UserPostDto, UserPost>();

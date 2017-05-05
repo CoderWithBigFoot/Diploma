@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using System.Collections.Generic;
 using ShareYourself.WebUI.Models;
 using ShareYourself.Business;
 using ShareYourself.Business.Dto;
@@ -28,7 +29,21 @@ namespace ShareYourself.WebUI.Controllers
                 ',', '.', '/', '*', '-', '+', '!', '@', '#', '№', '$', '%', '^', '&', '(', ')', ':', ';', ' '
             };
             
-            tags.Split(separators);
+            ICollection<TagDto> tagDtos = new List<TagDto>();
+
+            foreach(var currentElement in tags.Split(separators))
+            {
+                if (!string.IsNullOrEmpty(currentElement))
+                {
+                    if(currentElement != "_")
+                    {
+                        tagDtos.Add(new TagDto
+                        {
+                            Name = currentElement
+                        });
+                    }
+                }
+            }  
 
             UserPostCreationDto dto = new UserPostCreationDto
             {
@@ -37,9 +52,11 @@ namespace ShareYourself.WebUI.Controllers
                 CreatorId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id
             };
 
+            dto.Tags = tagDtos;
+
             _userPostService.Create(dto);
             
-            return RedirectToRoute(new { controller = "Profile", action = "ProfilePage"});
+            return RedirectToRoute(new { controller = "UserProfile", action = "ProfilePage"});
         }
     }
 }
