@@ -60,6 +60,8 @@ a:hover{
 }
 .input-validation-error {
     border-color: red;
+    font-size: medium;
+    font-family: 'Segoe UI';
 }
 
 .validation-summary-errors {

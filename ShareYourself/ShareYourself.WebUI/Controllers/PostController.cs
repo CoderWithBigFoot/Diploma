@@ -77,7 +77,7 @@ namespace ShareYourself.WebUI.Controllers
         [ChildActionOnly]
         public ActionResult GetPosts(int userId, int skip = 0, int count = 5)
         {         
-            var userPostDtos = _userPostService.Take<UserPostDto>(userId, skip, count);
+            var userPostDtos = _userPostService.Take(userId, skip, count);
             var userPostViewModels = Mapper.Map<IEnumerable<UserPostViewModel>>(userPostDtos);
 
             ViewData["addedPostsCount"] = userPostViewModels.Count();
