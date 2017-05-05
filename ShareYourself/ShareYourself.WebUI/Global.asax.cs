@@ -14,7 +14,7 @@ namespace ShareYourself.WebUI
             Mapper.Initialize(cfg => cfg.AddProfiles(new[]
             {
                 typeof(UserProfileMapperProfile),
-                typeof(UserProfileDtosViewModelProfile),
+                typeof(ViewModelsMapperProfile),
                 typeof(UserPostMapperProfile)
             }));
 

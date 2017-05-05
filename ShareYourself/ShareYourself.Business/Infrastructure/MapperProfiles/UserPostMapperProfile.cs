@@ -17,6 +17,9 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
 
             CreateMap<UserPost, UserPostDto>();
             CreateMap<UserPostDto, UserPost>();
+
+            CreateMap<TagDto, string>()
+                .ConvertUsing(x => x.Name);
         }
     }
 }

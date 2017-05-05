@@ -1,4 +1,5 @@
-﻿@{
+﻿@model string
+@{
     ViewBag.Title = "Error";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
@@ -13,6 +14,6 @@
     }
 <div class="main-content-container">
     <div class="main-content-nested-container">
-        <h3 class="h3-error"> @ViewBag.ErrorMessage </h3>
+        <h3 class="h3-error"> @Model </h3>
     </div>
 </div>

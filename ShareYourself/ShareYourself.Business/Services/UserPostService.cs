@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Collections.Generic;
 using ShareYourself.Data;
 using ShareYourself.Data.Entities;
 using ShareYourself.Business.Dto;
@@ -54,6 +55,18 @@ namespace ShareYourself.Business.Services
                 .FirstOrDefault();
 
             return resultDto;
+        }
+
+        public IEnumerable<TDto> Take<TDto>(int userId, int skip, int count)
+            where TDto : class
+        {
+            var result = uow
+                .UserPostsRepository
+                .Get<TDto>(x => x.CreatorId == userId)
+                .Skip(skip)
+                .Take(count);
+
+            return result;
         }
     }
 }

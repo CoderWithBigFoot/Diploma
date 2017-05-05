@@ -1,0 +1,34 @@
+﻿<div class="main-content-container" id="createNewPost">
+    <div class="main-content-nested-container" id="createNewPostContent" onclick="openPostForm()">
+        Create new post
+    </div>
+</div>
+
+@{ 
+    var ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId = "posts",
+        InsertionMode = InsertionMode.InsertBefore,
+        HttpMethod = "Post",
+        LoadingElementId = "loadingElement"
+    };
+}
+
+<div class="main-content-container" id="postCreationContainer" style="display: none; ">
+    @using (Ajax.BeginForm("CreatePost", "Post", ajaxOptions)) 
+    {
+        <div class="main-content-nested-container">
+            <textarea id="tags-input" class="form-control animated" placeholder="Tags" rows="1" name="tags"></textarea>
+        </div>
+                        <hr class="non-margine" />
+                        <div class="main-content-nested-container">
+                            <textarea id="post-textarea" class="form-control animated" rows="1" placeholder="Content" name="content"></textarea>
+                        </div>
+                        <hr class="non-margine" />
+                        <div class="main-content-nested-container">
+                            <button type="submit" class="btn btn-default base-button base-button-hover" onclick="closePostForm()">Create</button>
+                            <button type="button" class="btn btn-default base-button base-button-hover" onclick="closePostForm()">Close</button>
+                        </div>
+    }
+</div>
+<br>

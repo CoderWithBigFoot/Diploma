@@ -16,6 +16,9 @@
     color: Highlight;
     position: fixed;
     margin-bottom:1px;
+    overflow: hidden;
+    z-index: 1;
+    top: 0;
 }
 
 #top-nav-right-panel{

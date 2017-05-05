@@ -12,7 +12,6 @@
 @section Scripts{
     
 <script src="~/Scripts/jquery.autosize.min.js"></script>
- 
     <script>
         $(function () {
             $('textarea').autosize();
@@ -27,8 +26,7 @@
             $('#createNewPost').show();
             $('#postCreationContainer').hide();
         }
-    </script>
-     
+    </script>    
     }
 
 @section Body{    
@@ -85,33 +83,23 @@
            </div>
         </div>
     </div>
-
     <br>
+    @if (HttpContext.Current.User.Identity.Name == Model.Email)
+    {
+        { Html.RenderPartial("~/Views/UserProfile/PostPublicationPartial.cshtml"); }
+        { Html.RenderPartial("~/Views/UserProfile/UploadAvatarPartial.cshtml"); }
+        <img src="@Url.Content("~/Content/loadingElement.gif")" style="display: none;">
+        <div id="posts"></div>
+    }
+   
+    @{ 
+        int countOfPostsOnThePage = 0;
+        int countOfPostsToTake = 5;
 
-    <div class="main-content-container" id="createNewPost">
-        <div class="main-content-nested-container" id="createNewPostContent" onclick="openPostForm()">
-                Create new post
-        </div>
-    </div>
-                      <div class="main-content-container" id="postCreationContainer" style="display: none; ">
-                    @using (Html.BeginForm("CreatePost", "Post", FormMethod.Post))  // this form into the partial view
-                    {
-                        <div class="main-content-nested-container">
-                            <textarea id="tags-input" class="form-control animated" placeholder="Tags" rows="1" name="tags"></textarea>
-                        </div>
-                        <hr class="non-margine"/>
-                        <div class="main-content-nested-container">
-                            <textarea id="post-textarea" class="form-control animated" rows="1" placeholder="Content" name="content"></textarea>
-                        </div>
-                        <hr class="non-margine"/>
-                        <div class="main-content-nested-container">
-                            <button type="submit" class="btn btn-default base-button base-button-hover" onclick="closePostForm()">Create</button>
-                            <button type="button" class="btn btn-default base-button base-button-hover" onclick="closePostForm()">Close</button>
-                        </div>
-                    }
-                    </div>
-                
-    <br>
+        countOfPostsOnThePage += (int?)ViewData["addedPostsCount"] ?? 0;
+    }
+    @{Html.RenderAction("GetPosts", "Post", new { userId = Model.Id, skip = countOfPostsOnThePage, count = countOfPostsToTake});}
+
 
     <a href="#">
     <div class="tag">
@@ -119,37 +107,5 @@
     </div>
 </a>
 
-
-
-
-
-
-
-
-
-
-
-<div id="uploadAvatarModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><span class="userprofile-info-key">Upload a new avatar</span></h4>
-            </div>
-                @using (Html.BeginForm("EditUserAvatar", "UserProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                <div class="modal-body modal-body-content">              
-                 <input type="file" id="Avatar" name="image" accept="image/jpeg, image/png" />              
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-default base-button base-button-hover">Update</button>
-                <button type="button" class="btn btn-default base-button base-button-hover" data-dismiss="modal">Close</button>
-            </div>
-                }
-        </div>
-
-    </div>
-</div>
-    }
+}
 

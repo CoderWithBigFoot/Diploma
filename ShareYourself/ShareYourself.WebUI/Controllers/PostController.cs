@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using System.Linq;
 using System.Collections.Generic;
 using ShareYourself.WebUI.Models;
 using ShareYourself.Business;
@@ -12,6 +13,7 @@ namespace ShareYourself.WebUI.Controllers
     [Authorize]
     public class PostController : Controller
     {
+        private string _errorView = "~/Views/Shared/Error.cshtml";
         private IUserProfileService _userProfileService;
         private IUserPostService _userPostService;
 
@@ -43,20 +45,44 @@ namespace ShareYourself.WebUI.Controllers
                         });
                     }
                 }
-            }  
+            }
 
-            UserPostCreationDto dto = new UserPostCreationDto
+            try
             {
-                Content = content,
-                CreationDate = DateTime.Now,
-                CreatorId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id
-            };
+                var userId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id;
 
-            dto.Tags = tagDtos;
+                UserPostCreationDto dto = new UserPostCreationDto
+                {
+                    Content = content,
+                    CreationDate = DateTime.Now,
+                    CreatorId = userId
+                };
 
-            _userPostService.Create(dto);
-            
-            return RedirectToRoute(new { controller = "UserProfile", action = "ProfilePage"});
+                dto.Tags = tagDtos;
+
+                _userPostService.Create(dto);
+
+                var createdPostDto = _userPostService.Take<UserPostDto>(userId, 0, 1);
+                var createdPostViewModel = Mapper.Map<IEnumerable<UserPostViewModel>>(createdPostDto);
+
+                return PartialView("~/Views/Shared/PostPartial.cshtml", createdPostViewModel);
+            }
+            catch (Exception ex)
+            {
+                return View(_errorView, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [ChildActionOnly]
+        public ActionResult GetPosts(int userId, int skip = 0, int count = 5)
+        {         
+            var userPostDtos = _userPostService.Take<UserPostDto>(userId, skip, count);
+            var userPostViewModels = Mapper.Map<IEnumerable<UserPostViewModel>>(userPostDtos);
+
+            ViewData["addedPostsCount"] = userPostViewModels.Count();
+
+            return PartialView("~/Views/Shared/PostPartial.cshtml", userPostViewModels);
         }
     }
 }

@@ -62,6 +62,7 @@
     <Compile Include="Dto\UserProfileDto.cs" />
     <Compile Include="Dto\UserProfileEditingDto.cs" />
     <Compile Include="Dto\UserProfileIdDto.cs" />
+    <Compile Include="Dto\UserProfileInfoForPostDto.cs" />
     <Compile Include="Dto\UserProfileRegistrationDto.cs" />
     <Compile Include="Infrastructure\MapperProfiles\UserPostMapperProfile.cs" />
     <Compile Include="Infrastructure\MapperProfiles\UserProfileMapperProfile.cs" />

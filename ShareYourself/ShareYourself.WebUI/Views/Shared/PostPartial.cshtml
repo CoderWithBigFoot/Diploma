@@ -1,6 +1,49 @@
-﻿<div class="main-content-container">
+﻿@using ShareYourself.WebUI.Models;
+@using System.Globalization;
+@model IEnumerable<UserPostViewModel>
+
+@if(Model?.Count() == 0)
+{
+        <div class="main-content-nested-container" style="text-align: center;">
+                There are no posts
+        </div>
+}
+
+@foreach (var post in Model)
+{
+<div class="main-content-container">
     <div class="main-content-nested-container">
-        
+        @{ 
+            DateTimeFormatInfo info = new DateTimeFormatInfo();
+            string monthName = info.GetMonthName(post.CreationDate.Month).ToString();
+            string year = "";
+            if (post.CreationDate.Year != DateTime.Now.Year)
+            {
+                year = post.CreationDate.Year.ToString();
+            }
+        }
+        <a href="#"><img src="@Url.Action("GetAvatar", "UserProfile", new { id = post.CreatorId })" class="userprofile-avatar-minimized"></a> @{ /* Link for the profile*/ }
+        <span class="userprofile-info-key" style="font-size: large;">@post.Creator.Name @post.Creator.Surname</span>
+        <span class="userprofile-info-value">, @post.CreationDate.Day @monthName @year</span>
     </div>
+
+    <div class="main-content-nested-container">
+        @foreach (var tag in post.Tags)
+        {// Instead # link to the action from the PostController that returns posts with this tag
+            <a href="#"> 
+                <div class="tag">
+                    @tag
+                </div>
+            </a>
+        }
+    </div>
+        <hr class="non-margine">
+
+        <div class="main-content-nested-container">
+            @post.Content
+        </div>
 </div>
+<br>
+}
+
 

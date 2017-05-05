@@ -23,7 +23,6 @@
     transition: height 0.2s;
 }
 
-
 #post-textarea {
     margin-top: 0px;
     border-color: none !important;
@@ -52,6 +51,7 @@
     resize: none;
 }
 
-.non-margine{
-    margin: 0px;
+hr.non-margine{
+    margin-top: 0em;
+    margin-bottom: 0em;
 }

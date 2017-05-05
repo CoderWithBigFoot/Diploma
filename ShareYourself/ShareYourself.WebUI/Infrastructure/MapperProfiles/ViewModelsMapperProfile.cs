@@ -4,9 +4,9 @@ using ShareYourself.WebUI.Models;
 
 namespace ShareYourself.WebUI.Infrastructure.MapperProfiles
 {
-    public class UserProfileDtosViewModelProfile : Profile
+    public class ViewModelsMapperProfile : Profile
     {
-        public UserProfileDtosViewModelProfile()
+        public ViewModelsMapperProfile()
         {
             CreateMap<UserProfileRegistrationDto, RegisterViewModel>();
             CreateMap<RegisterViewModel, UserProfileRegistrationDto>();
@@ -16,6 +16,10 @@ namespace ShareYourself.WebUI.Infrastructure.MapperProfiles
 
             CreateMap<UserProfileDto, UserProfileHomeViewModel>();
             CreateMap<UserProfileHomeViewModel, UserProfileDto>();
+
+            CreateMap<UserProfileInfoForPostDto, UserProfileInfoForPostViewModel>();
+
+            CreateMap<UserPostDto, UserPostViewModel>();
         }
     }
 }
