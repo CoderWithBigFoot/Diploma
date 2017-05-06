@@ -15,6 +15,10 @@
     <script>
         $(function () {
             $('textarea').autosize();
+
+            if (getPostsCountOnThePage() == 0) {
+                $('#show-next-posts-form-container').attr('visibility','hidden');
+            }
         });
 
         function openPostForm() {
@@ -29,6 +33,12 @@
 
         function inputSkipInit() {
             $("#input-skip").val(getPostsCountOnThePage());
+        }
+
+        function showNextPostsFormOnSuccess(data) {
+            if (data == "") {
+                $('#show-next-posts-form-container').hide();
+            }
         }
     </script>   
     @Scripts.Render("~/bundles/PostScripts")
@@ -103,15 +113,18 @@
         {
             InsertionMode = InsertionMode.InsertAfter,
             HttpMethod = "Get",
-            UpdateTargetId = "posts"
+            UpdateTargetId = "posts",
+            OnSuccess = "showNextPostsFormOnSuccess"
         };
     }
 
+    <div id="createdPosts"></div>
+
     @{Html.RenderAction("GetPosts", "Post", new { userId = Model.Id, skip = 0, count = countOfPostsToTake});}
-        
+
     <div id="posts"></div>
 
-    <div class="main-content-nested-container">
+    <div class="main-content-nested-container" id="show-next-posts-form-container">
         @using (Ajax.BeginForm("GetPosts", "Post", getPostsAjaxOptions))
         {
            <input type="number" value="@Model.Id" name="userId" hidden>
