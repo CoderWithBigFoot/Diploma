@@ -147,5 +147,24 @@ hr.hr-menu-element {
     font-size: large;
 }
 
+.show-next-posts-button {
+    margin-left: 45%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: midnightblue;
+    font-family: 'Segoe UI';
+    font-size: xx-large;
+    cursor: pointer;
+    outline: none;
+}
 
+.show-next-posts-button span{
+
+}
+
+.show-next-posts-button:hover{
+    color: blue;
+}
 

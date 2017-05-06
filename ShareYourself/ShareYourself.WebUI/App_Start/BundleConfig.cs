@@ -21,6 +21,10 @@ namespace ShareYourself.WebUI
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/PostScripts").Include(
+                    "~/Scripts/PostScripts.js"
+                ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Bootstrap.css",
                       "~/Content/Site.css"));

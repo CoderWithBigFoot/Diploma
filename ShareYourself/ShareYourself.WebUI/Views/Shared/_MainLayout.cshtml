@@ -10,7 +10,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
 </head>
-<body>
+<body style="overflow-y: scroll;">
     <div class="top-nav">
         <div class="row" style="height: 100%;">
             <div class="col-sm-offset-1 col-sm-2" style="height: 100%;">
@@ -70,6 +70,6 @@
     @RenderSection("Scripts", false)
     @RenderSection("Body", true)
     }
-    @RenderSection("Footer", false)
+
 </body>
 </html>

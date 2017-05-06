@@ -74,13 +74,13 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        [ChildActionOnly]
-        public ActionResult GetPosts(int userId, int skip = 0, int count = 5)
-        {         
+        public ActionResult GetPosts(int userId, int skip, int count = 5)
+        {
+            int a = 1;
             var userPostDtos = _userPostService.Take(userId, skip, count);
             var userPostViewModels = Mapper.Map<IEnumerable<UserPostViewModel>>(userPostDtos);
-
-            ViewData["addedPostsCount"] = userPostViewModels.Count();
+            int postsCount = userPostDtos.Count();
+            int b = 2;
 
             return PartialView("~/Views/Shared/PostPartial.cshtml", userPostViewModels);
         }
