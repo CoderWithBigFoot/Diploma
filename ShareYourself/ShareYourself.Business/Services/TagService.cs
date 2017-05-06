@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using ShareYourself.Data;
 using ShareYourself.Data.Entities;
 using AutoMapper;
@@ -41,6 +42,16 @@ namespace ShareYourself.Business.Services
                 .FirstOrDefault();
 
             return tagDto;
+        }
+
+        public IEnumerable<TDto> Get<TDto>() 
+            where TDto : class
+        {
+            var tags = uow
+                .TagsRepository
+                .Get<TDto>(x => x.Id > 0);
+
+            return tags;
         }
 
         public bool Contains(string tagName)

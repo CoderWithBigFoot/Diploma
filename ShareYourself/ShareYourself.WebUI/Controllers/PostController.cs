@@ -16,34 +16,44 @@ namespace ShareYourself.WebUI.Controllers
         private string _errorView = "~/Views/Shared/Error.cshtml";
         private IUserProfileService _userProfileService;
         private IUserPostService _userPostService;
+        private ITagService _tagService;
 
-        public PostController(IUserProfileService userProfileService, IUserPostService userPostService)
+        public PostController(IUserProfileService userProfileService, IUserPostService userPostService, ITagService tagService)
         {
             _userProfileService = userProfileService;
             _userPostService = userPostService;
+            _tagService = tagService;
         }
 
         [HttpPost]
         public ActionResult CreatePost(string tags, string content) // It should returns the partial view with created post content 
         {
+            if(content.Length == 0 || string.IsNullOrEmpty(content))
+            {
+                return null;
+            }
+
             char[] separators = new char[]
             {
-                ',', '.', '/', '*', '-', '+', '!', '@', '#', '№', '$', '%', '^', '&', '(', ')', ':', ';', ' '
+                ',', '.', '/', '*', '-', '+', '!', '@', '#', '№', '$', '%', '^', '&', '(', ')', ':', ';', ' ',
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '{', '}', '[', ']'
             };
             
             ICollection<TagDto> tagDtos = new List<TagDto>();
+            string formattedTag;
 
             foreach(var currentElement in tags.Split(separators))
             {
                 if (!string.IsNullOrEmpty(currentElement))
                 {
-                    if(currentElement != "_")
+                    if (currentElement != "_")
                     {
+                        formattedTag = currentElement.Substring(0, 1).ToUpper() + currentElement.Substring(1).ToLower();
                         tagDtos.Add(new TagDto
                         {
-                            Name = currentElement
+                            Name = formattedTag
                         });
-                    }
+                    }                
                 }
             }
 
@@ -86,6 +96,22 @@ namespace ShareYourself.WebUI.Controllers
             var userPostViewModels = Mapper.Map<IEnumerable<UserPostViewModel>>(userPostDtos);
 
             return PartialView("~/Views/Shared/PostPartial.cshtml", userPostViewModels);
+        }
+
+        [HttpGet]
+        public ActionResult TagCloud()
+        {
+           /* var tags = _tagService
+                .Get<TagDto>();
+
+            var result = Mapper.Map<IEnumerable<string>>(tags);
+            */
+            var fakeResult = new List<string>
+            {
+                "First", "sec", "asdas", "asdasd", "asdfasd", "asdafasd", "ghdsg", "jdf", "t", "ghsdfsdf", "kfgfbxd"
+            };
+
+            return View("TagCloud", fakeResult);
         }
     }
 }

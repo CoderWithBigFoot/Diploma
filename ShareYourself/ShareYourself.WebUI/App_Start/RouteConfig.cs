@@ -15,10 +15,22 @@ namespace ShareYourself.WebUI
 
             routes.MapRoute(
                 name: "UserProfileRoute",
-                url: "profile/{action}/{id}",
-                defaults: new { controller = "UserProfile", id = UrlParameter.Optional}
+                url: "profile/{id}",
+                defaults: new { controller = "UserProfile", action = "ProfilePage",id = UrlParameter.Optional }
             );
-        
+
+            routes.MapRoute(
+                name: "TagCloudRoute",
+                url: "tagCloud",
+                defaults: new { controller = "Post", action = "TagCloud" }
+                );
+
+            routes.MapRoute(
+                name: "EditUserProfileRoute",
+                url: "edit",
+                defaults: new { controller = "UserProfile", action = "EditUserProfile"}
+                );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

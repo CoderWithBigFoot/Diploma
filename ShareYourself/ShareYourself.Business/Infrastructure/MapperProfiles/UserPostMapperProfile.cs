@@ -20,6 +20,9 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
 
             CreateMap<TagDto, string>()
                 .ConvertUsing(x => x.Name);
+
+            CreateMap<Tag, string>()
+                .ConvertUsing(x => x.Name);
         }
     }
 }

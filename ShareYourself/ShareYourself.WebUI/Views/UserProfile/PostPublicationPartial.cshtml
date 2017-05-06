@@ -19,7 +19,7 @@
     @using (Ajax.BeginForm("CreatePost", "Post", ajaxOptions)) 
     {
         <div class="main-content-nested-container">
-            <textarea id="tags-input" class="form-control animated" placeholder="Tags" rows="1" name="tags"></textarea>
+            <textarea id="tags-input" class="form-control animated" rows="1" name="tags" placeholder="Tags"></textarea>
         </div>
                         <hr class="non-margine" />
                         <div class="main-content-nested-container">
@@ -29,6 +29,7 @@
                         <div class="main-content-nested-container">
                             <button type="submit" class="btn btn-default base-button base-button-hover">Create</button>
                             <button type="button" class="btn btn-default base-button base-button-hover" onclick="closePostForm()">Close</button>
+                            <span style="float: right;">word</span>
                         </div>
     }
 </div>

@@ -12,12 +12,15 @@
 @section Scripts{
     
 <script src="~/Scripts/jquery.autosize.min.js"></script>
+@Scripts.Render("~/bundles/PostsInteraction")
+
     <script>
         $(function () {
             $('textarea').autosize();
 
             if (getPostsCountOnThePage() == 0) {
-                $('#show-next-posts-form-container').attr('visibility','hidden');
+                $('#show-next-posts-form-container').hide();
+                showElement('nonExistPostsContainer');
             }
         });
 
@@ -30,18 +33,7 @@
             $('#createNewPost').show();
             $('#postCreationContainer').hide();
         }
-
-        function inputSkipInit() {
-            $("#input-skip").val(getPostsCountOnThePage());
-        }
-
-        function showNextPostsFormOnSuccess(data) {
-            if (data == "") {
-                $('#show-next-posts-form-container').hide();
-            }
-        }
     </script>   
-    @Scripts.Render("~/bundles/PostScripts")
     }
 
 @section Body{    
@@ -108,7 +100,6 @@
 
     @{ 
         int countOfPostsToTake = 2;
-
         var getPostsAjaxOptions = new AjaxOptions
         {
             InsertionMode = InsertionMode.InsertAfter,
@@ -131,7 +122,7 @@
             <input type="number" name="skip" id="input-skip"  hidden>
              <input type="number" value="@countOfPostsToTake" name="count" hidden>
 
-           <button type="submit" class="show-next-posts-button" onclick="inputSkipInit()"><span class="glyphicon glyphicon-chevron-down"></span></button>
+           <button type="submit" class="show-next-posts-button" onclick="inputSkipInit('input-skip')"><span class="glyphicon glyphicon-chevron-down"></span></button>
         }
     </div>   
 }

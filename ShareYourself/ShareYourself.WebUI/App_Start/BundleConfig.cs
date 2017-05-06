@@ -21,9 +21,11 @@ namespace ShareYourself.WebUI
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/PostScripts").Include(
-                    "~/Scripts/PostScripts.js"
+            bundles.Add(new ScriptBundle("~/bundles/PostsInteraction").Include(
+                    "~/Scripts/PostsInteraction.js"
                 ));
+
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Bootstrap.css",
@@ -32,6 +34,7 @@ namespace ShareYourself.WebUI
             bundles.Add(new StyleBundle("~/Content/RegisterLogin").Include(
                     "~/Content/RegisterLogin.css"
                 ));
+
             bundles.Add(new StyleBundle("~/Content/BodyContent").Include(
                     "~/Content/BodyContent.css"
                 ));
