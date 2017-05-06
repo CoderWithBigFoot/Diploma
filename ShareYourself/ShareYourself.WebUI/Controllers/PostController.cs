@@ -113,5 +113,12 @@ namespace ShareYourself.WebUI.Controllers
 
             return View("TagCloud", fakeResult);
         }
+
+        [HttpGet]
+        public ActionResult GetPosts(string tagName, int skip, int count)
+        {
+            
+                
+        }
     }
 }
