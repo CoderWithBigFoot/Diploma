@@ -18,10 +18,16 @@
     }
 
 @section Body{
+
+    <div class="main-content-nested-container">
+        All tags
+        <hr>
+    </div>
+
         <div class="main-content-nested-container">
             @foreach(var tag in Model)
             {
-                <a href="@Url.Action("TagPosts", "Post", new { tag = tag })">
+                <a href="@Url.RouteUrl("TagPostsRoute", new { tag = tag })">
                     <div class="tag-tagcloud">
                         @tag
                     </div>

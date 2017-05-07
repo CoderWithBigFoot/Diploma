@@ -23,7 +23,7 @@
     <div class="main-content-nested-container">
         @foreach (var tag in post.Tags)
         {// Instead # link to the action from the PostController that returns posts with this tag
-            <a href="#"> 
+            <a href="@Url.RouteUrl("TagPostsRoute", new { tag = tag })"> 
                 <div class="tag">
                     @tag
                 </div>

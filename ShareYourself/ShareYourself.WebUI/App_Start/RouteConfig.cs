@@ -26,6 +26,12 @@ namespace ShareYourself.WebUI
                 );
 
             routes.MapRoute(
+                name: "TagPostsRoute",
+                url: "tagCloud/{tag}",
+                defaults: new { controller = "Post", action = "TagPosts" }
+                );
+
+            routes.MapRoute(
                 name: "EditUserProfileRoute",
                 url: "edit",
                 defaults: new { controller = "UserProfile", action = "EditUserProfile"}

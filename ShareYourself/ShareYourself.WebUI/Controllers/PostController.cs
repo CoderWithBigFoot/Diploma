@@ -120,7 +120,9 @@ namespace ShareYourself.WebUI.Controllers
                 count: count
                 );
 
-            return PartialView(_postParital, postDtos);
+            var result = Mapper.Map<IEnumerable<UserPostViewModel>>(postDtos);
+
+            return PartialView(_postParital, result);
         }
 
         [HttpGet]
@@ -137,12 +139,13 @@ namespace ShareYourself.WebUI.Controllers
         [HttpGet]
         public ActionResult TagPosts(string tag)
         {
+            int a = 1;
             if (!_tagService.Contains(tag))
             {
                 return PartialView("Error", "Such tag doesn't exist.");
             }
 
-            return View("TagPosts", tag);
+            return View(viewName: "TagPosts", model: tag);
         }
     }
 }

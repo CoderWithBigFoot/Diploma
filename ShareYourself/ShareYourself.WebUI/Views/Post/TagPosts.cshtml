@@ -25,17 +25,19 @@
             UpdateTargetId = "posts",
             OnSuccess = "showNextPostsFormOnSuccess"
         };
-
-        string tag = Model;
-        int a = 1;
     }
 
-    @{Html.RenderAction("GetPostsByTag", "Post", new { tag = Model, skip = 0, count = countOfPostsToTake });}
+    <div class="main-content-nested-container">
+        @Model
+    </div>
+<hr>
+
+    @{Html.RenderAction("GetPostsByTag", new { controller = "Post", tag = Model, skip = 0, count = countOfPostsToTake});}
 
     <div id="posts"></div>
 
     <div class="main-content-nested-container" id="show-next-posts-form-container">
-    @using (Ajax.BeginForm("GetPosts", "Post", getPostsAjaxOptions))
+    @using (Ajax.BeginForm("GetPostsByTag", "Post", getPostsAjaxOptions))
     {
         <input type="text" value="@Model" name="tag" hidden>
         <input type="number" name="skip" id="input-skip" hidden>
