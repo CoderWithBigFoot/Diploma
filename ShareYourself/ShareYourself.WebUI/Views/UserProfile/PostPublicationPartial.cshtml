@@ -4,12 +4,20 @@
     </div>
 </div>
 
+<script>
+    function onSuccess() {
+        $('#tags-input').val("");
+        $('#post-textarea').val("");
+    }
+</script>
+
 @{ 
     var ajaxOptions = new AjaxOptions
     {
         UpdateTargetId = "createdPosts",
         InsertionMode = InsertionMode.InsertBefore,
-        HttpMethod = "Post"
+        HttpMethod = "Post",
+        OnSuccess = "onSuccess"
         /*LoadingElementId = "loadingElement",
         LoadingElementDuration = 1000*/
     };

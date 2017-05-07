@@ -7,10 +7,11 @@ function inputSkipInit(id) {
 }
 
 function showNextPostsFormOnSuccess(data) {
-    alert(data);
-    if (data == "" || data == null) {
-        $('#showNextPostsButton').text('<span class="glyphicon glyphicon-remove"></span>');
-    }
+    /*if (data == "" || data == null) {
+        var element = $('#showNextPostsSpan');
+        element.removeClass('glyphicon-chevron-down');
+        element.addClass('glyphicon-remove');
+    } */
 }
 
 function showElement(id) {

@@ -42,6 +42,8 @@ namespace ShareYourself.WebUI.Controllers
             
             ICollection<TagDto> tagDtos = new List<TagDto>();
             string formattedTag;
+            string formattedContent;
+
 
             foreach(var currentElement in tags.Split(separators))
             {
@@ -100,7 +102,8 @@ namespace ShareYourself.WebUI.Controllers
             }
 
             var userPostViewModels = Mapper.Map<IEnumerable<UserPostViewModel>>(userPostDtos);
-
+            string content = userPostViewModels.FirstOrDefault().Content;
+            int a = 1;
             return PartialView(_postParital, userPostViewModels);
         }
 
