@@ -219,6 +219,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\default-user.jpg" />
     <Content Include="Content\loadingElement.gif" />
+    <Content Include="Content\logo.jpg" />
     <Content Include="Content\Post.css" />
     <Content Include="Content\RegisterLogin.css" />
     <Content Include="Content\BodyContent.css" />

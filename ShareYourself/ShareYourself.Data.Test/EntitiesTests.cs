@@ -82,5 +82,46 @@ namespace ShareYourself.Data.Test
                 Assert.Fail(ex.Message);
             }
         }
+
+        [TestMethod]
+        public void LikesAddRemove_Success()
+        {
+            ShareYourselfContext context = new ShareYourselfContext("ShareYourself");
+
+
+            UserProfile user_1 = new UserProfile
+            {
+                Name = "test",
+                Surname = "test",
+                RegistrationDate = DateTime.Now
+            };
+
+            UserPost post_1 = new UserPost
+            {
+                Content = "test content",
+                CreationDate = DateTime.Now,
+                Creator = user_1
+            };
+
+            post_1.Likes.Add(user_1);
+
+            try
+            {
+                var posts = context.Set<UserPost>();
+                var users = context.Set<UserProfile>();
+
+                context.Set<UserPost>().Add(post_1);
+                user_1.Likes.Remove(post_1);
+
+                posts.Remove(post_1);
+                users.Remove(user_1);
+                
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
     }
 }

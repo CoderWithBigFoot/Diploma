@@ -28,8 +28,6 @@ namespace ShareYourself.Data.Contexts
                      x.ToTable("FollowersSubscribers");
                  });*/
 
-            // try to change on the With OptionalPrincipal
-
 
              modelBuilder.Entity<UserPost>()
                  .HasKey(x => x.Id);
@@ -43,22 +41,23 @@ namespace ShareYourself.Data.Contexts
                  .WithMany(x => x.Posts)
                  .Map(x =>
                  {
-                     x.MapLeftKey("Post");
-                     x.MapRightKey("Tag");
+                     x.MapLeftKey("PostId");
+                     x.MapRightKey("TagId");
                      x.ToTable("TagsPosts");
                  });
 
-            #region another tables
-            /* modelBuilder.Entity<UserPost>()
-                 .HasMany(x => x.Likes)
-                 .WithMany(x => x.Likes)
-                 .Map(x => 
-                 {
-                     x.MapLeftKey("LikedUserPost");
-                     x.MapRightKey("LikedUserProfile"); 
-                     x.ToTable("Likes");
-                 });
+            modelBuilder.Entity<UserPost>()
+                .HasMany(x => x.Likes)
+                .WithMany(x => x.Likes)
+                .Map(x => 
+                {
+                    x.MapLeftKey("PostId");
+                    x.MapRightKey("LikerId");
+                    x.ToTable("Likes");
+                });
 
+            #region another tables
+            /*
              modelBuilder.Entity<UserPost>()
                  .HasMany(x => x.Reposts)
                  .WithMany(x => x.Reposts)

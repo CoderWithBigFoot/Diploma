@@ -18,6 +18,9 @@
         <a href="#"><img src="@Url.Action("GetAvatar", "UserProfile", new { id = post.CreatorId })" class="userprofile-avatar-minimized"></a> @{ /* Link for the profile*/ }
         <span class="userprofile-info-key" style="font-size: large;">@post.Creator.Name @post.Creator.Surname</span>
         <span class="userprofile-info-value">, @post.CreationDate.Day @monthName @year</span>
+        
+            <span class="glyphicon glyphicon-heart" style="float: right; color: lightgray;">11</span>
+        
     </div>
 
     <div class="main-content-nested-container">
@@ -33,13 +36,7 @@
         <hr class="non-margine">
 
     @{ 
-        try
-        {
-            string formattedString = null;
-        }
-        catch(Exception)
-        {
-        }
+        // Here is string formatting
     }
         <div class="main-content-nested-container">
             @post.Content.
