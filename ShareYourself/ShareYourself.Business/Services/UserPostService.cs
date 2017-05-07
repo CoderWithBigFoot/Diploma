@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using ShareYourself.Data;
 using ShareYourself.Data.Entities;
@@ -83,6 +82,16 @@ namespace ShareYourself.Business.Services
                 .Take(count);
 
             return result;
+        }
+
+        public int LikesCount(int postId)
+        {
+            return uow
+                .UserPostsRepository
+                .Get(x => x.Id == postId)
+                .FirstOrDefault()
+                .Likes
+                .Count;
         }
     }
 }

@@ -19,7 +19,12 @@
         <span class="userprofile-info-key" style="font-size: large;">@post.Creator.Name @post.Creator.Surname</span>
         <span class="userprofile-info-value">, @post.CreationDate.Day @monthName @year</span>
         
-            <span class="glyphicon glyphicon-heart" style="float: right; color: lightgray;">11</span>
+            <span class="glyphicon glyphicon-heart" style="float: right; color: lightgray;">
+               @if(post.Likes != 0)
+               {
+                    <span>@post.Likes</span>
+               }
+            </span>
         
     </div>
 

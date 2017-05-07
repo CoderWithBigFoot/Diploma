@@ -8,6 +8,7 @@ namespace ShareYourself.WebUI.Models
         public int Id { set; get; }
         public string Content { set; get; }
         public DateTime CreationDate { set; get; }
+        public int Likes { set; get; }
         public int CreatorId { set; get; }
 
         public UserProfileInfoForPostViewModel Creator { set; get; }
