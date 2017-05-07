@@ -16,7 +16,7 @@ namespace ShareYourself.WebUI
             routes.MapRoute(
                 name: "UserProfileRoute",
                 url: "profile/{id}",
-                defaults: new { controller = "UserProfile", action = "ProfilePage",id = UrlParameter.Optional }
+                defaults: new { controller = "UserProfile", action = "ProfilePage", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

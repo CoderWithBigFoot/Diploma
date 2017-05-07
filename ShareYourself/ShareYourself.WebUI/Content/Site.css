@@ -1,5 +1,4 @@
-﻿
-/* Set padding to keep content from hitting the edges */
+﻿/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -40,12 +39,6 @@ h2 {
     margin: auto;
 }
 
-
-
-a:hover{
-    text-decoration:none;
-    color: blue;
-}
 
 .field-validation-error {
     color: red;
@@ -89,4 +82,30 @@ a:hover{
         text-decoration: none;
         color: blue;
         background-color:none;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin: auto;
+    color: white;
+    padding-top: 3.5%;
+    font-family: 'Segoe UI';
+    font-weight: 500;
+}
+
+a:hover{
+    color: blue;
+    text-decoration: none;
+}
+
+input[type="text"]:focus {
+    border-color: midnightblue;
+    box-shadow: none;
+}
+
+input[type="password"]:focus {
+    border-color: midnightblue;
+    box-shadow: none;
 }

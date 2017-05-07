@@ -14,6 +14,7 @@ namespace ShareYourself.WebUI.Controllers
         private IUserProfileService _userProfileService;
         private IUserImageService _userImageService;
         private string _errorView = "~/Views/Shared/Error.cshtml";
+        private string _profileNotFoundErrorView = "ProfileNotFoundError";
 
         public UserProfileController(IUserProfileService userProfileService, IUserImageService userImageService)
         {
@@ -22,17 +23,40 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult ProfilePage()
+        public ActionResult Error(string message)
         {
-            var userProfileInfo = _userProfileService.Get<UserProfileDto>(User.Identity.Name);
-            var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
+            return View(_profileNotFoundErrorView, message);
+        }
 
-            if(mappedUserProfile == null)
+        [HttpGet]
+        public ActionResult ProfilePage(int? id)
+        {
+            if (id == null)
             {
-                return PartialView(_errorView, "Such profile not found");                
+                var userProfileInfo = _userProfileService.Get<UserProfileDto>(User.Identity.Name);
+                var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
+
+                if (mappedUserProfile == null)
+                {
+                    return View(_profileNotFoundErrorView, "Such profile not found.");
+                }
+
+                return View("ProfilePage", mappedUserProfile);
             }
-           
-            return View("ProfilePage", mappedUserProfile);
+
+            else
+            {
+                var userProfileInfo = _userProfileService.Get<UserProfileDto>((int)id);
+                var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
+
+
+                if (mappedUserProfile == null)
+                {
+                    // return View(_profileNotFoundErrorView, "Such profile not found.");
+                }
+
+                return View("ProfilePage", mappedUserProfile);
+            }
         }
 
         [HttpGet]

@@ -98,11 +98,6 @@ input[type="radio"]:checked + span {
     font-size: large;
 }
 
-input[type="text"]:focus{
-    border-color: midnightblue;
-    box-shadow: none;
-}
-
 textarea:focus {
     border-color: midnightblue;
     box-shadow: none;
@@ -131,6 +126,7 @@ textarea:focus {
 .right-menu-element:hover{
     background-color: midnightblue;
     color: white;
+    text-decoration: none;
 }
 
 hr.hr-menu-element {

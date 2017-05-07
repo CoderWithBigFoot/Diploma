@@ -29,7 +29,5 @@ h2 {
     margin-top:50px;
 }
 
-input[type="text"]:focus {
-    border-color: midnightblue !important;
-    box-shadow: none !important;
-}
+
+
