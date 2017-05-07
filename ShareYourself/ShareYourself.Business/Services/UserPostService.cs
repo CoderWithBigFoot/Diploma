@@ -70,6 +70,19 @@ namespace ShareYourself.Business.Services
             return result;
         }
 
+        public IEnumerable<UserPostDto> Take(TagDto tagDto, int skip, int count)
+        {
+            var tag = uow.TagsRepository.Get(x => x.Name == tagDto.Name).FirstOrDefault();
+            if (tag == null) { return null; }
 
+            var result = uow
+                .UserPostsRepository
+                .Get<UserPostDto>(x => x.Tags.Contains(tag))
+                .OrderByDescending(x => x.Id)
+                .Skip(skip)
+                .Take(count);
+
+            return result;
+        }
     }
 }

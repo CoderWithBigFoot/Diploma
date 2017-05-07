@@ -1,9 +1,8 @@
 ﻿@model string
 @{
     ViewBag.Title = "Error";
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    Layout = null;
 }
-@section Styles{
     <style>
         .h3-error {
             text-align: center;
@@ -11,7 +10,6 @@
             background-color: midnightblue;
         }
     </style>
-    }
 <div class="main-content-container">
     <div class="main-content-nested-container">
         <h3 class="h3-error"> @Model </h3>

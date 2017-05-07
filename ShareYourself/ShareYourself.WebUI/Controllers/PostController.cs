@@ -14,6 +14,7 @@ namespace ShareYourself.WebUI.Controllers
     public class PostController : Controller
     {
         private string _errorView = "~/Views/Shared/Error.cshtml";
+        private string _postParital = "~/Views/Shared/PostPartial.cshtml";
         private IUserProfileService _userProfileService;
         private IUserPostService _userPostService;
         private ITagService _tagService;
@@ -75,7 +76,7 @@ namespace ShareYourself.WebUI.Controllers
                 var createdPostDto = _userPostService.Take(userId, 0, 1);
                 var createdPostViewModel = Mapper.Map<IEnumerable<UserPostViewModel>>(createdPostDto);
 
-                return PartialView("~/Views/Shared/PostPartial.cshtml", createdPostViewModel);
+                return PartialView(_postParital, createdPostViewModel);
             }
             catch (Exception ex)
             {
@@ -86,6 +87,11 @@ namespace ShareYourself.WebUI.Controllers
         [HttpGet]
         public ActionResult GetPosts(int userId, int skip, int count = 5)
         {
+            if(skip < 0 || count < 0)
+            {
+                return PartialView(_errorView, "There are no such posts.");
+            }
+
             var userPostDtos = _userPostService.Take(userId, skip, count);
 
             if(userPostDtos.Count() == 0)
@@ -95,30 +101,48 @@ namespace ShareYourself.WebUI.Controllers
 
             var userPostViewModels = Mapper.Map<IEnumerable<UserPostViewModel>>(userPostDtos);
 
-            return PartialView("~/Views/Shared/PostPartial.cshtml", userPostViewModels);
+            return PartialView(_postParital, userPostViewModels);
+        }
+
+
+        [HttpGet]
+        [ActionName("GetPostsByTag")]
+        public ActionResult GetPosts(string tag, int skip = 0, int count = 4)
+        {
+            if (!_tagService.Contains(tag) || skip < 0 || count < 0)
+            {
+                return PartialView("Error", "Such tag doesn't exist.");
+            }
+
+            var postDtos = _userPostService.Take(
+                new TagDto { Name = tag },
+                skip: skip,
+                count: count
+                );
+
+            return PartialView(_postParital, postDtos);
         }
 
         [HttpGet]
         public ActionResult TagCloud()
         {
-           /* var tags = _tagService
+            var tags = _tagService
                 .Get<TagDto>();
 
             var result = Mapper.Map<IEnumerable<string>>(tags);
-            */
-            var fakeResult = new List<string>
-            {
-                "First", "sec", "asdas", "asdasd", "asdfasd", "asdafasd", "ghdsg", "jdf", "t", "ghsdfsdf", "kfgfbxd"
-            };
-
-            return View("TagCloud", fakeResult);
+            
+            return View("TagCloud", result);
         }
 
         [HttpGet]
-        public ActionResult GetPosts(string tagName, int skip, int count)
+        public ActionResult TagPosts(string tag)
         {
-            
-                
+            if (!_tagService.Contains(tag))
+            {
+                return PartialView("Error", "Such tag doesn't exist.");
+            }
+
+            return View("TagPosts", tag);
         }
     }
 }

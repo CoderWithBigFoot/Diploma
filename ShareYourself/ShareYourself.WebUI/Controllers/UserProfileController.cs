@@ -29,8 +29,7 @@ namespace ShareYourself.WebUI.Controllers
 
             if(mappedUserProfile == null)
             {
-                ViewBag.ErrorMessage = "Such profile not found";
-                return View(_errorView);                
+                return PartialView(_errorView, "Such profile not found");                
             }
            
             return View("ProfilePage", mappedUserProfile);

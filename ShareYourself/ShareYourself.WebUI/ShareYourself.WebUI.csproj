@@ -267,6 +267,7 @@
     <Content Include="Views\UserProfile\PostPublicationPartial.cshtml" />
     <Content Include="Views\UserProfile\UploadAvatarPartial.cshtml" />
     <Content Include="Views\Post\TagCloud.cshtml" />
+    <Content Include="Views\Post\TagPosts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

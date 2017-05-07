@@ -38,6 +38,7 @@
         </div>
     </div>
     <br>
+    <div id="top-anchor"></div>
     @if (Request.IsAuthenticated)
     {
         @Styles.Render("~/Content/BodyContent")
@@ -72,6 +73,6 @@
     @RenderSection("Scripts", false)
     @RenderSection("Body", true)
     }
-
+    <div id="bottom-anchor"></div>
 </body>
 </html>

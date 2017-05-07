@@ -1,0 +1,48 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "TagPosts";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Styles{
+    @Styles.Render("~/Content/Post.css")
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/PostsInteraction")
+}
+
+@section Body{
+    
+    @{ 
+        var countOfPostsToTake = 3;
+
+        var getPostsAjaxOptions = new AjaxOptions
+        {
+            InsertionMode = InsertionMode.InsertAfter,
+            HttpMethod = "Get",
+            UpdateTargetId = "posts",
+            OnSuccess = "showNextPostsFormOnSuccess"
+        };
+
+        string tag = Model;
+        int a = 1;
+    }
+
+    @{Html.RenderAction("GetPostsByTag", "Post", new { tag = Model, skip = 0, count = countOfPostsToTake });}
+
+    <div id="posts"></div>
+
+    <div class="main-content-nested-container" id="show-next-posts-form-container">
+    @using (Ajax.BeginForm("GetPosts", "Post", getPostsAjaxOptions))
+    {
+        <input type="text" value="@Model" name="tag" hidden>
+        <input type="number" name="skip" id="input-skip" hidden>
+        <input type="number" value="@countOfPostsToTake" name="count" hidden>
+
+        <button type="submit" class="show-next-posts-button" onclick="inputSkipInit('input-skip')"><span class="glyphicon glyphicon-chevron-down"></span></button>
+    }
+</div>
+
+    }

@@ -5,28 +5,12 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+@{ 
+    // Styles load incorrectly becouse they download once time in the bundle and dont change after the .css refactoring at the runtime
+}
+
 @section Styles{
     @Styles.Render("~/Content/Post.css")
-    <style>
-        .tag-tagcloud {
-            padding: 10px;
-            color: midnightblue;
-            font-family: 'Segoe UI';
-            border: 1px solid;
-            border-color: midnightblue;
-            border-radius: 3px;
-            width: auto;
-            font-size: large;
-            font-weight: 500;
-            float: left;
-            margin: 8px;
-        }
-            .tag-tagcloud:hover {
-                color: white;
-                background-color: midnightblue;
-                cursor: pointer;
-            }
-    </style>
 }
 
 @section Scripts{
@@ -34,18 +18,14 @@
     }
 
 @section Body{
-    
         <div class="main-content-nested-container">
             @foreach(var tag in Model)
             {
-                <a href="#">
+                <a href="@Url.Action("TagPosts", "Post", new { tag = tag })">
                     <div class="tag-tagcloud">
                         @tag
                     </div>
-                </a>
-                              
-                
+                </a>            
             }
         </div>
-
     }

@@ -11,26 +11,6 @@
     display: inline-block;
 }
 
-.tag-tagcloud {
-    padding: 10px;
-    color: midnightblue;
-    font-family: 'Segoe UI';
-    border: 2px solid;
-    border-color: midnightblue;
-    border-radius: 3px;
-    width: auto;
-    font-size: large;
-    font-weight: 500;
-    display: inline-block;
-    margin: 8px;
-}
-
-.tag-tagcloud:hover {
-    color: white;
-    background-color: midnightblue;
-    cursor: pointer;
-}
-
 .tag:hover{
     color:white;
     background-color: midnightblue;
@@ -74,4 +54,24 @@
 hr.non-margine{
     margin-top: 0em;
     margin-bottom: 0em;
+}
+
+.tag-tagcloud {
+    padding: 10px;
+    color: midnightblue;
+    font-family: 'Segoe UI';
+    border: 1px solid;
+    border-color: midnightblue;
+    border-radius: 3px;
+    width: auto;
+    font-size: large;
+    font-weight: 500;
+    float: left;
+    margin: 8px;
+}
+
+.tag-tagcloud:hover {
+        color: white;
+        background-color: midnightblue;
+        cursor: pointer;
 }

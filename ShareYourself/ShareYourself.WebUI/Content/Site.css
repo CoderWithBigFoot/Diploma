@@ -40,14 +40,7 @@ h2 {
     margin: auto;
 }
 
-a{
-    text-decoration:none;
-    text-align: center;
-    margin:auto;
-    color: white;
-    margin-top:45%;
-    font-family: 'Segoe UI';
-}
+
 
 a:hover{
     text-decoration:none;
