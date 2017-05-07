@@ -7,8 +7,9 @@ function inputSkipInit(id) {
 }
 
 function showNextPostsFormOnSuccess(data) {
-    if (data == "") {
-        $('#show-next-posts-form-container').hide();
+    alert(data);
+    if (data == "" || data == null) {
+        $('#showNextPostsButton').text('<span class="glyphicon glyphicon-remove"></span>');
     }
 }
 

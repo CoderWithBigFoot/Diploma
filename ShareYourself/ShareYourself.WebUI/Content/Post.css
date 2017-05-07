@@ -75,3 +75,11 @@ hr.non-margine{
         background-color: midnightblue;
         cursor: pointer;
 }
+
+.page-name {
+    margin: 0px;
+    color: midnightblue;
+    font-family: 'Segoe UI';
+    font-size: x-large;
+    font-weight: 600;
+}

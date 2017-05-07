@@ -17,11 +17,7 @@
     <script>
         $(function () {
             $('textarea').autosize();
-
-           /* if (getPostsCountOnThePage() == 0) {
-                $('#show-next-posts-form-container').hide();
-                showElement('nonExistPostsContainer');
-            }*/
+            $('[data-toggle="popover"]').popover(); 
         });
 
         function openPostForm() {
@@ -115,14 +111,14 @@
 
     <div id="posts"></div>
 
-    <div class="main-content-nested-container" id="show-next-posts-form-container">
+    <div class="main-content-nested-container">
         @using (Ajax.BeginForm("GetPosts", "Post", getPostsAjaxOptions))
         {
            <input type="number" value="@Model.Id" name="userId" hidden>
             <input type="number" name="skip" id="input-skip"  hidden>
              <input type="number" value="@countOfPostsToTake" name="count" hidden>
 
-           <button type="submit" class="show-next-posts-button" onclick="inputSkipInit('input-skip')"><span class="glyphicon glyphicon-chevron-down"></span></button>
+           <button type="submit" class="show-next-posts-button" onclick="inputSkipInit('input-skip')" id="showNextPostsButton"><span class="glyphicon glyphicon-chevron-down"></span></button>
         }
     </div>   
 }

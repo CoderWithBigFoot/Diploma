@@ -27,10 +27,8 @@
         };
     }
 
-    <div class="main-content-nested-container">
-        @Model
-    </div>
-<hr>
+   <span class="page-name">@Model</span>
+    <hr>
 
     @{Html.RenderAction("GetPostsByTag", new { controller = "Post", tag = Model, skip = 0, count = countOfPostsToTake});}
 
@@ -43,7 +41,7 @@
         <input type="number" name="skip" id="input-skip" hidden>
         <input type="number" value="@countOfPostsToTake" name="count" hidden>
 
-        <button type="submit" class="show-next-posts-button" onclick="inputSkipInit('input-skip')"><span class="glyphicon glyphicon-chevron-down"></span></button>
+        <button type="submit" class="show-next-posts-button" onclick="inputSkipInit('input-skip')" id="showNextPostsButton"><span class="glyphicon glyphicon-chevron-down"></span></button>
     }
 </div>
 
