@@ -26,4 +26,6 @@ function removeClass(id, className) {
     $('#' + id).removeClass(className);
 }
 
+    
+
 

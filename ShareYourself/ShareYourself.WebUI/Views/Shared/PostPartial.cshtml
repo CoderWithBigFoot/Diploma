@@ -27,13 +27,15 @@
                     InsertionMode = InsertionMode.Replace,
                     UpdateTargetId = spanId
                 };
+
+                var nonZeroLikes = post.Likes == 0 ? "" : post.Likes.ToString();
             }
             @using (Ajax.BeginForm("Like", "Post", likeAjaxOptions, new { @class = "likes-form"}))
             {
                 <input type="number" name="postId" value="@post.Id" hidden/>
                 <button type="submit" class="likes-button">
                     <span class="glyphicon glyphicon-heart"></span>
-                        <span id="@spanId">@post.Likes</span>
+                        <span id="@spanId">@nonZeroLikes</span>
                 </button>
             }
     </div>

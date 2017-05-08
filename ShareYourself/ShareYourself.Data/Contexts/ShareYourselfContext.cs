@@ -18,15 +18,16 @@ namespace ShareYourself.Data.Contexts
 
             modelBuilder.Entity<UserImage>()
                .HasKey(x => x.Id);
-            /* modelBuilder.Entity<UserProfile>()
+
+             modelBuilder.Entity<UserProfile>()
                  .HasMany(x => x.Followers)
                  .WithMany(x => x.Subscriptions)
                  .Map(x =>
                  {
-                     x.MapLeftKey("Subscribing_To");
-                     x.MapRightKey("Subscribing_From");
-                     x.ToTable("FollowersSubscribers");
-                 });*/
+                     x.MapLeftKey("ToId");
+                     x.MapRightKey("FromId");
+                     x.ToTable("Subscriptions");
+                 });
 
 
              modelBuilder.Entity<UserPost>()
@@ -55,20 +56,6 @@ namespace ShareYourself.Data.Contexts
                     x.MapRightKey("LikerId");
                     x.ToTable("Likes");
                 });
-
-            #region another tables
-            /*
-             modelBuilder.Entity<UserPost>()
-                 .HasMany(x => x.Reposts)
-                 .WithMany(x => x.Reposts)
-                 .Map(x => 
-                 {
-                     x.MapLeftKey("RepostedUserPost");
-                     x.MapRightKey("Reposter");
-                     x.ToTable("Reposts");
-                 });              
-                 */
-            #endregion
 
             modelBuilder.Entity<Tag>()
                 .HasKey(x => x.Id);

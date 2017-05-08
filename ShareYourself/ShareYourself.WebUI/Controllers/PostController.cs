@@ -44,7 +44,6 @@ namespace ShareYourself.WebUI.Controllers
             string formattedTag;
             string formattedContent;
 
-
             foreach(var currentElement in tags.Split(separators))
             {
                 if (!string.IsNullOrEmpty(currentElement))
@@ -102,14 +101,9 @@ namespace ShareYourself.WebUI.Controllers
             }
 
             var userPostViewModels = Mapper.Map<IEnumerable<UserPostViewModel>>(userPostDtos);
-            foreach(var current in userPostViewModels)
-            {
-                current.IsLikedByCurrentUser = true;
-            }
    
             return PartialView(_postParital, userPostViewModels);
         }
-
 
         [HttpGet]
         [ActionName("GetPostsByTag")]
@@ -155,9 +149,17 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpPost]
-        public int Like(int postId)
+        public object Like(int postId)
         {
-            return 1;
+            var userId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id;
+            _userPostService.SetLike(userId, postId);
+
+            var result = _userPostService.Likes(postId);
+            if(result <= 0)
+            {
+                return "";
+            }
+            return _userPostService.Likes(postId);
         }
     }
 }

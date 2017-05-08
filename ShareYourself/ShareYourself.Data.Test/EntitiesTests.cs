@@ -88,7 +88,6 @@ namespace ShareYourself.Data.Test
         {
             ShareYourselfContext context = new ShareYourselfContext("ShareYourself");
 
-
             UserProfile user_1 = new UserProfile
             {
                 Name = "test",
@@ -119,6 +118,48 @@ namespace ShareYourself.Data.Test
                 context.SaveChanges();
             }
             catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void SubscriptionsAddRemove_Success()
+        {
+            ShareYourselfContext context = new ShareYourselfContext("ShareYourself");
+
+            UserProfile user_1 = new UserProfile
+            {
+                Name = "test_1",
+                Surname = "test_1",
+                RegistrationDate = DateTime.Now
+            };
+
+            UserProfile user_2 = new UserProfile
+            {
+                Name = "test_2",
+                Surname = "test_2",
+                RegistrationDate = DateTime.Now
+            };
+
+            try
+            {
+                var userSet = context.Set<UserProfile>();
+
+                user_1.Subscriptions.Add(user_2);
+                user_2.Subscriptions.Add(user_1);
+                userSet.Add(user_1);
+
+                context.SaveChanges();
+
+                user_1.Subscriptions.Remove(user_2);
+                user_2.Subscriptions.Remove(user_1);
+                userSet.Remove(user_1);
+                userSet.Remove(user_2);
+
+                context.SaveChanges();
+            }
+            catch(Exception ex)
             {
                 Assert.Fail(ex.Message);
             }

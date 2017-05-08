@@ -93,5 +93,30 @@ namespace ShareYourself.Business.Services
                 .Likes
                 .Count;
         }
+
+        public void SetLike(int userId, int postId)
+        {
+            var likers = uow
+                .UserPostsRepository
+                .Get(x => x.Id == postId)
+                .FirstOrDefault()
+                .Likes;
+
+            var user = uow
+                    .UserProfilesRepository
+                    .Get(x => x.Id == userId)
+                    .FirstOrDefault();
+
+            if (likers.Contains(user))
+            {
+                likers.Remove(user);
+            }
+            else
+            {
+                likers.Add(user);
+            }
+
+            uow.Commit();
+        }
     }
 }

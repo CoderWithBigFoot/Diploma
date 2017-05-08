@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201705071812052_ColomnNames_changed.Designer.cs">
       <DependentUpon>201705071812052_ColomnNames_changed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705081042069_Subscriptions_Added.cs" />
+    <Compile Include="Migrations\201705081042069_Subscriptions_Added.Designer.cs">
+      <DependentUpon>201705081042069_Subscriptions_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShareYourselfContextManager.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705071812052_ColomnNames_changed.resx">
       <DependentUpon>201705071812052_ColomnNames_changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705081042069_Subscriptions_Added.resx">
+      <DependentUpon>201705081042069_Subscriptions_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,5 +9,6 @@ namespace ShareYourself.Business
         IEnumerable<UserPostDto> Take(int userId, int skip, int count);
         IEnumerable<UserPostDto> Take(TagDto tagDto, int skip, int count);
         int Likes(int postId);
+        void SetLike(int userId, int postId);
     }
 }
