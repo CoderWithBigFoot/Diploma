@@ -14,8 +14,28 @@ namespace ShareYourself.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "LoginRoute",
+                url: "login",
+                defaults: new { controller = "Account", action = "Login" }
+                );
+
+            routes.MapRoute(
+                name: "RegistrationRoute",
+                url: "registration",
+                defaults: new { controller = "Account", action = "Register" }
+                );
+
+            routes.MapRoute(
+                name: "ErrorRoute",
+                url: "error/{message}",
+                defaults: new { controller = "Account", action = "Error" }
+                );
+
+
+
+            routes.MapRoute(
                 name: "UserProfileRoute",
-                url: "profile/{id}",
+                url: "profile/id{id}",
                 defaults: new { controller = "UserProfile", action = "ProfilePage", id = UrlParameter.Optional }
             );
 
@@ -40,10 +60,8 @@ namespace ShareYourself.WebUI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "UserProfile", action = "ProfilePage", id = UrlParameter.Optional }
-            );
-
-           
+                defaults: new { controller = "UserProfile", action = "ProfilePage", id = UrlParameter.Optional}
+            );          
         }
     }
 }

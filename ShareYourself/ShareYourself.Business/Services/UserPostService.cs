@@ -46,7 +46,7 @@ namespace ShareYourself.Business.Services
             uow.Commit();
         }
 
-        public virtual TDto Get<TDto>(int id)
+        public TDto Get<TDto>(int id)
             where TDto : class
         {
             var resultDto = uow
@@ -96,11 +96,11 @@ namespace ShareYourself.Business.Services
 
         public void SetLike(int userId, int postId)
         {
-            var likers = uow
-                .UserPostsRepository
-                .Get(x => x.Id == postId)
-                .FirstOrDefault()
-                .Likes;
+                var likers = uow
+                    .UserPostsRepository
+                    .Get(x => x.Id == postId)
+                    .FirstOrDefault()
+                    .Likes;
 
             var user = uow
                     .UserProfilesRepository

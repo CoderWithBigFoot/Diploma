@@ -18,6 +18,8 @@
         $(function () {
             $('textarea').autosize();
             $('[data-toggle="popover"]').popover();
+
+
         });
 
         function openPostForm() {
@@ -29,6 +31,11 @@
             $('#createNewPost').show();
             $('#postCreationContainer').hide();
         }
+
+        function subscribingFormOnSuccess() {
+
+        }
+
     </script>   
     }
 
@@ -39,7 +46,41 @@
 
             <div class="col-md-4">
                 <img src="@Url.Action("GetAvatar", "UserProfile", new { id = Model.Id })" class="userprofile-avatar">
-                <button class="btn btn-default upload-avatar-button" data-toggle="modal" data-target="#uploadAvatarModal">Upload avatar</button>
+                @if (PageContext.Page.User.Identity.Name == Model.Email)
+                {
+                    <button class="btn btn-default base-button-hover" 
+                            data-toggle="modal"
+                            data-target="#uploadAvatarModal"
+                            id="under-avatar-button">
+                     <span>Upload avatar</span>
+                    </button>
+                }
+                else
+                {
+
+                    var ajaxOptions = new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                        OnSuccess = "subscribingFormOnSuccess"
+                    };
+                    using (Ajax.BeginForm("Subscribe", "UserProfile", ajaxOptions))
+                    {
+                    <button class="btn btn-default base-button-hover"
+                            id="under-avatar-button">
+                        @if (ViewData["IsItSubscribtion"] != null)
+                        {
+                            if ((bool)ViewData["IsItSubscribtion"])
+                            {
+                                <span>Unsubscribe</span>
+                            }
+                            else
+                            {
+                                <span>Subscribe</span>
+                            }
+                        }
+                    </button>
+                    }
+                }
             </div>
 
             <div class="col-md-offset-1 col-md-7">

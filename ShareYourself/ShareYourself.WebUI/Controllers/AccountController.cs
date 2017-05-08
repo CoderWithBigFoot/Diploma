@@ -130,5 +130,11 @@ namespace ShareYourself.WebUI.Controllers
             AuthenticationManager.SignOut();
             return RedirectToAction("Login");
         }
+
+        [HttpGet]
+        public ActionResult Error(string message)
+        {
+            return View("~/Views/Shared/Error.cshtml", message);
+        }
     }
 }

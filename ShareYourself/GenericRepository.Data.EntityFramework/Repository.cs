@@ -29,12 +29,6 @@ namespace GenericRepository.Data.EntityFramework
             return _set.Where(expression.Compile());
         }
 
-       /* public IEnumerable<TModel> Get<TModel>() 
-            where TModel : class
-        {
-            return _set.AsQueryable().ProjectTo<TModel>();
-        }*/
-
         public IEnumerable<TModel> Get<TModel>(Expression<Func<TEntity, bool>> expression)
             where TModel : class
         {

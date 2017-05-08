@@ -269,7 +269,6 @@
     <Content Include="Views\UserProfile\UploadAvatarPartial.cshtml" />
     <Content Include="Views\Post\TagCloud.cshtml" />
     <Content Include="Views\Post\TagPosts.cshtml" />
-    <Content Include="Views\UserProfile\ProfileNotFoundError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

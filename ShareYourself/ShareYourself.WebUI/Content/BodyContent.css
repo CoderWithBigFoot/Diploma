@@ -27,18 +27,17 @@
     height: 50px;
 }
 
-.upload-avatar-button {
+#under-avatar-button {
     width: 200px;
     margin: 5px;
     margin-top: 3px;
+}
+
+#under-avatar-button span {
     font-family: 'Segoe UI';
     font-size: medium;
 }
 
-.upload-avatar-button:hover{
-    color: white;
-    background-color: midnightblue;
-}
 
 
 .base-button {
@@ -56,7 +55,7 @@
     padding: 0px;
 }
 
- .userprofile-info h3 {
+.userprofile-info h3 {
     margin: 0px;
     font-family: 'Segoe UI';
     color: midnightblue;

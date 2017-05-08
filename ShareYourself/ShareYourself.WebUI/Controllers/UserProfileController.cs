@@ -13,8 +13,6 @@ namespace ShareYourself.WebUI.Controllers
     {
         private IUserProfileService _userProfileService;
         private IUserImageService _userImageService;
-        private string _errorView = "~/Views/Shared/Error.cshtml";
-        private string _profileNotFoundErrorView = "ProfileNotFoundError";
 
         public UserProfileController(IUserProfileService userProfileService, IUserImageService userImageService)
         {
@@ -23,40 +21,33 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Error(string message)
-        {
-            return View(_profileNotFoundErrorView, message);
-        }
-
-        [HttpGet]
         public ActionResult ProfilePage(int? id)
         {
+            var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
+
             if (id == null)
             {
-                var userProfileInfo = _userProfileService.Get<UserProfileDto>(User.Identity.Name);
-                var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
-
-                if (mappedUserProfile == null)
-                {
-                    return View(_profileNotFoundErrorView, "Such profile not found.");
-                }
-
-                return View("ProfilePage", mappedUserProfile);
+                id = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
             }
 
-            else
+            if (id != currentUserId)
             {
-                var userProfileInfo = _userProfileService.Get<UserProfileDto>((int)id);
-                var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
-
-
-                if (mappedUserProfile == null)
-                {
-                    // return View(_profileNotFoundErrorView, "Such profile not found.");
-                }
-
-                return View("ProfilePage", mappedUserProfile);
+                ViewData["IsItSubscribtion"] = _userProfileService.IsSubscribedOn(currentUserId, (int)id);
             }
+
+            UserProfileDto userProfileInfo;
+           
+            userProfileInfo = _userProfileService.Get<UserProfileDto>((int)id);
+            var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
+
+            if (mappedUserProfile == null)
+            {
+                return RedirectToRoute("ErrorRoute", new { message = "Such profile doesn't exist." });
+            }
+
+
+            //ViewBag.CurrentUserId = _userProfileService.Get<UserProfileDto>(HttpContext.User.Identity.Name).Id;
+            return View("ProfilePage", mappedUserProfile);   
         }
 
         [HttpGet]
@@ -68,7 +59,7 @@ namespace ShareYourself.WebUI.Controllers
             if(mappedEditingUserProfileModel == null)
             {
                 ViewBag.ErrorMessage = "Such profile not found";
-                return Redirect(_errorView);
+                return RedirectToRoute("ErrorRoute", new { message = "Some server error."});
             }
 
             return View("EditUserProfile", mappedEditingUserProfileModel);
@@ -143,6 +134,13 @@ namespace ShareYourself.WebUI.Controllers
            // return File(userImageDto.Content, userImageDto.MimeType);// (userImageDto.Content, userImageDto.MimeType);
         }
 
+        [HttpPost]
+        public object Subscribe(int toId)
+        {
+            var userId = _userProfileService.Get<UserProfileEditingDto>(User.Identity.Name).Id;
+            _userProfileService.Subscribe(userId, toId);
 
+            return Json(new { isSubscribed = _userProfileService.IsSubscribedOn(userId, toId)});
+        }
     }
 }

@@ -19,7 +19,15 @@ namespace ShareYourself.Business.Services
             }
         }
 
-        public virtual void Create<TDto>(TDto dto)
+        private UserProfile Get(int userId)
+        {
+            return uow
+                .UserProfilesRepository
+                .Get(x => x.Id == userId)
+                .FirstOrDefault();
+        }
+
+        public void Create<TDto>(TDto dto)
             where TDto: class
         {
             var userProfile = Mapper.Map<UserProfile>(dto);
@@ -27,7 +35,7 @@ namespace ShareYourself.Business.Services
             uow.Commit();
         }
 
-        public virtual TDto Get<TDto>(int id)
+        public TDto Get<TDto>(int id)
             where TDto : class
         {           
                 var resultDto = uow.UserProfilesRepository
@@ -37,7 +45,7 @@ namespace ShareYourself.Business.Services
             return resultDto;            
         }
 
-        public virtual TDto Get<TDto>(string email)
+        public TDto Get<TDto>(string email)
             where TDto : class
         {
             var resultDto = uow.UserProfilesRepository
@@ -47,7 +55,7 @@ namespace ShareYourself.Business.Services
             return resultDto;
         }
 
-        public virtual void Update(UserProfileEditingDto userProfileDto)
+        public void Update(UserProfileEditingDto userProfileDto)
         {
             CheckNull(userProfileDto);
 
@@ -62,7 +70,7 @@ namespace ShareYourself.Business.Services
             uow.Commit();
         }
 
-        public virtual void Update(UserProfileAvatarEditingDto dto)
+        public void Update(UserProfileAvatarEditingDto dto)
         {
             CheckNull(dto);
 
@@ -101,6 +109,29 @@ namespace ShareYourself.Business.Services
             avatar.Content = dto.Content;
 
             uow.Commit();
+        }
+
+        public void Subscribe(int userId, int toId) // Add subscription if doesn't exist, remove if exists
+        {
+            if(IsSubscribedOn(userId, toId))
+            {
+                Get(userId)
+                     .Subscriptions.Remove(Get(toId));
+            }
+            else
+            {
+                Get(userId)
+                    .Subscriptions.Add(Get(toId));
+            }
+            uow.Commit();
+        }
+
+        public bool IsSubscribedOn(int userId, int toId)
+        {
+          return Get(userId)
+                .Subscriptions
+                .Select(x => x.Id)
+                .Contains(toId);
         }
     }
 }

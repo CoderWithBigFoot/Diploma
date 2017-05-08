@@ -1,18 +1,13 @@
-﻿@model string
+﻿@model  string
 @{
-    ViewBag.Title = "Error";
-    Layout = null;
+    ViewBag.Title = "Profile not found";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-    <style>
-        .h3-error {
-            text-align: center;
-            font-family: 'Segoe UI';
-            color: midnightblue;
-        }
-    </style>
 
-<div class="main-content-container">
-    <div class="main-content-nested-container">
-        <h3 class="h3-error"> @Model </h3>
+@section Body{
+    <div class="main-content-container">
+        <div class="main-content-nested-container">
+            <h3>@Model</h3>
+        </div>
     </div>
-</div>
+}
