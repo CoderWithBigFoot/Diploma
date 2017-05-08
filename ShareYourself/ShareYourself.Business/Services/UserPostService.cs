@@ -84,7 +84,7 @@ namespace ShareYourself.Business.Services
             return result;
         }
 
-        public int LikesCount(int postId)
+        public int Likes(int postId)
         {
             return uow
                 .UserPostsRepository

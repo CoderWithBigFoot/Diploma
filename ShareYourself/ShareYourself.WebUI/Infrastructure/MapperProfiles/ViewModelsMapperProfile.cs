@@ -28,7 +28,7 @@ namespace ShareYourself.WebUI.Infrastructure.MapperProfiles
             CreateMap<UserProfileInfoForPostDto, UserProfileInfoForPostViewModel>();
 
             CreateMap<UserPostDto, UserPostViewModel>()
-                .ForMember(x => x.Likes, opt => opt.MapFrom(x => _userPostService.LikesCount(x.Id)));
+                .ForMember(x => x.Likes, opt => opt.MapFrom(x => _userPostService.Likes(x.Id)));
         }
     }
 }

@@ -102,8 +102,11 @@ namespace ShareYourself.WebUI.Controllers
             }
 
             var userPostViewModels = Mapper.Map<IEnumerable<UserPostViewModel>>(userPostDtos);
-            string content = userPostViewModels.FirstOrDefault().Content;
-            int a = 1;
+            foreach(var current in userPostViewModels)
+            {
+                current.IsLikedByCurrentUser = true;
+            }
+   
             return PartialView(_postParital, userPostViewModels);
         }
 
@@ -149,6 +152,12 @@ namespace ShareYourself.WebUI.Controllers
             }
 
             return View(viewName: "TagPosts", model: tag);
+        }
+
+        [HttpPost]
+        public int Like(int postId)
+        {
+            return 1;
         }
     }
 }

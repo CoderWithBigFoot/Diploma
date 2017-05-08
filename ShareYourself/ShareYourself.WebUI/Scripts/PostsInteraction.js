@@ -17,3 +17,13 @@ function showNextPostsFormOnSuccess(data) {
 function showElement(id) {
     $('#' + id).show();
 }
+
+function addClass(id, className) {
+    $('#' + id).addClass(className);
+}
+
+function removeClass(id, className) {
+    $('#' + id).removeClass(className);
+}
+
+

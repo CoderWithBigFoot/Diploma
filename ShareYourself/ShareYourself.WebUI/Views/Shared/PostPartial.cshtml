@@ -18,19 +18,29 @@
         <a href="#"><img src="@Url.Action("GetAvatar", "UserProfile", new { id = post.CreatorId })" class="userprofile-avatar-minimized"></a> @{ /* Link for the profile*/ }
         <span class="userprofile-info-key" style="font-size: large;">@post.Creator.Name @post.Creator.Surname</span>
         <span class="userprofile-info-value">, @post.CreationDate.Day @monthName @year</span>
-        
-            <span class="glyphicon glyphicon-heart" style="float: right; color: lightgray;">
-               @if(post.Likes != 0)
-               {
-                    <span>@post.Likes</span>
-               }
-            </span>
-        
+
+            @{
+                var spanId = $"likesSpan{post.Id}"; // Need to add the liked-button if user liked it
+                var likeAjaxOptions = new AjaxOptions
+                {
+                    HttpMethod = "Post",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = spanId
+                };
+            }
+            @using (Ajax.BeginForm("Like", "Post", likeAjaxOptions, new { @class = "likes-form"}))
+            {
+                <input type="number" name="postId" value="@post.Id" hidden/>
+                <button type="submit" class="likes-button">
+                    <span class="glyphicon glyphicon-heart"></span>
+                        <span id="@spanId">@post.Likes</span>
+                </button>
+            }
     </div>
 
     <div class="main-content-nested-container">
         @foreach (var tag in post.Tags)
-        {// Instead # link to the action from the PostController that returns posts with this tag
+        {
             <a href="@Url.RouteUrl("TagPostsRoute", new { tag = tag })" target="_blank"> 
                 <div class="tag">
                     @tag

@@ -83,3 +83,22 @@ hr.non-margine{
     font-size: x-large;
     font-weight: 600;
 }
+
+.likes-button {
+    color: midnightblue;
+    border: none;
+    background-color: none;
+    background: none;
+    font-family: 'Segoe UI';
+}
+
+.likes-button:focus{
+    outline: none;
+    border: none;
+}
+
+.likes-form{
+    float: right;
+}
+
+
