@@ -21,29 +21,23 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult ProfilePage(int? id)
+        [ActionName("MyProfile")]
+        public ActionResult ProfilePage()
         {
-            //var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
+            var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
+            return RedirectToRoute("UserProfileRoute", new { id = currentUserId });           
+        }
 
-           /* if (Session["CurrentUserPage"] == null)
+        [HttpGet]
+        public ActionResult ProfilePage(int id)
+        {
+            var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
+            if (id != currentUserId)
             {
-                Session["CurrentUserPage"] = currentUserId;
-            }*/
-
-            if (id == null)
-            {
-                id = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
+                bool isSubscription = _userProfileService.IsSubscribedOn(currentUserId, id);
+                ViewData["IsItSubscribtion"] = isSubscription;
             }
-            else
-            {
-                var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
-                if (id != currentUserId)
-                {
-                    bool isSubscription = _userProfileService.IsSubscribedOn(currentUserId, (int)id);
-                    ViewData["IsItSubscribtion"] = isSubscription;
-                }
-            }
-         
+            
             var userProfileInfo = _userProfileService.Get<UserProfileDto>((int)id);
             var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
 
