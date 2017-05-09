@@ -23,21 +23,28 @@ namespace ShareYourself.WebUI.Controllers
         [HttpGet]
         public ActionResult ProfilePage(int? id)
         {
-            var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
+            //var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
+
+           /* if (Session["CurrentUserPage"] == null)
+            {
+                Session["CurrentUserPage"] = currentUserId;
+            }*/
 
             if (id == null)
             {
                 id = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
             }
-
-            if (id != currentUserId)
+            else
             {
-                ViewData["IsItSubscribtion"] = _userProfileService.IsSubscribedOn(currentUserId, (int)id);
+                var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
+                if (id != currentUserId)
+                {
+                    bool isSubscription = _userProfileService.IsSubscribedOn(currentUserId, (int)id);
+                    ViewData["IsItSubscribtion"] = isSubscription;
+                }
             }
-
-            UserProfileDto userProfileInfo;
-           
-            userProfileInfo = _userProfileService.Get<UserProfileDto>((int)id);
+         
+            var userProfileInfo = _userProfileService.Get<UserProfileDto>((int)id);
             var mappedUserProfile = Mapper.Map<UserProfileHomeViewModel>(userProfileInfo);
 
             if (mappedUserProfile == null)
@@ -45,8 +52,6 @@ namespace ShareYourself.WebUI.Controllers
                 return RedirectToRoute("ErrorRoute", new { message = "Such profile doesn't exist." });
             }
 
-
-            //ViewBag.CurrentUserId = _userProfileService.Get<UserProfileDto>(HttpContext.User.Identity.Name).Id;
             return View("ProfilePage", mappedUserProfile);   
         }
 
@@ -140,7 +145,7 @@ namespace ShareYourself.WebUI.Controllers
             var userId = _userProfileService.Get<UserProfileEditingDto>(User.Identity.Name).Id;
             _userProfileService.Subscribe(userId, toId);
 
-            return Json(new { isSubscribed = _userProfileService.IsSubscribedOn(userId, toId)});
+            return Json(new { isItSubscription = _userProfileService.IsSubscribedOn(userId, toId)});
         }
     }
 }

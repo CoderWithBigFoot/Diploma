@@ -67,7 +67,9 @@ namespace ShareYourself.WebUI.Controllers
 
             switch (result)
             {
-                case SignInStatus.Success: return RedirectToRoute(new { controller = "UserProfile", action = "ProfilePage" }); // here is login page
+                case SignInStatus.Success:
+                    return RedirectToRoute("UserProfileRoute", new { id = _userProfileService.Get<UserProfileIdDto>(model.Email).Id });
+                   // return RedirectToRoute(new { controller = "UserProfile", action = "ProfilePage" }); // here is login page
                 case SignInStatus.Failure:
                 default: ModelState.AddModelError("", "Invalid login or password");
                     return View(model);
@@ -111,7 +113,8 @@ namespace ShareYourself.WebUI.Controllers
                         return View(model);
                     }
                     await SignInManager.SignInAsync(user, false, false);
-                    return RedirectToRoute(new { controller = "UserProfile", action = "ProfilePage"}); // here is registration redirection
+                    return RedirectToRoute("UserProfileRoute", new { id = _userProfileService.Get<UserProfileIdDto>(model.Email).Id });
+                    //return RedirectToRoute(new { controller = "UserProfile", action = "ProfilePage"}); // here is registration redirection
                 }
 
                 foreach (var error in result.Errors)

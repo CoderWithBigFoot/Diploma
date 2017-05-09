@@ -24,14 +24,10 @@
     padding-top: 45%;
 }
 
-span.header-share{
+span.header-name{
     font-family: 'Segoe UI';
-    color: lightgray;
-}
-
-span.header-yourself {
-    font-family: 'Segoe UI';
-    color: lightblue;
+    color: white;
+    font-weight: 700;
 }
 
 h2 {

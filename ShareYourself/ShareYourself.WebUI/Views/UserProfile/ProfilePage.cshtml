@@ -32,8 +32,23 @@
             $('#postCreationContainer').hide();
         }
 
-        function subscribingFormOnSuccess() {
+        function subscribingFormOnSuccess(data) {
+            var element = $('#under-avatar-button');
 
+            var span = '<span>';
+
+            if (data.isItSubscription == null || data.isItSubscription == false) {
+                span += 'Subscribe';
+                element.removeClass('btn-danger');
+                element.addClass('btn-success');
+            }
+            else {
+                element.removeClass('btn-success');
+                element.addClass('btn-danger');
+                span += 'Unsubscribe';
+            }
+            span+='</span>'
+            element.html(span);
         }
 
     </script>   
@@ -57,7 +72,6 @@
                 }
                 else
                 {
-
                     var ajaxOptions = new AjaxOptions
                     {
                         HttpMethod = "Post",
@@ -65,20 +79,23 @@
                     };
                     using (Ajax.BeginForm("Subscribe", "UserProfile", ajaxOptions))
                     {
-                    <button class="btn btn-default base-button-hover"
-                            id="under-avatar-button">
-                        @if (ViewData["IsItSubscribtion"] != null)
-                        {
+                        <input type="number" name="toId" value="@Model.Id" hidden>
+                       
                             if ((bool)ViewData["IsItSubscribtion"])
                             {
-                                <span>Unsubscribe</span>
+                                <button type="submit" class="btn btn-danger"
+                                        id="under-avatar-button">
+                                    <span>Unsubscribe</span>
+                                </button>
                             }
                             else
                             {
-                                <span>Subscribe</span>
+                                 <button type="submit" class="btn btn-success"
+                                            id="under-avatar-button">
+                                        <span> Subscribe</span>
+                                 </button>
                             }
-                        }
-                    </button>
+
                     }
                 }
             </div>

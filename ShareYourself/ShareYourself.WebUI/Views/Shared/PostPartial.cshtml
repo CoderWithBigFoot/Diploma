@@ -28,7 +28,7 @@
                     UpdateTargetId = spanId
                 };
 
-                var nonZeroLikes = post.Likes == 0 ? "" : post.Likes.ToString();
+                string nonZeroLikes = post.Likes == 0 ? "" : post.Likes.ToString();
             }
             @using (Ajax.BeginForm("Like", "Post", likeAjaxOptions, new { @class = "likes-form"}))
             {

@@ -19,6 +19,14 @@ namespace ShareYourself.WebUI.Controllers
         private IUserPostService _userPostService;
         private ITagService _tagService;
 
+        private void InitLikesInUserPostViewModel(IEnumerable<UserPostViewModel> collection)
+        {
+            foreach(var current in collection)
+            {
+                current.Likes = _userPostService.Likes(current.Id);
+            }
+        }
+
         public PostController(IUserProfileService userProfileService, IUserPostService userPostService, ITagService tagService)
         {
             _userProfileService = userProfileService;
@@ -101,7 +109,8 @@ namespace ShareYourself.WebUI.Controllers
             }
 
             var userPostViewModels = Mapper.Map<IEnumerable<UserPostViewModel>>(userPostDtos);
-   
+            InitLikesInUserPostViewModel(userPostViewModels);
+
             return PartialView(_postParital, userPostViewModels);
         }
 
@@ -121,6 +130,7 @@ namespace ShareYourself.WebUI.Controllers
                 );
 
             var result = Mapper.Map<IEnumerable<UserPostViewModel>>(postDtos);
+            InitLikesInUserPostViewModel(result);
 
             return PartialView(_postParital, result);
         }

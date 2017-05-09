@@ -3,7 +3,10 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using ShareYourself.Business.Infrastructure.MapperProfiles;
+using ShareYourself.Business;
 using ShareYourself.WebUI.Infrastructure.MapperProfiles;
+using Ninject;
+
 
 namespace ShareYourself.WebUI
 {
@@ -11,12 +14,12 @@ namespace ShareYourself.WebUI
     {
         protected void Application_Start()
         {
-            Mapper.Initialize(cfg => cfg.AddProfiles(new[]
+            Mapper.Initialize(cfg => 
             {
-                typeof(UserProfileMapperProfile),
-                typeof(ViewModelsMapperProfile),
-                typeof(UserPostMapperProfile)
-            }));
+                cfg.AddProfile<UserProfileMapperProfile>();
+                cfg.AddProfile<UserPostMapperProfile>();
+                cfg.AddProfile<ViewModelsMapperProfile>();
+            });
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -16,7 +16,7 @@
         <div class="row" style="height: 100%;">
             <div class="col-sm-offset-1 col-sm-2" style="height: 100%;">
                 <div style="float: left;">
-                    <h4><span class="header-share">Share</span><span class="header-yourself">Yourself</span></h4>
+                    <h4><span class="header-name">ShareYourself</span></h4>
                 </div>
             </div>
             <div class="col-sm-offset-6 col-sm-2">
@@ -57,7 +57,7 @@
                 <div class="col-sm-3">
                     <div class="main-content-container" style="width:92%;">
 
-                        <a href="@Url.RouteUrl("UserProfileRoute")"><div class="right-menu-element">My profile</div></a>
+                        <a href="@Url.RouteUrl("UserProfileRoute", new { id = Session["CurrentUserPage"] })"><div class="right-menu-element">My profile</div></a>
                         <a href="#"><div class="right-menu-element">Posts</div></a>
                         <a href="@Url.RouteUrl("TagCloudRoute")"><div class="right-menu-element">Tag Cloud</div></a>
                         <a href="@Url.RouteUrl("EditUserProfileRoute")"><div class="right-menu-element">Edit</div></a>
