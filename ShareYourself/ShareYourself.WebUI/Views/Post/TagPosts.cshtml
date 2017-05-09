@@ -1,7 +1,7 @@
 ﻿@model string
 
 @{
-    ViewBag.Title = "Tag posts";
+    ViewBag.Title = $"{Model} posts";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
@@ -28,7 +28,7 @@
     }
 
    <span class="page-name">@Model</span>
-    <hr>
+    <hr class="divide-content">
 
     @{Html.RenderAction("GetPostsByTag", new { controller = "Post", tag = Model, skip = 0, count = countOfPostsToTake});}
 

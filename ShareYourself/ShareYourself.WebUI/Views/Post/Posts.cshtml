@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Posts";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Styles{
+    @Styles.Render("~/Content/Post.css")
+}
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/PostsInteraction")
+}
+
+@section Body{
+    <span class="page-name">Fresh Updates Liked</span><span class="page-name" style="color: limegreen; float: right;">Fresh</span>
+    <hr class="divide-content">
+    }

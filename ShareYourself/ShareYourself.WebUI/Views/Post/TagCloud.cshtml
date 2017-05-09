@@ -5,22 +5,18 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-@{ 
-    // Styles load incorrectly becouse they download once time in the bundle and dont change after the .css refactoring at the runtime
-}
-
 @section Styles{
     @Styles.Render("~/Content/Post.css")
 }
 
 @section Scripts{
     @Scripts.Render("~/bundles/PostsInteraction")
-    }
+}
 
 @section Body{
 
         <span class="page-name">All tags</span>
-        <hr>
+        <hr class="divide-content">
 
         <div class="main-content-nested-container">
             @foreach(var tag in Model)

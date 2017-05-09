@@ -25,7 +25,8 @@ namespace ShareYourself.WebUI.Controllers
         public ActionResult ProfilePage()
         {
             var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
-            return RedirectToRoute("UserProfileRoute", new { id = currentUserId });           
+            /*return RedirectToRoute("UserProfileRoute", new { id = currentUserId });     */
+            return ProfilePage(currentUserId);
         }
 
         [HttpGet]

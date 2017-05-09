@@ -33,9 +33,10 @@
     margin-top: 3px;
 }
 
-#under-avatar-button:target{
-    outline: none;
-    background-color: blue;
+#under-avatar-button:enabled{
+   border-color: none !important;
+   box-shadow: none !important;
+   outline: none !important;
 }
 
 #under-avatar-button span {

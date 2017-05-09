@@ -207,6 +207,7 @@
     </Compile>
     <Compile Include="Identity\Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\UserPostViewModel.cs" />
     <Compile Include="Models\UserProfileEditingViewModel.cs" />
     <Compile Include="Models\UserProfileHomeViewModel.cs" />
@@ -269,6 +270,7 @@
     <Content Include="Views\UserProfile\UploadAvatarPartial.cshtml" />
     <Content Include="Views\Post\TagCloud.cshtml" />
     <Content Include="Views\Post\TagPosts.cshtml" />
+    <Content Include="Views\Post\Posts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

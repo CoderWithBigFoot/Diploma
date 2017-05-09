@@ -101,4 +101,11 @@ hr.non-margine{
     float: right;
 }
 
+hr.divide-content {
+    border-color: midnightblue;
+    background-color: midnightblue;
+    border-radius: 2px;
+    height: 3px;
+}
+
 

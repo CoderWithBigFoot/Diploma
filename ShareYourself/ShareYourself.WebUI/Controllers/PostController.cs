@@ -171,5 +171,11 @@ namespace ShareYourself.WebUI.Controllers
             }
             return _userPostService.Likes(postId);
         }
+
+        [HttpGet]
+        public ActionResult Posts()
+        {
+            return View();
+        }
     }
 }
