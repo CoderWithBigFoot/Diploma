@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using System.Web.Mvc;
 using System.Linq;
 using System.Collections.Generic;
@@ -136,14 +135,16 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult TagCloud()
+        [ActionName("GetPostsByFilter")]
+        public ActionResult GetPosts(string filter)
         {
-            var tags = _tagService
-                .Get<TagDto>();
+            return null;
+        }
 
-            var result = Mapper.Map<IEnumerable<string>>(tags);
-            
-            return View("TagCloud", result);
+        [HttpGet]
+        public ActionResult Posts()
+        {
+            return View("Posts", PostFilters.Fresh);
         }
 
         [HttpGet]
@@ -158,6 +159,17 @@ namespace ShareYourself.WebUI.Controllers
             return View(viewName: "TagPosts", model: tag);
         }
 
+        [HttpGet]
+        public ActionResult TagCloud()
+        {
+            var tags = _tagService
+                .Get<TagDto>();
+
+            var result = Mapper.Map<IEnumerable<string>>(tags);
+            
+            return View("TagCloud", result);
+        }
+
         [HttpPost]
         public object Like(int postId)
         {
@@ -170,12 +182,6 @@ namespace ShareYourself.WebUI.Controllers
                 return "";
             }
             return _userPostService.Likes(postId);
-        }
-
-        [HttpGet]
-        public ActionResult Posts()
-        {
-            return View();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ShareYourself.Business
 {
-    public interface IUserProfileService : IBaseOperations
+    public interface IUserProfileService : IBaseServiceOperations
     {
         TDto Get<TDto>(string email) where TDto : class;
         void Update(UserProfileEditingDto dto);

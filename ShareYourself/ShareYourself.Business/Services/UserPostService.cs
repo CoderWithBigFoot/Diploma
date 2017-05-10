@@ -16,7 +16,7 @@ namespace ShareYourself.Business.Services
             _tagService = tagService;
         }
 
-        void IBaseOperations.Create<TDto>(TDto dto)
+        void IBaseServiceOperations.Create<TDto>(TDto dto)
         {
             var userPost = Mapper.Map<UserPost>(dto);
             uow.UserPostsRepository.Add(userPost);
@@ -82,6 +82,11 @@ namespace ShareYourself.Business.Services
                 .Take(count);
 
             return result;
+        }
+
+        public IEnumerable<UserPostDto> Take(PostFilters filter, int skip, int count)
+        {
+            return null;
         }
 
         public int Likes(int postId)

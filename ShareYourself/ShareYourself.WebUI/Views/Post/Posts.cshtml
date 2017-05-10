@@ -1,18 +1,128 @@
-﻿@{
+﻿@using ShareYourself.Business.Dto
+@model PostFilters
+@{
     ViewBag.Title = "Posts";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 @section Styles{
     @Styles.Render("~/Content/Post.css")
+    <style>
+        .filter-form {
+            display: inline-block;
+        }
+
+            .filter-form button {
+                background: none;
+                border: none;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            .filter-form button:focus{
+                border: none;
+                outline: none;
+            }
+
+        .selected-form button {
+            color: lightgreen;
+            font-size: xx-large;
+        }
+
+    </style>
 }
 
 
 @section Scripts{
     @Scripts.Render("~/bundles/PostsInteraction")
+<script>
+
+    let selectedFilter = '@Model.ToString()';
+
+        $(function () {
+
+            let freshForm = $('#freshForm');
+            let updatesForm = $('#updatesForm');
+            let likedForm = $('#likedForm');
+            let inputSelector = 'input[name="filter"]';
+            let selectedFormClass = 'selected-form';
+            let formArr = [freshForm, updatesForm, likedForm];
+
+            freshForm.submit(function (event) {
+                event.preventDefault();
+
+                if (freshForm.find(inputSelector).val() == selectedFilter){
+                    return false;
+                }
+
+                selectedFilter = '@PostFilters.Fresh.ToString()';
+
+                $.each(formArr, function (index, value) {                 
+                    value.removeClass(selectedFormClass);
+                });
+                freshForm.addClass(selectedFormClass);
+                return true;
+            });
+
+             updatesForm.submit(function (event) {
+                event.preventDefault();
+
+                if (updatesForm.find(inputSelector).val() == selectedFilter){
+                    return false;
+                }
+                
+                selectedFilter = '@PostFilters.Updates.ToString()';
+                
+                $.each(formArr, function (index, value) {
+                    value.removeClass(selectedFormClass);
+                });
+                updatesForm.addClass(selectedFormClass);
+                return true;
+            });
+
+            likedForm.submit(function (event) {
+                event.preventDefault();
+
+                if (likedForm.find(inputSelector).val() == selectedFilter){
+                    return false;
+                }
+                
+                selectedFilter = '@PostFilters.Liked.ToString()';
+
+                $.each(formArr, function (index, value) {
+                    value.removeClass(selectedFormClass);
+                });
+                likedForm.addClass(selectedFormClass);
+                return true;
+            });
+        });
+</script>
 }
 
 @section Body{
-    <span class="page-name">Fresh Updates Liked</span><span class="page-name" style="color: limegreen; float: right;">Fresh</span>
+
+    @{ 
+        var ajaxOptions = new AjaxOptions
+        {
+            HttpMethod = "Get"
+        };
+     }
+
+    @using (Ajax.BeginForm("GetPostsByFilter", "Post", ajaxOptions, new { @class = "filter-form selected-form", @id = "freshForm" }))
+    {
+        <input type="text" value="@PostFilters.Fresh.ToString()" name="filter" hidden>
+        <button type="submit" class="page-name">Fresh</button>
+    }
+    @using (Ajax.BeginForm("GetPostsByFilter", "Post", ajaxOptions, new { @class = "filter-form", @id = "updatesForm" }))
+    {
+        <input type="text" value="@PostFilters.Updates.ToString()" name="filter" hidden>
+        <button type="submit" class="page-name">Updates</button>
+    }
+    @using (Ajax.BeginForm("GetPostsByFilter", "Post", ajaxOptions, new { @class = "filter-form", @id = "likedForm" }))
+    {
+        <input type="text" value="@PostFilters.Liked.ToString()" name="filter" hidden>
+        <button type="submit" class="page-name">Liked</button>
+    }
     <hr class="divide-content">
     }
+

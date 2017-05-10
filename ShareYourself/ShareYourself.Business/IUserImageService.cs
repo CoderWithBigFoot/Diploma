@@ -1,6 +1,6 @@
 ﻿namespace ShareYourself.Business
 {
-    public interface IUserImageService : IBaseOperations
+    public interface IUserImageService : IBaseServiceOperations
     {
     }
 }
