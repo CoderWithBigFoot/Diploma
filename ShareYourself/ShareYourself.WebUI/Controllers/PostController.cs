@@ -136,19 +136,28 @@ namespace ShareYourself.WebUI.Controllers
 
         [HttpGet]
         [ActionName("GetPostsByFilter")]
-        public ActionResult GetPosts(string filter)
+        public ActionResult GetPostsBy(string filter, int skip = 0, int count = 4)
         {
+            PostFilters castedFilter = (PostFilters)Enum.Parse(typeof(PostFilters), filter, true);
+            var userId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id;
 
-            var result = _userPostService.Take()
-            
+            var result = _userPostService.Take(
+                filter: castedFilter,
+                userId: userId,
+                skip: skip,
+                count: count);
 
-            return null;
+            var mappedResult = Mapper.Map<IEnumerable<UserPostViewModel>>(result);
+            InitLikesInUserPostViewModel(mappedResult);
+
+            return PartialView(_postParital, mappedResult); ;
         }
 
         [HttpGet]
-        public ActionResult Posts()
+        public ActionResult Posts(string filter)
         {
-            return View("Posts", PostFilters.Fresh);
+            PostFilters castedFilter = (PostFilters)Enum.Parse(typeof(PostFilters), filter, true);
+            return View("Posts", castedFilter);
         }
 
         [HttpGet]

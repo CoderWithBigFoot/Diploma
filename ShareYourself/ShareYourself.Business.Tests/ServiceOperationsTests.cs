@@ -52,7 +52,7 @@ namespace ShareYourself.Business.Tests
         }
 
         [TestMethod]
-        public void TakeFresh_GetData_NotNull_NotZero()
+        public void Take_GetData_NotNull()
         {
             Mapper.Initialize(cfg => 
             cfg.AddProfiles(
@@ -64,17 +64,15 @@ namespace ShareYourself.Business.Tests
             IShareYourselfUow uow = new ShareYourselfUow(context);
             UserPostService service = new UserPostService(uow, null);
 
-            var result = service.Take(PostFilters.Fresh, 2, 0, 5);
+            var resultFresh = service.Take(PostFilters.Fresh, 2, 0, 5);
+            var resultUpdates = service.Take(PostFilters.Updates, 2, 0, 5);
+            var resultLiked = service.Take(PostFilters.Liked, 2, 0, 5);
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Count() > 0);
+            Assert.IsNotNull(resultFresh);
+            Assert.IsNotNull(resultUpdates);
+            Assert.IsNotNull(resultLiked);
         }
 
-        [TestMethod]
-        public void TakeUpdates_GetData_NotNull_NotZero()
-        {
-            
-        }         
 
 
     }

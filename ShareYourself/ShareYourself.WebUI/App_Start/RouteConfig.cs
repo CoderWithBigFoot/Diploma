@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ShareYourself.Business.Dto;
 
 namespace ShareYourself.WebUI
 {
@@ -58,8 +59,8 @@ namespace ShareYourself.WebUI
 
             routes.MapRoute(
                 name: "PostsRoute",
-                url: "posts",
-                defaults: new { controller = "Post", action = "Posts" }
+                url: "posts/{filter}",
+                defaults: new { controller = "Post", action = "Posts", filter = PostFilters.Fresh.ToString() }
                 );
 
             routes.MapRoute(
