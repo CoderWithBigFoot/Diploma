@@ -1,7 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ShareYourself.Business.Services;
+using ShareYourself.Business.Dto;
+using ShareYourself.Data;
+using ShareYourself.Data.Entities;
+using ShareYourself.Data.Contexts;
+using ShareYourself.Business.Infrastructure.MapperProfiles;
+using AutoMapper;
 
 namespace ShareYourself.Business.Tests
 {
@@ -29,11 +37,6 @@ namespace ShareYourself.Business.Tests
             CollectionAssert.Contains(result, "_");
         }
 
-        private class testClass
-        {
-
-        }
-
         [TestMethod]
         public void TakeTest()
         {
@@ -47,5 +50,32 @@ namespace ShareYourself.Business.Tests
 
             Assert.AreEqual(result, 7);
         }
+
+        [TestMethod]
+        public void TakeFresh_GetData_NotNull_NotZero()
+        {
+            Mapper.Initialize(cfg => 
+            cfg.AddProfiles(
+                typeof(UserPostMapperProfile),
+                typeof(UserProfileMapperProfile)
+            ));
+
+            ShareYourselfContext context = new ShareYourselfContext("ShareYourself");
+            IShareYourselfUow uow = new ShareYourselfUow(context);
+            UserPostService service = new UserPostService(uow, null);
+
+            var result = service.Take(PostFilters.Fresh, 2, 0, 5);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Count() > 0);
+        }
+
+        [TestMethod]
+        public void TakeUpdates_GetData_NotNull_NotZero()
+        {
+
+        }         
+
+
     }
 }

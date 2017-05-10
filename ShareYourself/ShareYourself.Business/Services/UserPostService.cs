@@ -4,12 +4,52 @@ using ShareYourself.Data;
 using ShareYourself.Data.Entities;
 using ShareYourself.Business.Dto;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace ShareYourself.Business.Services
 {
     public class UserPostService : BaseService, IUserPostService
     {
         private ITagService _tagService;
+
+        private IEnumerable<UserPostDto> TakeFresh(int userId, int skip, int count)
+        {
+            return uow
+                .UserPostsRepository
+                .Get<UserPostDto>()
+                .Where(x => x.CreatorId != userId)
+                .OrderByDescending(x => x.Id)
+                .Skip(skip)
+                .Take(count);
+        }
+
+        private IEnumerable<UserPostDto> TakeUpdates(int userId, int skip, int count)
+        {
+            return uow
+                .UserProfilesRepository
+                .Get(x => x.Id == userId)
+                .FirstOrDefault()
+                .Subscriptions
+                .SelectMany(x => x.Publications)
+                .OrderByDescending(x => x.Id)
+                .Skip(skip)
+                .Take(count)
+                .AsQueryable()
+                .ProjectTo<UserPostDto>();
+        }
+
+        private IEnumerable<UserPostDto> TakeLiked(int userId, int skip, int count)
+        {
+            return uow
+                .UserProfilesRepository
+                .Get(x => x.Id == userId)
+                .FirstOrDefault()
+                .Likes
+                .Skip(skip)
+                .Take(count)
+                .AsQueryable()
+                .ProjectTo<UserPostDto>();
+        }
 
         public UserPostService(IShareYourselfUow uow, ITagService tagService) : base(uow)
         {
@@ -84,9 +124,15 @@ namespace ShareYourself.Business.Services
             return result;
         }
 
-        public IEnumerable<UserPostDto> Take(PostFilters filter, int skip, int count)
+        public IEnumerable<UserPostDto> Take(PostFilters filter, int userId, int skip, int count)
         {
-            return null;
+            switch (filter)
+            {
+                case PostFilters.Fresh: return TakeFresh(userId, skip, count);
+                case PostFilters.Updates: return TakeUpdates(userId, skip, count);
+                case PostFilters.Liked: return TakeLiked(userId, skip, count);
+                default: return Enumerable.Empty<UserPostDto>();
+            }
         }
 
         public int Likes(int postId)

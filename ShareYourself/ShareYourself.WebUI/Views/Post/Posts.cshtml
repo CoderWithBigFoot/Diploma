@@ -1,5 +1,4 @@
 ﻿@using ShareYourself.Business.Dto
-@model PostFilters
 @{
     ViewBag.Title = "Posts";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -7,37 +6,13 @@
 
 @section Styles{
     @Styles.Render("~/Content/Post.css")
-    <style>
-        .filter-form {
-            display: inline-block;
-        }
-
-            .filter-form button {
-                background: none;
-                border: none;
-                cursor: pointer;
-                text-decoration: none;
-            }
-
-            .filter-form button:focus{
-                border: none;
-                outline: none;
-            }
-
-        .selected-form button {
-            color: lightgreen;
-            font-size: xx-large;
-        }
-
-    </style>
 }
-
 
 @section Scripts{
     @Scripts.Render("~/bundles/PostsInteraction")
 <script>
 
-    let selectedFilter = '@Model.ToString()';
+    let selectedFilter = '@PostFilters.Fresh.ToString()';
 
         $(function () {
 
@@ -46,6 +21,7 @@
             let likedForm = $('#likedForm');
             let inputSelector = 'input[name="filter"]';
             let selectedFormClass = 'selected-form';
+
             let formArr = [freshForm, updatesForm, likedForm];
 
             freshForm.submit(function (event) {
@@ -107,7 +83,6 @@
             HttpMethod = "Get"
         };
      }
-
     @using (Ajax.BeginForm("GetPostsByFilter", "Post", ajaxOptions, new { @class = "filter-form selected-form", @id = "freshForm" }))
     {
         <input type="text" value="@PostFilters.Fresh.ToString()" name="filter" hidden>
@@ -124,5 +99,7 @@
         <button type="submit" class="page-name">Liked</button>
     }
     <hr class="divide-content">
+
+
     }
 

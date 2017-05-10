@@ -15,7 +15,7 @@ namespace GenericRepository.Data
         IEnumerable<TEntity> Get();
         IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> expression);
 
-        //IEnumerable<TModel> Get<TModel>() where TModel : class;
+        IEnumerable<TModel> Get<TModel>() where TModel : class;
         IEnumerable<TModel> Get<TModel>(Expression<Func<TEntity, bool>> predicate) where TModel : class;
 
         void Add(TEntity entity);

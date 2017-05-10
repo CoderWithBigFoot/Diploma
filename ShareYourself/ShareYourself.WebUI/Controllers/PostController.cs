@@ -138,6 +138,10 @@ namespace ShareYourself.WebUI.Controllers
         [ActionName("GetPostsByFilter")]
         public ActionResult GetPosts(string filter)
         {
+
+            var result = _userPostService.Take()
+            
+
             return null;
         }
 
