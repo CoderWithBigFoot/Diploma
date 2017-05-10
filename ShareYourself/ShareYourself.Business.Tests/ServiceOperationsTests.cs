@@ -73,7 +73,7 @@ namespace ShareYourself.Business.Tests
         [TestMethod]
         public void TakeUpdates_GetData_NotNull_NotZero()
         {
-
+            
         }         
 
 
