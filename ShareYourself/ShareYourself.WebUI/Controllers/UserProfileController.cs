@@ -155,29 +155,13 @@ namespace ShareYourself.WebUI.Controllers
 
         [HttpGet]
         [ActionName("GetSubscriptions")]
-        public ActionResult Subscriptions(int skip, int count)
+        public ActionResult Subscriptions(int skip = 0, int count = 4)
         {
-            SubscriptionInfoViewModel user_1 = new SubscriptionInfoViewModel
-            {
-                Name = "Zheka",
-                Surname = "Korsakas",
-                Id = 1
-            };
+            var userId = _userProfileService.Get<UserProfileEditingDto>(User.Identity.Name).Id;
+            var subscriptions = _userProfileService.GetSubscriptions(userId, skip, count);
+            var result = Mapper.Map<IEnumerable<SubscriptionInfoViewModel>>(subscriptions);
 
-            SubscriptionInfoViewModel user_2 = new SubscriptionInfoViewModel
-            {
-                Id = 2,
-                Name = "Artyom",
-                Surname = "Kuis"
-            };
-
-            List<SubscriptionInfoViewModel> models = new List<SubscriptionInfoViewModel>
-            {
-                user_1,
-                user_2
-            };
-
-            return PartialView("~/Views/UserProfile/SubscriptionsPartial.cshtml", models);
+            return PartialView("~/Views/UserProfile/SubscriptionsPartial.cshtml", result);
         }
     }
 }

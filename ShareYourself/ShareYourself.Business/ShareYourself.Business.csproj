@@ -65,6 +65,7 @@
     <Compile Include="Dto\UserProfileIdDto.cs" />
     <Compile Include="Dto\UserProfileInfoForPostDto.cs" />
     <Compile Include="Dto\UserProfileRegistrationDto.cs" />
+    <Compile Include="Dto\UserProfileSubscriptionInfoDto.cs" />
     <Compile Include="Infrastructure\MapperProfiles\UserPostMapperProfile.cs" />
     <Compile Include="Infrastructure\MapperProfiles\UserProfileMapperProfile.cs" />
     <Compile Include="Infrastructure\NinjectModules\UnitOfWorkModule.cs" />

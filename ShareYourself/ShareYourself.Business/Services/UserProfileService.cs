@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using ShareYourself.Data;
 using ShareYourself.Data.Entities;
-using AutoMapper;
 using ShareYourself.Business.Dto;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace ShareYourself.Business.Services
 {
@@ -132,6 +134,19 @@ namespace ShareYourself.Business.Services
                 .Subscriptions
                 .Select(x => x.Id)
                 .Contains(toId);
+        }
+
+        public IEnumerable<UserProfileSubscriptionInfoDto> GetSubscriptions(int userId, int skip, int count)
+        {
+            return uow
+                .UserProfilesRepository
+                .Get(x => x.Id == userId)
+                .FirstOrDefault()
+                .Subscriptions
+                .Skip(skip)
+                .Take(count)
+                .AsQueryable()
+                .ProjectTo<UserProfileSubscriptionInfoDto>();
         }
     }
 }

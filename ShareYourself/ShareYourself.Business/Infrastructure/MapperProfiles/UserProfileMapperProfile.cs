@@ -25,6 +25,7 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
 
             CreateMap<UserProfile, UserProfileInfoForPostDto>();
 
+            CreateMap<UserProfile, UserProfileSubscriptionInfoDto>();
 
             CreateMap<UserImage, UserImageDto>();
         }

@@ -1,4 +1,5 @@
-﻿using ShareYourself.Business.Dto;
+﻿using System.Collections.Generic;
+using ShareYourself.Business.Dto;
 
 namespace ShareYourself.Business
 {
@@ -9,6 +10,7 @@ namespace ShareYourself.Business
         void Update(UserProfileAvatarEditingDto dto);
 
         void Subscribe(int userId, int toId);
-        bool IsSubscribedOn(int userId, int toId);     
+        bool IsSubscribedOn(int userId, int toId);
+        IEnumerable<UserProfileSubscriptionInfoDto> GetSubscriptions(int userId, int skip, int count);
     }
 }
