@@ -15,9 +15,9 @@ namespace ShareYourself.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "SubscribtionsRoute",
+                name: "SubscriptionsRoute",
                 url: "subscriptions",
-                defaults: new { controller = "UserProfile", action = "Subscribtions" }
+                defaults: new { controller = "UserProfile", action = "Subscriptions" }
                 );
 
             routes.MapRoute(

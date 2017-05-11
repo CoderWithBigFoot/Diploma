@@ -143,7 +143,7 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Subscribtions()
+        public ActionResult Subscriptions()
         {
             return View();
         }
