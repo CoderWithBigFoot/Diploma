@@ -20,13 +20,10 @@
                         @Html.HiddenFor(x=>x.Id)
                         <span class="userprofile-info-key">@Html.DisplayNameFor(x => x.Name) </span>
                         @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @value = Model.Name })
-                        @Html.ValidationMessageFor(x => x.Name)
                         <span class="userprofile-info-key">@Html.DisplayNameFor(x => x.Surname) </span>
                         @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", @value = Model.Surname })
-                        @Html.ValidationMessageFor(x => x.Surname)
                         <span class="userprofile-info-key">@Html.DisplayNameFor(x => x.Status) </span>
                         @Html.TextAreaFor(x => x.Status, new { @class = "form-control", @value = Model.Status, @rows = 3, @style = "resize: none;" })
-                        @Html.ValidationMessageFor(x => x.Status)
 
                         <span class="userprofile-info-key">@Html.DisplayNameFor(x => x.IsMale) </span><br>                       
                             @if (Model.IsMale != null)

@@ -10,6 +10,8 @@ namespace ShareYourself.Business.Dto
         public string Email { set; get; }
         public string Status { set; get; }
         public bool? IsMale { set; get; }
+        public int Posts { set; get; }
+        public int Subscribtions { set; get; }
         public DateTime RegistrationDate { set; get; }
     }
 }

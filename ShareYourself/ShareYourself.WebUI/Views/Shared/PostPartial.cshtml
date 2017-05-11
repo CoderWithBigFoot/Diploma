@@ -15,7 +15,9 @@
                 year = post.CreationDate.Year.ToString();
             }
         }
-        <a href="#"><img src="@Url.Action("GetAvatar", "UserProfile", new { id = post.CreatorId })" class="userprofile-avatar-minimized"></a> @{ /* Link for the profile*/ }
+        <a href="@Url.Action("ProfilePage", "UserProfile", new { id = post.CreatorId })" target="_blank">
+            <img src="@Url.Action("GetAvatar", "UserProfile", new { id = post.CreatorId })" class="userprofile-avatar-minimized">
+        </a> 
         <span class="userprofile-info-key" style="font-size: large;">@post.Creator.Name @post.Creator.Surname</span>
         <span class="userprofile-info-value">, @post.CreationDate.Day @monthName @year</span>
 

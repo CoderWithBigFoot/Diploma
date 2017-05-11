@@ -15,6 +15,12 @@ namespace ShareYourself.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "SubscribtionsRoute",
+                url: "subscriptions",
+                defaults: new { controller = "UserProfile", action = "Subscribtions" }
+                );
+
+            routes.MapRoute(
                 name: "LoginRoute",
                 url: "login",
                 defaults: new { controller = "Account", action = "Login" }
@@ -60,7 +66,7 @@ namespace ShareYourself.WebUI
             routes.MapRoute(
                 name: "PostsRoute",
                 url: "posts/{filter}",
-                defaults: new { controller = "Post", action = "Posts", filter = PostFilters.Fresh.ToString() }
+                defaults: new { controller = "Post", action = "Posts" }
                 );
 
             routes.MapRoute(

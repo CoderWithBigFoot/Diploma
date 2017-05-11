@@ -8,7 +8,9 @@ namespace ShareYourself.Business.Infrastructure.MapperProfiles
     {
         public UserProfileMapperProfile()
         {
-            CreateMap<UserProfile, UserProfileDto>();
+            CreateMap<UserProfile, UserProfileDto>()
+                .ForMember(x => x.Posts, opt => opt.MapFrom(x => x.Publications.Count))
+                .ForMember(x => x.Subscribtions, opt => opt.MapFrom(x => x.Subscriptions.Count));
             CreateMap<UserProfileDto, UserProfile>();
 
             CreateMap<UserProfile, UserProfileRegistrationDto>();

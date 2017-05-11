@@ -108,23 +108,22 @@ hr.divide-content {
     height: 3px;
 }
 
-.filter-form {
+.filter-link {
+    padding: 0px;
     display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 5px;
 }
 
-.filter-form button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        text-decoration: none;
-    }
-
-.filter-form button:focus {
+.filter-link focus {
     border: none;
     outline: none;
 }
 
-.selected-form button {
+.selected-filter span {
     color: blueviolet;
     font-size: xx-large;
 }

@@ -123,7 +123,7 @@ namespace ShareYourself.WebUI.Controllers
             }
 
             var postDtos = _userPostService.Take(
-                new TagDto { Name = tag },
+                tagDto: new TagDto { Name = tag },
                 skip: skip,
                 count: count
                 );
@@ -138,7 +138,16 @@ namespace ShareYourself.WebUI.Controllers
         [ActionName("GetPostsByFilter")]
         public ActionResult GetPostsBy(string filter, int skip = 0, int count = 4)
         {
-            PostFilters castedFilter = (PostFilters)Enum.Parse(typeof(PostFilters), filter, true);
+            int a = 1;
+            PostFilters castedFilter;
+            try
+            {
+                 castedFilter = (PostFilters)Enum.Parse(typeof(PostFilters), filter, true);
+            }
+            catch(Exception)
+            {
+                return null;
+            }
             var userId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id;
 
             var result = _userPostService.Take(
@@ -156,7 +165,16 @@ namespace ShareYourself.WebUI.Controllers
         [HttpGet]
         public ActionResult Posts(string filter)
         {
-            PostFilters castedFilter = (PostFilters)Enum.Parse(typeof(PostFilters), filter, true);
+            PostFilters castedFilter;
+            try
+            {
+                castedFilter = (PostFilters)Enum.Parse(typeof(PostFilters), filter, true);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            int a = 1;
             return View("Posts", castedFilter);
         }
 

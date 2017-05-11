@@ -16,55 +16,23 @@
 
             let selectedFilter = '@Model.ToString()';
 
-            let freshForm = $('#freshForm');
-            let updatesForm = $('#updatesForm');
-            let likedForm = $('#likedForm');
-            let inputSelector = 'input[name="filter"]';
-            let selectedFormClass = 'selected-form';
-            let showNextPostsFormFilter = $('#show-next-posts-form-filter');
+            let freshLink = $('#freshLink');
+            let updatesLink = $('#updatesLink');
+            let likedLink = $('#likedLink');
+            let selectedFilterClass = 'selected-filter';
 
-            showNextPostsFormFilter.val(selectedFilter);
-
-            switch (@Model) {
-                case @PostFilters.Fresh: freshForm.addClass(selectedFormClass);
-                case @PostFilters.Updates: updatesForm.addClass(selectedFormClass);
-                case @PostFilters.Liked: likedForm.addClass(selectedFormClass);
+            switch (selectedFilter) {
+                case '@PostFilters.Fresh': freshLink.addClass(selectedFilterClass); break;
+                case '@PostFilters.Updates': updatesLink.addClass(selectedFilterClass); break;
+                case '@PostFilters.Liked': likedLink.addClass(selectedFilterClass); break;
             }
-            // Error in the script (server always receives single value)
-
-            freshForm.submit(function (event) {
-                event.preventDefault();
-
-                if (freshForm.find(inputSelector).val() == selectedFilter){
-                    return false;
-                }
-                return true;
-            });
-
-            updatesForm.submit(function (event) {
-                event.preventDefault();
-
-                if (updatesForm.find(inputSelector).val() == selectedFilter){
-                    return false;
-                }
-                return true;
-            });
-
-            likedForm.submit(function (event) {
-                event.preventDefault();
-
-                if (likedForm.find(inputSelector).val() == selectedFilter){
-                    return false;
-                }
-                return true;
-            });
         });
 </script>
 }
 
 @section Body{
 
-    @{ 
+    @{
         var countOfPostsToTake = 3;
 
         var getPostsAjaxOptions = new AjaxOptions
@@ -75,38 +43,26 @@
         };
      }
 
-    @using (Html.BeginForm("Posts", "Post", FormMethod.Get, new { @class = "filter-form selected-form", @id = "freshForm" }))
-    {
-        <input type="text" value="@PostFilters.Fresh.ToString()" name="filter" hidden>
-        <input type="number" value="@countOfPostsToTake" name="count" hidden>
+    <a href="@Url.RouteUrl("PostsRoute", new { filter = ShareYourself.Business.Dto.PostFilters.Fresh.ToString() })" class="filter-link" id="freshLink">
+        <span class="page-name">Fresh</span>
+    </a>
+    <a href="@Url.RouteUrl("PostsRoute", new { filter = ShareYourself.Business.Dto.PostFilters.Updates.ToString() })" class="filter-link" id="updatesLink">
+        <span class="page-name">Updates</span>
+    </a>
+    <a href="@Url.RouteUrl("PostsRoute", new { filter = ShareYourself.Business.Dto.PostFilters.Liked.ToString() })" class="filter-link"  id="likedLink">
+        <span class="page-name">Liked</span>
+    </a>
 
-        <button type="submit" class="page-name">Fresh</button>
-    }
-    @using (Html.BeginForm("Posts", "Post", FormMethod.Get, new { @class = "filter-form", @id = "updatesForm" }))
-    {
-        <input type="text" value="@PostFilters.Updates.ToString()" name="filter" hidden>
-        <input type="number" value="@countOfPostsToTake" name="count" hidden>
-
-        <button type="submit" class="page-name">Updates</button>
-    }
-    @using (Html.BeginForm("Posts", "Post", FormMethod.Get, new { @class = "filter-form", @id = "likedForm"}))
-    {
-        <input type="text" value="@PostFilters.Liked.ToString()" name="filter" hidden>
-        <input type="number" value="@countOfPostsToTake" name="count" hidden>
-
-        <button type="submit" class="page-name">Liked</button>
-    }
     <hr class="divide-content">
 
     @{Html.RenderAction("GetPostsByFilter", "Post", new { filter = Model.ToString(), skip = 0, count = countOfPostsToTake });}
     <div id="posts"></div>
 
 
-
 <div class="main-content-nested-container">
     @using (Ajax.BeginForm("GetPostsByFilter", "Post", getPostsAjaxOptions))
     {
-        <input type="text" value="@PostFilters.Fresh.ToString()" name="filter" id="show-next-posts-form-filter" hidden>
+        <input type="text" name="filter" id="show-next-posts-form-filter" value="@Model.ToString()" hidden>
         <input type="number" name="skip" id="input-skip" hidden>
         <input type="number" value="@countOfPostsToTake" name="count" hidden>
 

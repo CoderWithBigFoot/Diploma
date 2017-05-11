@@ -25,7 +25,6 @@ namespace ShareYourself.WebUI.Controllers
         public ActionResult ProfilePage()
         {
             var currentUserId = _userProfileService.Get<UserProfileIdDto>(HttpContext.User.Identity.Name).Id;
-            /*return RedirectToRoute("UserProfileRoute", new { id = currentUserId });     */
             return ProfilePage(currentUserId);
         }
 
@@ -141,6 +140,12 @@ namespace ShareYourself.WebUI.Controllers
             _userProfileService.Subscribe(userId, toId);
 
             return Json(new { isItSubscription = _userProfileService.IsSubscribedOn(userId, toId)});
+        }
+
+        [HttpGet]
+        public ActionResult Subscribtions()
+        {
+            return View();
         }
     }
 }

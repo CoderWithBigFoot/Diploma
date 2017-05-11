@@ -58,8 +58,9 @@
                     <div class="main-content-container" style="width:92%;">
 
                         <a href="@Url.RouteUrl("MyProfileRoute")"><div class="right-menu-element">My profile</div></a>
-                        <a href="@Url.RouteUrl("PostsRoute")"><div class="right-menu-element">Posts</div></a>
+                        <a href="@Url.RouteUrl("PostsRoute", new { filter = ShareYourself.Business.Dto.PostFilters.Fresh.ToString() })"><div class="right-menu-element">Posts</div></a>
                         <a href="@Url.RouteUrl("TagCloudRoute")"><div class="right-menu-element">Tag Cloud</div></a>
+                        <a href="@Url.RouteUrl("SubscribtionsRoute")"><div class="right-menu-element">Subscriptions</div></a>
                         <a href="@Url.RouteUrl("EditUserProfileRoute")"><div class="right-menu-element">Edit</div></a>
 
                     </div>
