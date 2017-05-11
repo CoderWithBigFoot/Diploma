@@ -1,0 +1,31 @@
+﻿@using ShareYourself.WebUI.Models
+@model IEnumerable<SubscriptionInfoViewModel>
+
+@{ 
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "Post",
+        OnSuccess = "subscribingFormOnSuccess"
+    };
+}
+
+@foreach (var user in Model)
+{
+    var spanIndicatorId = $"span-indicator{user.Id}";
+
+    <div class="main-content-nested-container">
+        <img src="@Url.Content("~/Content/default-user.jpg")" class="userprofile-avatar-minimized">
+        <span class="subscription-info">@user.Name @user.Surname</span>
+
+        @using (Ajax.BeginForm("Subscribe", "UserProfile", ajaxOptions, new { @class = "subscription-form" }))
+        {
+            <input type="number" value="@user.Id" name="toId" hidden>
+         <button type="submit" class="subscription-button">
+            <span class="glyphicon glyphicon-remove-circle remove-indicator indicator" id="@spanIndicatorId"></span>
+         </button>
+        }
+    </div>
+    <hr>
+}
+
+

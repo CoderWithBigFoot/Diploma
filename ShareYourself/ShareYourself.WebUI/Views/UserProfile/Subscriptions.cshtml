@@ -1,19 +1,35 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Subscribtions";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-
 @section Styles{
     @Styles.Render("~/Content/Post.css")
-    <style>
-
-    </style>
+    @Styles.Render("~/Content/Subscriptions.css")
 }
 
 @section Scripts{
     @Scripts.Render("~/bundles/PostsInteraction")
+<script>
+    function subscribingFormOnSuccess(data) {
+        var element = $('#span-indicator'+data.toId);
+
+        if (data.isItSubscription == null || data.isItSubscription == false) {
+            element.removeClass('glyphicon-remove-circle');
+            element.removeClass('remove-indicator');
+
+            element.addClass('glyphicon-ok-circle');
+            element.addClass('ok-indicator');
+        }
+        else {
+            element.removeClass('glyphicon-ok-circle');
+            element.removeClass('ok-indicator');
+
+            element.addClass('glyphicon-remove-circle');
+            element.addClass('remove-indicator');
+        }
+    }
+</script>
 }
 
 @section Body{
@@ -21,5 +37,6 @@
     <span class="page-name">Subscriptions</span>
     <hr class="divide-content">
 
+    @{ Html.RenderAction("GetSubscriptions", "UserProfile", new { skip = 0, count = 3 }); }
 
-    }
+}

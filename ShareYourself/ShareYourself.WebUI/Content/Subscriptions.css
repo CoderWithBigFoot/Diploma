@@ -1,0 +1,35 @@
+﻿.indicator {
+    font-size: x-large;
+}
+
+.ok-indicator{
+    color: lightgreen;
+}
+
+.remove-indicator{
+    color: darkred;
+}
+
+.subscription-info {
+    font-family: 'Segoe UI';
+    color: midnightblue;
+    font-weight: 500;
+    font-size: large;
+}
+
+.subscription-button {
+    color: midnightblue;
+    border: none;
+    background-color: none;
+    background: none;
+}
+
+.subscription-form {
+    float: right;
+}
+
+.subscription-button:focus {
+    outline: none;
+    border: none;
+}
+

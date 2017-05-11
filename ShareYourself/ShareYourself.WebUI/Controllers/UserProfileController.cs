@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using ShareYourself.WebUI.Models;
@@ -139,13 +140,44 @@ namespace ShareYourself.WebUI.Controllers
             var userId = _userProfileService.Get<UserProfileEditingDto>(User.Identity.Name).Id;
             _userProfileService.Subscribe(userId, toId);
 
-            return Json(new { isItSubscription = _userProfileService.IsSubscribedOn(userId, toId)});
+            return Json(new
+            {
+                isItSubscription = _userProfileService.IsSubscribedOn(userId, toId),
+                toId = toId
+            });
         }
 
         [HttpGet]
         public ActionResult Subscriptions()
         {
             return View();
+        }
+
+        [HttpGet]
+        [ActionName("GetSubscriptions")]
+        public ActionResult Subscriptions(int skip, int count)
+        {
+            SubscriptionInfoViewModel user_1 = new SubscriptionInfoViewModel
+            {
+                Name = "Zheka",
+                Surname = "Korsakas",
+                Id = 1
+            };
+
+            SubscriptionInfoViewModel user_2 = new SubscriptionInfoViewModel
+            {
+                Id = 2,
+                Name = "Artyom",
+                Surname = "Kuis"
+            };
+
+            List<SubscriptionInfoViewModel> models = new List<SubscriptionInfoViewModel>
+            {
+                user_1,
+                user_2
+            };
+
+            return PartialView("~/Views/UserProfile/SubscriptionsPartial.cshtml", models);
         }
     }
 }
