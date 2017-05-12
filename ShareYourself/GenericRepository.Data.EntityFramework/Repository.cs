@@ -21,6 +21,7 @@ namespace GenericRepository.Data.EntityFramework
 
         public IEnumerable<TEntity> Get()
         {
+           // _context.Database.Connection.Close();
             return _set;
         }
 

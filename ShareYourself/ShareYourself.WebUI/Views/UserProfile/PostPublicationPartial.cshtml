@@ -20,18 +20,20 @@
         OnSuccess = "onSuccess"
         /*LoadingElementId = "loadingElement",
         LoadingElementDuration = 1000*/
+
     };
 }
 
 <div class="main-content-container" id="postCreationContainer" style="display: none;">
     @using (Ajax.BeginForm("CreatePost", "Post", ajaxOptions)) 
     {
+        @Html.ValidationSummary()
         <div class="main-content-nested-container">
             <textarea id="tags-input" class="form-control animated" rows="1" name="tags" placeholder="Tags"></textarea>
         </div>
                         <hr class="non-margine" />
                         <div class="main-content-nested-container">
-                            <textarea id="post-textarea" class="form-control animated" rows="1" placeholder="Content" name="content"></textarea>
+                            <textarea id = "post-textarea" class="form-control animated" rows="1" placeholder="Content" name="content"></textarea>
                         </div>
                         <hr class="non-margine" />
                         <div class="main-content-nested-container">
@@ -39,7 +41,7 @@
                             <button type="button" class="btn btn-default base-button base-button-hover" onclick="closePostForm()">Close</button>
                             <a href="#" title="Hint" 
                                data-toggle="popover" 
-                               data-content="Each word is a tag. All symbols will be omitted. Content cannot be empty." 
+                               data-content="Each word is a tag. Tags count from 1 to 5. All symbols will be omitted. Content cannot be empty." 
                                data-trigger="hover">
                                 <span class="glyphicon glyphicon-exclamation-sign" style="color: midnightblue;"></span>
                             </a>

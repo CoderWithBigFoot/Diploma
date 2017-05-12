@@ -77,7 +77,7 @@ namespace ShareYourself.WebUI.Controllers
                     var userProfileEditingDto = Mapper.Map<UserProfileEditingDto>(model);
                     _userProfileService.Update(userProfileEditingDto);
 
-                    ViewBag.ResultMessage = "Your profile successfully updated.";
+                    return RedirectToRoute("MyProfileRoute");
                 }
                 catch(Exception)
                 {

@@ -1,5 +1,7 @@
 ﻿@using ShareYourself.WebUI.Models;
 @using System.Globalization;
+@using System;
+@using System.Text.RegularExpressions;
 @model IEnumerable<UserPostViewModel>
 
 @foreach (var post in Model)
@@ -55,10 +57,14 @@
         <hr class="non-margine">
 
     @{ 
-        // Here is string formatting
+        var regex = new Regex("\n");
+        var replacement = "<br>";
+        post.Content = regex.Replace(post.Content, replacement);
+        var htmlStringContent = new HtmlString(post.Content);
+ 
     }
         <div class="main-content-nested-container">
-            @post.Content.
+            @htmlStringContent
         </div>
 </div>
 <br>

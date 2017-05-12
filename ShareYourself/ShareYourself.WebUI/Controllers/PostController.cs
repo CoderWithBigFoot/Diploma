@@ -34,13 +34,15 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreatePost(string tags, string content) // It should returns the partial view with created post content 
+        public ActionResult CreatePost(string tags, string content)  
         {
-            if(content.Length == 0 || string.IsNullOrEmpty(content))
+            // 40 letters in the one tag
+            // 5 tags is max
+            if(content.Length == 0 || string.IsNullOrEmpty(content) || content.Length >= 1000 || string.IsNullOrEmpty(tags) || tags.Length == 0)
             {
                 return null;
             }
-
+         
             char[] separators = new char[]
             {
                 ',', '.', '/', '*', '-', '+', '!', '@', '#', '№', '$', '%', '^', '&', '(', ')', ':', ';', ' ',
@@ -55,6 +57,11 @@ namespace ShareYourself.WebUI.Controllers
             {
                 if (!string.IsNullOrEmpty(currentElement))
                 {
+                    if (currentElement.Length >= 40)
+                    {
+                        return null;
+                    }
+
                     if (currentElement != "_")
                     {
                         formattedTag = currentElement.Substring(0, 1).ToUpper() + currentElement.Substring(1).ToLower();
@@ -66,10 +73,14 @@ namespace ShareYourself.WebUI.Controllers
                 }
             }
 
+            if(tagDtos.Count > 5 || tagDtos.Count < 1)
+            {
+                return null;
+            }
+
             try
             {
                 var userId = _userProfileService.Get<UserProfileIdDto>(User.Identity.Name).Id;
-
                 UserPostCreationDto dto = new UserPostCreationDto
                 {
                     Content = content,
