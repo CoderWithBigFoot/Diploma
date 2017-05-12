@@ -38,11 +38,22 @@ namespace ShareYourself.WebUI.Controllers
         {
             // 40 letters in the one tag
             // 5 tags is max
-            if(content.Length == 0 || string.IsNullOrEmpty(content) || content.Length >= 1000 || string.IsNullOrEmpty(tags) || tags.Length == 0)
+            if(content.Length == 0 || 
+                string.IsNullOrEmpty(content) || 
+                content.Length >= 1000 || 
+                string.IsNullOrEmpty(tags) ||
+                tags.Length == 0)
             {
                 return null;
             }
          
+            if(content != null)
+            {
+                if(!content.Any(x => char.IsLetter(x))){
+                    return null;
+                }
+            }
+
             char[] separators = new char[]
             {
                 ',', '.', '/', '*', '-', '+', '!', '@', '#', '№', '$', '%', '^', '&', '(', ')', ':', ';', ' ',
