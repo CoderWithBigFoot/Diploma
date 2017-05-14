@@ -4,10 +4,12 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+@section Styles{
+    @Styles.Render("~/Content/Post.css")
+    }
+
 @section Body{
-    <div class="main-content-container">
-        <div class="main-content-nested-container">
-            <h3>@Model</h3>
+        <div class="main-content-nested-container" style="text-align: center;">
+            <span class="page-name">@Model</span>
         </div>
-    </div>
 }

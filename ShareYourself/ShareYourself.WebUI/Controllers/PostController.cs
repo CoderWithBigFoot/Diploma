@@ -36,8 +36,6 @@ namespace ShareYourself.WebUI.Controllers
         [HttpPost]
         public ActionResult CreatePost(string tags, string content)  
         {
-            // 40 letters in the one tag
-            // 5 tags is max
             if(content.Length == 0 || 
                 string.IsNullOrEmpty(content) || 
                 content.Length >= 1000 || 
@@ -62,7 +60,6 @@ namespace ShareYourself.WebUI.Controllers
             
             ICollection<TagDto> tagDtos = new List<TagDto>();
             string formattedTag;
-            string formattedContent;
 
             foreach(var currentElement in tags.Split(separators))
             {

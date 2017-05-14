@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System.Threading.Tasks;
 using AutoMapper;
 using ShareYourself.WebUI.Models;
 using ShareYourself.WebUI.Identity.Models;
@@ -132,12 +132,6 @@ namespace ShareYourself.WebUI.Controllers
         {
             AuthenticationManager.SignOut();
             return RedirectToAction("Login");
-        }
-
-        [HttpGet]
-        public ActionResult Error(string message)
-        {
-            return View("~/Views/Shared/Error.cshtml", message);
         }
     }
 }

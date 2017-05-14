@@ -14,7 +14,9 @@
     var spanIndicatorId = $"span-indicator{user.Id}";
 
     <div class="main-content-nested-container">
-        <img src="@Url.Content("~/Content/default-user.jpg")" class="userprofile-avatar-minimized">
+        <a href="@Url.Action("ProfilePage", "UserProfile", new { id = user.Id })" target="_blank">
+            <img src="@Url.Content("~/Content/default-user.jpg")" class="userprofile-avatar-minimized">
+        </a>
         <span class="subscription-info">@user.Name @user.Surname</span>
 
         @using (Ajax.BeginForm("Subscribe", "UserProfile", ajaxOptions, new { @class = "subscription-form" }))

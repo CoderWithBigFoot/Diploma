@@ -44,7 +44,7 @@ namespace ShareYourself.WebUI.Controllers
 
             if (mappedUserProfile == null)
             {
-                return RedirectToRoute("ErrorRoute", new { message = "Such profile doesn't exist." });
+                return View(viewName:"~/Views/Shared/Error.cshtml", model: "Such profile doesn't exist.");
             }
 
             return View("ProfilePage", mappedUserProfile);   
@@ -116,7 +116,7 @@ namespace ShareYourself.WebUI.Controllers
         }
 
         [HttpGet]
-        public FileResult GetAvatar(int id) // Need to fix the Avatar rotation 
+        public FileResult GetAvatar(int id) 
         {
             var avatarId = _userProfileService.Get<UserProfileAvatarIdDto>(id);
             
